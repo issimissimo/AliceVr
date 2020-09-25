@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <type>video</type>
+    <owner>Parco Regionale Veneto del Delta del Po</owner>
+    <date>Mon Jan 20 2020</date>
+    <location>Rovigo (RO) - Italy</location>
+    <title>Via delle Valli</title>
+    <description>Itinerario di grande suggestione che consente di ammirare luoghi naturalistici ricchi di rara avifauna tipica della zona salmastra, come il tratto che costeggia le valli da pesca e la laguna.
+La Via delle Valli, è forse quello che maggiormente soddisfa le esigenze degli amanti del birdwatching e del fotonaturalismo; grandi specchi vallivi e lagunari, tramonti di fuoco, migliaia di volatili in tutte le stagioni, germani reali, folaghe, aironi, limicoli.
+Sono visitabili alcuni centri vallivi per l'allevamento estensivo ed intensivo di orate, branzini, cefali.</description>
+
+    <video_url1>https://player.vimeo.com/external/387913524.m3u8?s=8f08263cdc946708b67be75027cc77734e27f1b9</video_url1>
+    <video_url2>47522</video_url2>
+    <!-- <video_url3>https://alicevr.it/data/video/Delta_250120_2048x1024.mp4</video_url3> -->
+    <video_url3>../data/video/Delta_250120_2048x1024.mp4</video_url3>
+    
+    <poster_url>delta.jpg</poster_url>
+    <subtitles_url></subtitles_url>
+    <markers_url>delta_markers.xml</markers_url>
+    <journal_url>DeltaDelPo.html</journal_url>
+
+    <id>delta_tracks</id>
+    <id>delta_routes</id>
+    <id>delta_points</id>
+    
+    
+    
+</root>

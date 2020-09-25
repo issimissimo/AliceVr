@@ -1,0 +1,206 @@
+html, body, #cesiumContainer {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Roboto';
+    /* for Microsoft Edge */
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    overflow: hidden;
+}
+
+.absolute {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+/* hide all credits for Cesium */
+
+.cesium-widget-credits {
+    display: none !important;
+}
+
+.UiLabel {
+    /* font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: darkgray; */
+}
+
+#overlayLabel {
+    position: absolute;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: rgb(26, 27, 33);
+    color: rgba(255, 255, 255, 0.849);
+    display: none;
+}
+
+#overlayLabel p {
+    margin: 0;
+    padding: 0.4em;
+}
+
+
+.overlayLabel-bold {
+    font-weight: 500;
+    font-size: 13px;
+}
+.overlayLabel-regular {
+    font-weight: 500;
+    font-size: 11px;
+}
+.overlayLabel-light {
+    font-weight: 300;
+    font-size: 11px;
+}
+
+/* #overlayLabel p {
+    color: rgba(255, 255, 255, 0.815);
+    margin: 10px;
+    font-size: smaller;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: rgb(26, 27, 33);
+    color: rgba(255, 255, 255, 0.849);
+    display: none;
+} */
+
+
+
+/* credits */
+#credits {
+    position: absolute;
+    margin: 0;
+    padding: 1.5vmax;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5vh;
+    max-height: 25px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+#credits span {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: x-small;
+    color: white;
+}
+#credits img {
+    margin-right: 0.5em;
+}
+
+
+
+#UI {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    left: 1em;
+    bottom: 1em;
+    z-index: 99;
+    pointer-events: none;
+}
+
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    right: 0em;
+}
+
+#toolbar>img {
+    padding-bottom: 1rem;
+}
+
+#toolbar img {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#navigation {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(26, 27, 33);
+    border-radius: 9em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+#navigation>img {
+    opacity: 0.7;
+    padding: 0.2em;
+    width: 1.1em;
+}
+
+#preloader {
+    z-index: 9999;
+    /* display: none; */
+    background: white;
+}
+
+#preloader div {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#preloader img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+/*******************
+navigator
+*******************/
+
+/* #navigator {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    z-index: 99;
+}
+
+#navigator-message {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: rgb(26, 27, 33);
+    color: rgba(255, 255, 255, 0.849);
+    display: none;
+}
+
+#navigator-message p {
+    margin: 0;
+}
+
+#navigator-message div {
+    padding: 0.4em;
+}
+
+#navigator-buttons-container {
+    display: none;
+}
+
+#navigator-buttons img {
+    pointer-events: auto;
+    cursor: pointer;
+} */
+
+/* #homeButton {
+    pointer-events: auto;
+    cursor: pointer;
+} */
