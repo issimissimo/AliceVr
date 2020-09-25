@@ -27,7 +27,7 @@
 
 
     <!-- main app -->
-    <script type="module" src="./src/App.js"></script>
+    <!-- <script type="module" src="./src/App.js"></script> -->
 
 
     <style>
@@ -57,7 +57,7 @@
 <body>
     <div id="cesiumContainer" class="absolute">
 
-        <div id="preloader" class="absolute">
+        <!-- <div id="preloader" class="absolute">
             <div>
                 <img src="images/mapLoadingSpinner.gif" alt="LOADING">
                 <div style="width: 100px; height: 3px; position: relative;">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <!-- <button style="position: absolute; top: 30%; left: 0; width: 4em; z-index: 9999;"
@@ -123,4 +123,28 @@
 
 
     </div>
+
+    <script>
+
+        Cesium.Ion.defaultAccessToken =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZDU1NWMyOC00YjFkLTQ5OTUtODg5Yy0zZDRlNGI1NTg3ZjciLCJpZCI6MTUxNTgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjcyNDQ4NjR9.WDQmliwvLOArHiI9n4ET2TBELHRsGofW1unvSsbuyR8';
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            // imageryProvider: Map.params.imageryProvider(),
+            terrainProvider: Cesium.createWorldTerrain(),
+            animation: false,
+            baseLayerPicker: false,
+            fullscreenButton: false,
+            geocoder: false,
+            homeButton: false,
+            infoBox: false,
+            sceneModePicker: false,
+            timeline: false,
+            navigationHelpButton: false,
+            useBrowserRecommendedResolution: false, /// change this to improve rendering speed on mobile
+        });
+
+
+    </script>
+
+
 </body>
