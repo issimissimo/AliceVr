@@ -114,7 +114,7 @@ export default class Polyline {
                     }),
                     outlineWidth: properties.outlineWidth,
                     outlineColor: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity * globalOpacity)
+                        return new Cesium.Color(1, 0.5, 0.5, entity.opacity * globalOpacity)
                     }),
                 }),
                 // show: properties.show,
