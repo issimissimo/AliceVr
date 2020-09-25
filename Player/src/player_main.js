@@ -97,16 +97,18 @@ dispatcher.receiveMessage("videoPlayerSeek", function (time) {
 
 
 
-
+let oldTime = 0;
 const t = () => {
     setInterval(() => {
 
-        if (player.isPlaying) {
+        let time = player.time;
+        if (player.isPlaying && time !== oldTime) {
+
+            oldTime = time;
 
             //////////////////////////////////////////////
             /// send message during playback
             //////////////////////////////////////////////
-            let time = player.time;
             let angle = player.angle;
             dispatcher.sendMessage("playerPlaying", {
                 time: time,
@@ -127,8 +129,15 @@ const t = () => {
             subtitles.check(time);
         }
 
+        else if (player.isPlaying && time == oldTime){
+            let angle = player.angle;
+            dispatcher.sendMessage("playerPaused", {
+                angle: angle,
+            });
+        }
 
-        if (player.isPaused) {
+
+        else if (player.isPaused) {
             let angle = player.angle;
             dispatcher.sendMessage("playerPaused", {
                 angle: angle,

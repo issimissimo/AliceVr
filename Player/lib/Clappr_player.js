@@ -26,9 +26,7 @@ const Clappr_player = {
     get time() {
         if (this.player) {
             return this.player.getCurrentTime();
-        } else {
-            console.error("Error - try to get time from player not defined")
-        }
+        } 
     },
 
     get angle() {
