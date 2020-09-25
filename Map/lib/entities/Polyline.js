@@ -58,6 +58,7 @@ function getPropertiesFromCategory(category) {
                 properties.width = 5;
                 properties.outlineWidth = 2;
                 properties.color = new Cesium.Cartesian3(0.26, 0.52, 0.96);
+                properties.opacity = 1;
                 break;
 
             case "ROUTE":
