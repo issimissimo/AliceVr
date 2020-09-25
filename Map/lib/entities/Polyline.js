@@ -98,24 +98,25 @@ export default class Polyline {
             selectable: false,
             polyline: {
                 positions: positions,
-                clampToGround: properties.clampToGround,
-                width: properties.width,
+                clampToGround: true,
+                width: 5,
 
                 //// tooo slow.....
                 // width: new Cesium.CallbackProperty(function () {
                 //     return entity.width * globalWidth;
                 // }, false),
 
-                material: new Cesium.PolylineOutlineMaterialProperty({
-                    color: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(entity.color.x, entity.color.y, entity.color.z, entity.opacity * globalOpacity)
-                    }),
-                    outlineWidth: properties.outlineWidth,
-                    outlineColor: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity * globalOpacity)
-                    }),
-                }),
-                show: properties.show,
+                // material: new Cesium.PolylineOutlineMaterialProperty({
+                //     color: new Cesium.CallbackProperty(function () {
+                //         return new Cesium.Color(entity.color.x, entity.color.y, entity.color.z, entity.opacity * globalOpacity)
+                //     }),
+                //     outlineWidth: properties.outlineWidth,
+                //     outlineColor: new Cesium.CallbackProperty(function () {
+                //         return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity * globalOpacity)
+                //     }),
+                // }),
+                material: Cesium.Color.RED,
+                show: true,
             }
         });
 
