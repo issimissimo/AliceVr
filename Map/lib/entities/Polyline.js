@@ -58,6 +58,7 @@ function getPropertiesFromCategory(category) {
                 properties.width = 5;
                 properties.outlineWidth = 2;
                 properties.color = new Cesium.Cartesian3(0.26, 0.52, 0.96);
+                properties.opacity = 1;
                 break;
 
             case "ROUTE":
@@ -109,7 +110,7 @@ export default class Polyline {
 
                 material: new Cesium.PolylineOutlineMaterialProperty({
                     color: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(1, 1, 1, 1)
+                        return new Cesium.Color(0, 1, 0, entity.opacity * globalOpacity)
                     }),
                     outlineWidth: properties.outlineWidth,
                     outlineColor: new Cesium.CallbackProperty(function () {
