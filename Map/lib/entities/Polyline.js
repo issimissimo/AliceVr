@@ -110,7 +110,7 @@ export default class Polyline {
 
                 material: new Cesium.PolylineOutlineMaterialProperty({
                     color: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(0, 1, 0, entity.opacity * globalOpacity)
+                        return new Cesium.Color(0, 1, 1, 1)
                     }),
                     outlineWidth: properties.outlineWidth,
                     outlineColor: new Cesium.CallbackProperty(function () {
