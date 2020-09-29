@@ -100,7 +100,8 @@ export default class Polyline {
             polyline: {
                 positions: positions,
                 clampToGround: properties.clampToGround,
-                width: properties.width,
+                // width: properties.width,
+                width: 5,
 
                 //// tooo slow.....
                 // width: new Cesium.CallbackProperty(function () {
@@ -113,10 +114,11 @@ export default class Polyline {
                     }),
                     outlineWidth: properties.outlineWidth,
                     outlineColor: new Cesium.CallbackProperty(function () {
-                        return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity * globalOpacity)
+                        return new Cesium.Color(0, 0, 0, entity.opacity * globalOpacity)
                     }),
                 }),
-                show: properties.show,
+                // show: properties.show,
+                show: true,
             }
         });
 
