@@ -242,6 +242,7 @@ p {
 @media (max-width: 600px) {
     #titles {
         flex-direction: column;
+        top: 0.5em !important; left: 0.5em !important; right: 0.5em !important; bottom: 0.5em !important;
     }
 
     #splashScreen-div{
