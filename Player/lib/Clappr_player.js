@@ -86,7 +86,7 @@ const Clappr_player = {
             if (asset.poster_url) {
                 let poster = this.posterFolder + asset.poster_url;
 
-                console.log("loading poster......................")
+                // console.log("loading poster......................")
 
                 let posterImg = new Image();
                 posterImg.src = poster;
@@ -101,11 +101,11 @@ const Clappr_player = {
 
     setup: function (url, poster = null) {
 
-        console.warn("SETUP VIDEOPLAYER")
+        // console.warn("SETUP VIDEOPLAYER")
         /// destroy old video
         if (this.player) {
             this.player.destroy();
-            console.warn("new video is requested to load");
+            // console.warn("new video is requested to load");
         }
 
 
@@ -125,7 +125,7 @@ const Clappr_player = {
 
         /// listeners
         this.player.listenTo(this.player, Clappr.Events.PLAYER_READY, () => {
-            console.log("video is ready");
+            // console.log("video is ready");
             for (let i in this.onReadyHandlers) this.onReadyHandlers[i]();
         });
 
@@ -135,16 +135,16 @@ const Clappr_player = {
             if (this.isSeeking) {
                 this.isSeeking = false;
                 this.isPlaying = true;
-                console.log("video is playing again from seek");
+                // console.log("video is playing again from seek");
 
             } else {
                 if (this.isPaused) {
                     this.isPaused = false;
                     this.isPlaying = true;
-                    console.log("video is playing again from pause");
+                    // console.log("video is playing again from pause");
                 } else {
                     this.isPlaying = true;
-                    console.log("video started");
+                    // console.log("video started");
                 }
             }
 
@@ -161,14 +161,14 @@ const Clappr_player = {
             this.isPaused = true;
 
             for (let i in this.onPausedHandlers) this.onPausedHandlers[i]();
-            console.log("video is paused");
+            // console.log("video is paused");
         });
 
         this.player.listenTo(this.player, Clappr.Events.PLAYER_STOP, () => {
             this.isPlaying = false;
             this.isPaused = false;
 
-            console.log("video is stopped");
+            // console.log("video is stopped");
         });
 
 
@@ -177,7 +177,7 @@ const Clappr_player = {
             this.isPlaying = false;
 
             for (let i in this.onSeekedHandlers) this.onSeekedHandlers[i]();
-            console.log("video is seeking");
+            // console.log("video is seeking");
         });
 
 
@@ -188,7 +188,7 @@ const Clappr_player = {
             this.isFinished = true;
 
             for (let i in this.onEndedHandlers) this.onEndedHandlers[i]();
-            console.log("Video ended");
+            // console.log("Video ended");
         });
 
 

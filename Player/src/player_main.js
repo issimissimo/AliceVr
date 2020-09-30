@@ -81,7 +81,7 @@ dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
-    console.log(asset)
+    // console.log(asset)
 });
 
 dispatcher.receiveMessage("videoPlayerPlay", function () {

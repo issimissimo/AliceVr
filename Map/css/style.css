@@ -83,10 +83,10 @@ html, body, #cesiumContainer {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 5vh;
-    max-height: 25px;
+    height: 2vh;
+    max-height: 20px;
     z-index: 999;
-    background-color: rgba(0, 0, 0, 0.35);
+    /* background-color: rgba(0, 0, 0, 0.35); */
 }
 #credits span {
     font-family: 'Open Sans', sans-serif;

@@ -245,7 +245,7 @@ p {
     }
 
     #splashScreen-div{
-        display: flex;
+        /* display: flex; */
         width: auto !important;
     }
 
@@ -253,7 +253,12 @@ p {
         display: none !important;
     }
 
+    .splashScreen-title{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     .splashScreen-description{
-        display: none !important;
+        /* display: none !important; */
     }
 }
