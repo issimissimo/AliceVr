@@ -1,0 +1,27 @@
+
+
+<script>
+
+    var source;
+
+    window.addEventListener("message", function (event) {
+
+
+        console.log("sono receiver 1 e ho ricevuto: " + event.data);
+
+        // can message back using event.source.postMessage(...)
+
+        source = event.source;
+
+        setTimeout(() => {
+
+            var data = "pippo";
+
+            // source.postMessage("message", "*");
+            source.postMessage(data, "*");
+
+        }, 1000)
+
+    });
+</script>
+

@@ -16,7 +16,7 @@ dispatcher.receiveMessage("rootAssetClicked", function () {
 });
 
 dispatcher.receiveMessage("showGuideWarningForNoTrack", function () {
-    console.warn("--> showGuideWarningForNoTrack")
+    // console.warn("--> showGuideWarningForNoTrack")
     showWarn();
 });
 

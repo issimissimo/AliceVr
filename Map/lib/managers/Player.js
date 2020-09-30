@@ -45,7 +45,7 @@ export default class Player {
             /* create radar */
             Player.radar = Ellipse.draw(video.boundingSphere.center, "POSITION");
             dispatcher.sendMessage("showGuideWarningForNoTrack");
-            console.warn("showGuideWarningForNoTrack")
+            // console.warn("showGuideWarningForNoTrack")
         }
 
         /* create start points */
