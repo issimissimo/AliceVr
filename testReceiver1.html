@@ -15,24 +15,27 @@
 
         var parentWindow = null;
 
+        
+        /////////////////////////////////////
+        /// receive message from parent window
+        /////////////////////////////////////
         window.addEventListener("message", function (event) {
 
-
-            console.log("sono receiver 1 e ho ricevuto: " + event.data);
-
-
+            console.log(event.data)
+            
             /// register parentWindow
-            if (event.data = "hello") {
+            if (event.data === "hello") {
                 parentWindow = event.source;
-                console.log("BENE, ho ricevuto source")
+                console.log("** INIT ** sono receiver 1, ho ricevuto source")
             }
             /// receive message
-            else{
+            else {
+                console.log("-------------------");
+                console.log("sono receiver 1 e ho ricevuto:");
+                console.log(event.data);
+                console.log("-------------------");
 
             }
-
-            
-
         });
 
 
@@ -47,6 +50,9 @@
                     data: data
                 }
                 parentWindow.postMessage(msg, "*");
+            }
+            else{
+                console.warn("Parent window script not yet loaded...");
             }
         };
 
