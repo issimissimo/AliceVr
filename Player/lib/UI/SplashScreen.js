@@ -21,8 +21,6 @@ export default class SplashScreen {
 
     static show(_rootAsset) {
 
-        console.log(_rootAsset)
-
         rootAsset = _rootAsset;
 
         SplashScreen.enabled = true;

@@ -35,7 +35,7 @@ function init() {
 function checkForIframesLoaded() {
     iframesLoaded++;
     if (iframesLoaded === iframesCount) {
-        console.log("ALL LOADED!")
+
         /// send message to all iframes
         /// to register to parentWindow
         for (let i = 0; i < iframesCount; i++) {
@@ -51,7 +51,7 @@ function checkForIframesLoaded() {
 /// register listener to receive message from dispatchers
 /////////////////////////////////////
 window.addEventListener("message", function (event) {
-    console.log(event.data)
+
     ///send message to all iframes
     for (let i = 0; i < iframesCount; i++) {
         window.frames[i].postMessage(event.data, "*");
@@ -61,19 +61,18 @@ window.addEventListener("message", function (event) {
 
 
 
-setTimeout(() => {
-
-    (function () {
-        /// Load Jquery
-        var script = document.createElement("SCRIPT");
-        script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
-        script.type = 'text/javascript';
-        script.onload = function () {
-            $ = window.jQuery;
-            init();
-        };
-        document.getElementsByTagName("head")[0].appendChild(script);
-    })();
 
 
-}, 0);
+(function () {
+    /// Load Jquery
+    var script = document.createElement("SCRIPT");
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+    script.type = 'text/javascript';
+    script.onload = function () {
+        $ = window.jQuery;
+        init();
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+})();
+
+
