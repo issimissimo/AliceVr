@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../../lib/dispatcher.js";
 import Loader from "./Loader.js";
 import Map from "../Map.js";
 import StartPoint from "./extensions/StartPoint.js";
@@ -44,7 +41,7 @@ export default class Player {
         } else {
             /* create radar */
             Player.radar = Ellipse.draw(video.boundingSphere.center, "POSITION");
-            dispatcher.sendMessage("showGuideWarningForNoTrack");
+            window.dispatcher.sendMessage("showGuideWarningForNoTrack");
             // console.warn("showGuideWarningForNoTrack")
         }
 
@@ -111,25 +108,25 @@ Player.playing = false;
 /*****************
 messages receivers
 ******************/
-dispatcher.receiveMessage("playerStarted", () => {
+window.dispatcher.receiveMessage("playerStarted", () => {
     Player.started = true;
     Player.hideStartPoints();
     // console.log("UEEEEEEEEEEEEEEEEE STARTED!!!!!" + Player.started)
 });
-dispatcher.receiveMessage("playerPlaying", (data) => {
+window.dispatcher.receiveMessage("playerPlaying", (data) => {
     check(data.time);
     Player.playing = true;
     Player.radar.ellipse.stRotation = Cesium.Math.toRadians(data.angle) + radarHeading;
 });
-dispatcher.receiveMessage("playerPaused", (data) => {
+window.dispatcher.receiveMessage("playerPaused", (data) => {
     Player.playing = false;
     Player.radar.ellipse.stRotation = Cesium.Math.toRadians(data.angle) + radarHeading;
 });
-dispatcher.receiveMessage("playerSeeking", () => {
+window.dispatcher.receiveMessage("playerSeeking", () => {
     markerIndex = null;
     Player.playing = false;
 });
-dispatcher.receiveMessage("playerEnded", () => {
+window.dispatcher.receiveMessage("playerEnded", () => {
     Player.reset();
 });
 

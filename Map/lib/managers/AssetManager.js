@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../../lib/dispatcher.js";
 import Map from "../Map.js";
 import Loader from "./Loader.js";
 import Player from "./Player.js"
@@ -29,7 +26,7 @@ export default class AssetManager {
         }
         /* or, send message for root asset */
         else {
-            dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+            window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
         }
 
 
@@ -59,7 +56,7 @@ export default class AssetManager {
                 })
 
                 /* send message for root asset */
-                dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+                window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
             }
         );
 
@@ -172,7 +169,7 @@ export default class AssetManager {
 
 
             /* send message */
-            dispatcher.sendMessage("videoAssetOver", asset);
+            window.dispatcher.sendMessage("videoAssetOver", asset);
         }
     };
 
@@ -192,7 +189,7 @@ export default class AssetManager {
             overlayLabelVisible = false;
 
             /* send message */
-            dispatcher.sendMessage("videoAssetExit");
+            window.dispatcher.sendMessage("videoAssetExit");
         }
     };
 
@@ -226,7 +223,7 @@ export default class AssetManager {
         });
 
         /* send message */
-        dispatcher.sendMessage("videoAssetClicked", selectedAsset);
+        window.dispatcher.sendMessage("videoAssetClicked", selectedAsset);
     };
 
 
@@ -237,7 +234,7 @@ export default class AssetManager {
         // selectedAsset.entityClicked.utils.fade(0.01, null, 1000);
 
         /* send message */
-        dispatcher.sendMessage("videoPlayerPlay");
+        window.dispatcher.sendMessage("videoPlayerPlay");
 
 
 
@@ -305,13 +302,13 @@ Map.onDown.push(function () {
 /*****************
 messages receivers
 ******************/
-dispatcher.receiveMessage("playerStarted", () => {
+window.dispatcher.receiveMessage("playerStarted", () => {
     // selectedAsset.entityClicked.utils.fade(0.01, null, 1000);
     // selectedAsset.entityClicked.utils.zoom(2, null, 1000);
     stopCameraRotation();
 });
 
-dispatcher.receiveMessage("playerEnded", () => {
+window.dispatcher.receiveMessage("playerEnded", () => {
 
     /* fly there */
     Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
@@ -332,20 +329,20 @@ dispatcher.receiveMessage("playerEnded", () => {
     });
 });
 
-dispatcher.receiveMessage("splashScreenOver", (id) => {
+window.dispatcher.receiveMessage("splashScreenOver", (id) => {
     // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnOver(asset);
 
 });
 
-dispatcher.receiveMessage("splashScreenExit", (id) => {
+window.dispatcher.receiveMessage("splashScreenExit", (id) => {
     // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnExit(asset);
 });
 
-dispatcher.receiveMessage("splashScreenClicked", (id) => {
+window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
     // console.log(id)
     $("#homeButton").fadeIn();
 
