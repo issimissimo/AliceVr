@@ -29,7 +29,7 @@ if (WURFL.complete_device_name === "Microsoft Edge") {
 
 
 
-
+SplashScreen.hide();
 
 
 /********************************************
@@ -37,7 +37,7 @@ Register handlers
 ********************************************/
 player.onReadyHandlers.push(function () {
     // $("#videoPlayer-preloader").fadeOut();
-
+    console.log("SplashScreen.hide")
     if (SplashScreen.enabled) SplashScreen.hide();
     overlay.showOnReady();
 });
@@ -75,6 +75,7 @@ window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+    console.log("videoAssetClicked")
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);

@@ -8,9 +8,41 @@ export default class AssetManager {
 
     static init(_range) {
 
+        console.log("INITTTTT")
+
         range = _range;
 
         zoomToAll();
+
+
+
+        ///create root asset to send with postmessage to the Player!
+        let rootForPlayer = [];
+        let rootAsset = {
+            id: "",
+            title: "",
+            description: "",
+            posterUrl: "",
+        };
+        for (let i = 0; i < Loader.root.asset.children.length; i++) {
+            if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
+                rootAsset.id = Loader.root.asset.children[i].asset.id;
+                console.log("-------------- " + Loader.root.asset.children[i].asset.title)
+                rootAsset.title = Loader.root.asset.children[i].asset.title;
+                rootAsset.description = Loader.root.asset.children[i].asset.description;
+                rootAsset.posterUrl = Loader.root.asset.children[i].asset.poster_url;
+                rootForPlayer.push(rootAsset);
+            }
+        };
+
+
+        console.log("////////////////////////////////////////////")
+        for (let i = 0; i < rootForPlayer.length; i++) {
+            console.log(rootForPlayer[i])
+        }
+        console.log("////////////////////////////////////////////")
+
+
 
         /* if there's only one video asset
         click it */
@@ -26,7 +58,13 @@ export default class AssetManager {
         }
         /* or, send message for root asset */
         else {
-            window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+            console.log("SEEENNNNDDD.........")
+            console.log(Loader.root.asset)
+
+
+            // window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+            window.dispatcher.sendMessage("rootAssetClicked", null);
+            console.log("SEEENT")
         }
 
 
@@ -61,7 +99,7 @@ export default class AssetManager {
         );
 
 
-        if (!WURFL.is_mobile){
+        if (!WURFL.is_mobile) {
 
             Map.onOverEntity.push((entity) => {
 
@@ -72,17 +110,17 @@ export default class AssetManager {
                     AssetManager.OnOver(asset);
                 }
             });
-    
+
             Map.onExitEntity.push((entity) => {
-    
+
                 if (entity.id.category === "PLACEHOLDER-VIDEO" ||
                     entity.id.category === "PLACEHOLDER-VIDEO-OVER") {
-    
+
                     // console.log("EXIT VIDEO")
                     const asset = typeof entity.asset === "undefined" ?
                         Loader.root.getAssetById(entity.id.asset.id) :
                         Loader.root.getAssetById(entity.asset.id);
-    
+
                     AssetManager.OnExit(asset);
                 }
             });
