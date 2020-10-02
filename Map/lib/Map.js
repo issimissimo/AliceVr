@@ -201,8 +201,8 @@ export default class Map {
         
         /* credits */
         let credits = Map.params.useMapbox ?
-            " by ISSIMISSIMO - Imagery data attribution Mapbox - Credits Sportnet" :
-            " by ISSIMISSIMO - Imagery data attribution Bing Maps - Credits Sportnet";
+            " Realized by ISSIMISSIMO - Imagery data attribution Mapbox" :
+            " Realized by ISSIMISSIMO - Imagery data attribution Bing Maps";
         $('#credits-text').text(credits);
         
 
@@ -245,8 +245,8 @@ export default class Map {
                 document.body.style.cursor = "default";
 
                 if (Map.entity) {
-                    console.log("---- Map - exit ----")
-                    console.log(Map.entity)
+                    // console.log("---- Map - exit ----")
+                    // console.log(Map.entity)
                     for (let i = 0; i < Map.onExitEntity.length; i++) {
                         Map.onExitEntity[i](Map.entity);
                     };

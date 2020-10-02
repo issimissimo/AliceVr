@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../lib/dispatcher.js";
 import Clappr_player from "../lib/Clappr_player.js";
 import OmniVirt_player from "../lib/OmniVirt_player.js";
 import * as overlay from "../lib/overlay.js";
@@ -13,10 +10,10 @@ import SplashScreen from "../lib/UI/SplashScreen.js"
 /********************************************
 Swap player on platform
 ********************************************/
-let player;
-console.log("****************************************")
-console.log(WURFL.complete_device_name)
-console.log("****************************************")
+let player = null;
+// console.log("****************************************")
+// console.log(WURFL.complete_device_name)
+// console.log("****************************************")
 // if (WURFL.complete_device_name === "Microsoft Edge" || WURFL.complete_device_name === "Apple iPhone" ||
 //     WURFL.complete_device_name === "Apple Safari")
 if (WURFL.complete_device_name === "Microsoft Edge") {
@@ -46,21 +43,21 @@ player.onReadyHandlers.push(function () {
 });
 
 player.onStartedHandlers.push(function () {
-    dispatcher.sendMessage("playerStarted");
+    window.dispatcher.sendMessage("playerStarted");
     overlay.showOnPlay();
 });
 
 player.onPausedHandlers.push(function () {
-    dispatcher.sendMessage("playerPaused");
+    window.dispatcher.sendMessage("playerPaused");
 });
 
 player.onSeekedHandlers.push(function () {
-    dispatcher.sendMessage("playerSeeking");
+    window.dispatcher.sendMessage("playerSeeking");
     subtitles.restart();
 });
 
 player.onEndedHandlers.push(function () {
-    dispatcher.sendMessage("playerEnded");
+    window.dispatcher.sendMessage("playerEnded");
     overlay.showOnReady();
 });
 
@@ -72,23 +69,24 @@ player.onEndedHandlers.push(function () {
 /********************************************
 Receive messages
 ********************************************/
-dispatcher.receiveMessage("rootAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
     player.stop();
     SplashScreen.show(asset);
 });
 
-dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+    // console.log("videoAssetClicked")
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
-    console.log(asset)
+    // console.log(asset)
 });
 
-dispatcher.receiveMessage("videoPlayerPlay", function () {
+window.dispatcher.receiveMessage("videoPlayerPlay", function () {
     player.play();
 });
 
-dispatcher.receiveMessage("videoPlayerSeek", function (time) {
+window.dispatcher.receiveMessage("videoPlayerSeek", function (time) {
     player.seek(time);
 });
 
@@ -98,10 +96,69 @@ dispatcher.receiveMessage("videoPlayerSeek", function (time) {
 
 
 let oldTime = 0;
-const t = () => {
-    setInterval(() => {
+// const t = () => {
+//     setInterval(() => {
+
+//         let time = player.time;
+//         if (player.isPlaying && time !== oldTime) {
+
+//             oldTime = time;
+
+//             //////////////////////////////////////////////
+//             /// send message during playback
+//             //////////////////////////////////////////////
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPlaying", {
+//                 time: time,
+//                 angle: angle,
+//             });
+
+
+//             //////////////////////////////////////////////
+//             /// rotate overlay viewAngle
+//             //////////////////////////////////////////////
+//             overlay.viewAngle.rotate(angle);
+
+
+
+//             //////////////////////////////////////////////
+//             /// check for subtitles
+//             //////////////////////////////////////////////
+//             subtitles.check(time);
+//         }
+
+//         else if (player.isPlaying && time == oldTime) {
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPaused", {
+//                 angle: angle,
+//             });
+//         }
+
+
+//         else if (player.isPaused) {
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPaused", {
+//                 angle: angle,
+//             });
+//         }
+
+
+
+
+
+//     }, 500);
+// }
+// t();
+
+
+
+
+setInterval(() => {
+    if (player) {
 
         let time = player.time;
+        let angle = player.angle;
+
         if (player.isPlaying && time !== oldTime) {
 
             oldTime = time;
@@ -110,17 +167,10 @@ const t = () => {
             /// send message during playback
             //////////////////////////////////////////////
             let angle = player.angle;
-            dispatcher.sendMessage("playerPlaying", {
+            window.dispatcher.sendMessage("playerPlaying", {
                 time: time,
                 angle: angle,
             });
-
-
-            //////////////////////////////////////////////
-            /// rotate overlay viewAngle
-            //////////////////////////////////////////////
-            overlay.viewAngle.rotate(angle);
-
 
 
             //////////////////////////////////////////////
@@ -129,9 +179,9 @@ const t = () => {
             subtitles.check(time);
         }
 
-        else if (player.isPlaying && time == oldTime){
+        else if (player.isPlaying && time == oldTime) {
             let angle = player.angle;
-            dispatcher.sendMessage("playerPaused", {
+            window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
             });
         }
@@ -139,35 +189,20 @@ const t = () => {
 
         else if (player.isPaused) {
             let angle = player.angle;
-            dispatcher.sendMessage("playerPaused", {
+            window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
             });
         }
 
-
-
-    }, 200);
-}
-
-t();
-
+        //////////////////////////////////////////////
+        /// rotate overlay viewAngle
+        //////////////////////////////////////////////
+        overlay.viewAngle.rotate(angle);
+    }
 
 
 
 
 
 
-// ////////////////////////////////////////// DEBUG
-// let asset = {
-//     videoUrl: "https://player.vimeo.com/external/347803220.m3u8?s=61a66fd483813c89da138ac578628ca68bb65fe3",
-//     videoUrl_1: "43236",
-//     subtitles: "coppi_subtitles.xml",
-//     title: "Titolo di prova",
-//     description: "Per debug"
-// }
-
-
-
-// player.load(asset)
-// overlay.load(player, asset);
-// subtitles.load(asset);
+}, 500);

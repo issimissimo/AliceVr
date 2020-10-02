@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../lib/dispatcher.js";
 import Map from "../lib/Map.js";
 import * as cities from "../lib/add-on/cities.js";
 import Loader from "../lib/managers/Loader.js"
@@ -9,23 +6,16 @@ import Preloader from "../lib/UI/Preloader.js";
 
 
 
-
-
 /*******************************************
 *********** ON MAP STARTED
 *******************************************/
 Map.onStarted.push(() => {
-
 
     /* get URL parameters from Map.html (derived from index.html) */
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idToLoad = urlParams.get('id')
     // console.log(idToLoad);
-
-
-
-
 
     /* init preloader DIV */
     Preloader.init();
@@ -40,7 +30,7 @@ Map.onStarted.push(() => {
     Loader.load(idToLoad, () => {
 
         // console.log(Loader.root.asset)
-
+       
         let range = Loader.root.asset.boundingSphere.radius * 3;
         // let range = 140000;
 
@@ -63,7 +53,7 @@ Map.onStarted.push(() => {
 *******************************************/
 Map.onReady.push(function () {
 
-    dispatcher.sendMessage("mapReady");
+    window.dispatcher.sendMessage("mapReady");
 
     /* change Map changed sensitivity */
     Map.camera.percentageChanged = 0.3; /// default 0.5

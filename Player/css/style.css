@@ -242,10 +242,11 @@ p {
 @media (max-width: 600px) {
     #titles {
         flex-direction: column;
+        top: 0.5em !important; left: 0.5em !important; right: 0.5em !important; bottom: 0.5em !important;
     }
 
     #splashScreen-div{
-        display: flex;
+        /* display: flex; */
         width: auto !important;
     }
 
@@ -253,7 +254,12 @@ p {
         display: none !important;
     }
 
+    .splashScreen-title{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     .splashScreen-description{
-        display: none !important;
+        /* display: none !important; */
     }
 }

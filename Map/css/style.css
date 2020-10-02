@@ -23,12 +23,6 @@ html, body, #cesiumContainer {
     display: none !important;
 }
 
-.UiLabel {
-    /* font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: darkgray; */
-}
 
 #overlayLabel {
     position: absolute;
@@ -61,32 +55,16 @@ html, body, #cesiumContainer {
     font-size: 11px;
 }
 
-/* #overlayLabel p {
-    color: rgba(255, 255, 255, 0.815);
-    margin: 10px;
-    font-size: smaller;
-    font-family: 'Open Sans', sans-serif;
-    padding: 0.5em;
-    border-radius: 0.5em;
-    background-color: rgb(26, 27, 33);
-    color: rgba(255, 255, 255, 0.849);
-    display: none;
-} */
-
-
-
 /* credits */
 #credits {
     position: absolute;
-    margin: 0;
-    padding: 1.5vmax;
+    margin: 1em;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 5vh;
-    max-height: 25px;
+    height: 2vh;
+    max-height: 20px;
     z-index: 999;
-    background-color: rgba(0, 0, 0, 0.35);
 }
 #credits span {
     font-family: 'Open Sans', sans-serif;

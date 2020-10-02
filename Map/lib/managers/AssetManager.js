@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../../lib/dispatcher.js";
 import Map from "../Map.js";
 import Loader from "./Loader.js";
 import Player from "./Player.js"
@@ -14,6 +11,22 @@ export default class AssetManager {
         range = _range;
 
         zoomToAll();
+
+        ////////////////////////////////////////////////////////////////
+        ///create root asset to send with postmessage to the Player!
+        ////////////////////////////////////////////////////////////////
+        let rootForPlayer = [];
+        for (let i = 0; i < Loader.root.asset.children.length; i++) {
+            if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
+                const rootAsset = {
+                    id: Loader.root.asset.children[i].asset.id,
+                    title: Loader.root.asset.children[i].asset.title,
+                    description: Loader.root.asset.children[i].asset.description,
+                    poster_url: Loader.root.asset.children[i].asset.poster_url,
+                };
+                rootForPlayer.push(rootAsset);
+            }
+        };
 
         /* if there's only one video asset
         click it */
@@ -29,7 +42,8 @@ export default class AssetManager {
         }
         /* or, send message for root asset */
         else {
-            dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+            // window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+            window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
         }
 
 
@@ -59,12 +73,12 @@ export default class AssetManager {
                 })
 
                 /* send message for root asset */
-                dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+                window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
             }
         );
 
 
-        if (!WURFL.is_mobile){
+        if (!WURFL.is_mobile) {
 
             Map.onOverEntity.push((entity) => {
 
@@ -75,17 +89,17 @@ export default class AssetManager {
                     AssetManager.OnOver(asset);
                 }
             });
-    
+
             Map.onExitEntity.push((entity) => {
-    
+
                 if (entity.id.category === "PLACEHOLDER-VIDEO" ||
                     entity.id.category === "PLACEHOLDER-VIDEO-OVER") {
-    
+
                     // console.log("EXIT VIDEO")
                     const asset = typeof entity.asset === "undefined" ?
                         Loader.root.getAssetById(entity.id.asset.id) :
                         Loader.root.getAssetById(entity.asset.id);
-    
+
                     AssetManager.OnExit(asset);
                 }
             });
@@ -172,7 +186,10 @@ export default class AssetManager {
 
 
             /* send message */
-            dispatcher.sendMessage("videoAssetOver", asset);
+            const assetForPlayer = {
+                title: asset.title,
+            }
+            window.dispatcher.sendMessage("videoAssetOver", assetForPlayer);
         }
     };
 
@@ -192,7 +209,7 @@ export default class AssetManager {
             overlayLabelVisible = false;
 
             /* send message */
-            dispatcher.sendMessage("videoAssetExit");
+            window.dispatcher.sendMessage("videoAssetExit");
         }
     };
 
@@ -226,7 +243,16 @@ export default class AssetManager {
         });
 
         /* send message */
-        dispatcher.sendMessage("videoAssetClicked", selectedAsset);
+        const assetForPlayer = {
+            title: selectedAsset.title,
+            description: selectedAsset.description,
+            poster_url: selectedAsset.poster_url,
+            video_url1: selectedAsset.video_url1,
+            video_url2: selectedAsset.video_url2,
+            video_url3: selectedAsset.video_url3,
+            subtitles_url: selectedAsset.subtitles_url,
+        }
+        window.dispatcher.sendMessage("videoAssetClicked", assetForPlayer);
     };
 
 
@@ -237,7 +263,7 @@ export default class AssetManager {
         // selectedAsset.entityClicked.utils.fade(0.01, null, 1000);
 
         /* send message */
-        dispatcher.sendMessage("videoPlayerPlay");
+        window.dispatcher.sendMessage("videoPlayerPlay");
 
 
 
@@ -305,13 +331,13 @@ Map.onDown.push(function () {
 /*****************
 messages receivers
 ******************/
-dispatcher.receiveMessage("playerStarted", () => {
+window.dispatcher.receiveMessage("playerStarted", () => {
     // selectedAsset.entityClicked.utils.fade(0.01, null, 1000);
     // selectedAsset.entityClicked.utils.zoom(2, null, 1000);
     stopCameraRotation();
 });
 
-dispatcher.receiveMessage("playerEnded", () => {
+window.dispatcher.receiveMessage("playerEnded", () => {
 
     /* fly there */
     Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
@@ -332,20 +358,20 @@ dispatcher.receiveMessage("playerEnded", () => {
     });
 });
 
-dispatcher.receiveMessage("splashScreenOver", (id) => {
+window.dispatcher.receiveMessage("splashScreenOver", (id) => {
     // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnOver(asset);
 
 });
 
-dispatcher.receiveMessage("splashScreenExit", (id) => {
+window.dispatcher.receiveMessage("splashScreenExit", (id) => {
     // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnExit(asset);
 });
 
-dispatcher.receiveMessage("splashScreenClicked", (id) => {
+window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
     // console.log(id)
     $("#homeButton").fadeIn();
 
