@@ -120,7 +120,9 @@ window.dispatcher.receiveMessage("playerPlaying", (data) => {
 });
 window.dispatcher.receiveMessage("playerPaused", (data) => {
     Player.playing = false;
-    Player.radar.ellipse.stRotation = Cesium.Math.toRadians(data.angle) + radarHeading;
+    if (data){
+        Player.radar.ellipse.stRotation = Cesium.Math.toRadians(data.angle) + radarHeading;
+    }
 });
 window.dispatcher.receiveMessage("playerSeeking", () => {
     markerIndex = null;

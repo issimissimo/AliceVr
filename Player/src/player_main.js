@@ -37,7 +37,7 @@ Register handlers
 ********************************************/
 player.onReadyHandlers.push(function () {
     // $("#videoPlayer-preloader").fadeOut();
-    console.log("SplashScreen.hide")
+ 
     if (SplashScreen.enabled) SplashScreen.hide();
     overlay.showOnReady();
 });

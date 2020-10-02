@@ -42,7 +42,7 @@ Map.onStarted.push(() => {
 
 
         /* load cities from boundingsphere position - radius */
-        // cities.init(Loader.root.asset.boundingSphere.center, range);
+        cities.init(Loader.root.asset.boundingSphere.center, range);
     });
 })
 

@@ -64,7 +64,7 @@ var dispatcher = {
             parentWindow.postMessage(msg, "*");
         }
         else {
-            console.warn("Parent window script not yet defined. Maybe parent window is still loading, or the iframes are not fully loaded");
+            console.info("Parent window script not yet defined. Maybe parent window is still loading, or the iframes are not fully loaded. This is not an issue!");
             messagesQueueManager(msg);
         }
     },
@@ -81,39 +81,3 @@ var dispatcher = {
         receivedMessageHandlers.push(msg);
     }
 }
-
-
-
-
-// /////////////////////////////////////
-// /// send message to parent window
-// /////////////////////////////////////
-// function sendMessage(message, data = null) {
-
-//     let msg = {
-//         message: message,
-//         data: data
-//     };
-
-//     if (parentWindow) {
-//         parentWindow.postMessage(msg, "*");
-//     }
-//     else {
-//         console.warn("Parent window script not yet defined. Maybe parent window is still loading, or the iframes are not fully loaded");
-//         messagesQueueManager(msg);
-//     }
-// };
-
-
-
-// /////////////////////////////////////
-// /// register a callback for a specific message
-// /////////////////////////////////////
-// function receiveMessage(message, func) {
-
-//     let msg = {
-//         message: message,
-//         func: func
-//     };
-//     receivedMessageHandlers.push(msg);
-// };
