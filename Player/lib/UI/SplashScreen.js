@@ -169,7 +169,9 @@ window.dispatcher.receiveMessage("videoAssetOver", function (asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetExit", function () {
-    selectedDiv.css('background-color', 'rgba(0,0,0,0.4');
+    if (selectedDiv){
+        selectedDiv.css('background-color', 'rgba(0,0,0,0.4');
+    }
 });
 
 
