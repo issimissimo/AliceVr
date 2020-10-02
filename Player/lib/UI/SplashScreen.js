@@ -21,6 +21,8 @@ export default class SplashScreen {
 
     static show(_rootAsset) {
 
+        console.log(_rootAsset)
+
         rootAsset = _rootAsset;
 
         SplashScreen.enabled = true;
@@ -34,50 +36,97 @@ export default class SplashScreen {
             let images = [];
             var e = $('#splashScreen-div');
 
-            for (let i = 0; i < rootAsset.children.length; i++) {
-                if (rootAsset.children[i].asset.constructor.name === "Video") {
-                    images[i] = posterFolder + rootAsset.children[i].asset.poster_url;
-                    var $url = images[i];
-                    var title = rootAsset.children[i].asset.title;
-                    var description = rootAsset.children[i].asset.description;
-                    var id = rootAsset.children[i].asset.id;
 
-                    if (i === 0) {
-                        $('.active').attr('src', $url);
-                        divs.push(e);
-                    }
-                    else {
-                        $("#videoPlayer-slideshow").append("<img src='" + $url + "'></img>");
-                        var f = e.clone().insertAfter(e);
-                        divs.push(f);
-                    }
+            for (let i = 0; i < rootAsset.length; i++) {
 
-                    divs[i].data({ id: id });
-                    divs[i].find('.splashScreen-poster').attr('src', $url);
-                    divs[i].find('.splashScreen-title').text(title);
-                    divs[i].find('.splashScreen-description').text(description);
-                    divs[i].hover(
-                        function () {
-                            divs[i].css('background-color', 'rgba(26, 27, 33, 1');
+                images[i] = posterFolder + rootAsset[i].poster_url;
+                var $url = images[i];
+                var title = rootAsset[i].title;
+                var description = rootAsset[i].description;
+                var id = rootAsset[i].id;
 
-                            /* send message */
-                            window.dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
-                        },
-                        function () {
-                            divs[i].css('background-color', 'rgba(26, 27, 33, 0.4');
-
-                            /* send message */
-                            window.dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
-                        });
-                    divs[i].click(
-                        function () {
-
-                            /* send message */
-                            window.dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
-                        },
-                    )
+                if (i === 0) {
+                    $('.active').attr('src', $url);
+                    divs.push(e);
                 }
+                else {
+                    $("#videoPlayer-slideshow").append("<img src='" + $url + "'></img>");
+                    var f = e.clone().insertAfter(e);
+                    divs.push(f);
+                }
+
+                divs[i].data({ id: id });
+                divs[i].find('.splashScreen-poster').attr('src', $url);
+                divs[i].find('.splashScreen-title').text(title);
+                divs[i].find('.splashScreen-description').text(description);
+                divs[i].hover(
+                    function () {
+                        divs[i].css('background-color', 'rgba(26, 27, 33, 1');
+
+                        /* send message */
+                        window.dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
+                    },
+                    function () {
+                        divs[i].css('background-color', 'rgba(26, 27, 33, 0.4');
+
+                        /* send message */
+                        window.dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
+                    });
+                divs[i].click(
+                    function () {
+
+                        /* send message */
+                        window.dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
+                    },
+                )
+
             }
+
+
+            // for (let i = 0; i < rootAsset.children.length; i++) {
+            //     if (rootAsset.children[i].asset.constructor.name === "Video") {
+            //         images[i] = posterFolder + rootAsset.children[i].asset.poster_url;
+            //         var $url = images[i];
+            //         var title = rootAsset.children[i].asset.title;
+            //         var description = rootAsset.children[i].asset.description;
+            //         var id = rootAsset.children[i].asset.id;
+
+            //         if (i === 0) {
+            //             $('.active').attr('src', $url);
+            //             divs.push(e);
+            //         }
+            //         else {
+            //             $("#videoPlayer-slideshow").append("<img src='" + $url + "'></img>");
+            //             var f = e.clone().insertAfter(e);
+            //             divs.push(f);
+            //         }
+
+            //         divs[i].data({ id: id });
+            //         divs[i].find('.splashScreen-poster').attr('src', $url);
+            //         divs[i].find('.splashScreen-title').text(title);
+            //         divs[i].find('.splashScreen-description').text(description);
+            //         divs[i].hover(
+            //             function () {
+            //                 divs[i].css('background-color', 'rgba(26, 27, 33, 1');
+
+            //                 /* send message */
+            //                 window.dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
+            //             },
+            //             function () {
+            //                 divs[i].css('background-color', 'rgba(26, 27, 33, 0.4');
+
+            //                 /* send message */
+            //                 window.dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
+            //             });
+            //         divs[i].click(
+            //             function () {
+
+            //                 /* send message */
+            //                 window.dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
+            //             },
+            //         )
+            //     }
+            // }
 
             $("#videoPlayer-preloader").fadeOut();
         }
@@ -111,8 +160,8 @@ Receive messages
 let selectedDiv = null;
 window.dispatcher.receiveMessage("videoAssetOver", function (asset) {
     let index;
-    for (let i = 0; i < rootAsset.children.length; i++) {
-        if (asset.title === rootAsset.children[i].asset.title) {
+    for (let i = 0; i < rootAsset.length; i++) {
+        if (asset.title === rootAsset[i].title) {
             index = i;
             break;
         }

@@ -11,12 +11,12 @@ window.addEventListener("message", function (event) {
     /// register parentWindow
     if (event.data === "hello") {
         parentWindow = event.source;
-        console.log("OK!")
+        // console.log("parentWindow received!")
     }
 
     /// dispatch message
     else {
-        console.log(event.data.data)
+        // console.log(event.data.data)
         for (let i in receivedMessageHandlers) {
             if (receivedMessageHandlers[i].message === event.data.message) {
                 receivedMessageHandlers[i].func(event.data.data);

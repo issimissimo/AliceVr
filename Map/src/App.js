@@ -10,17 +10,12 @@ import Preloader from "../lib/UI/Preloader.js";
 *********** ON MAP STARTED
 *******************************************/
 Map.onStarted.push(() => {
-    console.log("Map.onStarted")
 
     /* get URL parameters from Map.html (derived from index.html) */
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idToLoad = urlParams.get('id')
     // console.log(idToLoad);
-
-
-    console.log("1")
-
 
     /* init preloader DIV */
     Preloader.init();
@@ -32,20 +27,14 @@ Map.onStarted.push(() => {
     // const idToLoad = "1570451964288";
     // const idToLoad = "main";
 
-    console.log("2")
-
     Loader.load(idToLoad, () => {
-
-        console.log("3")
 
         // console.log(Loader.root.asset)
        
         let range = Loader.root.asset.boundingSphere.radius * 3;
-        console.log("range:" + range)
         // let range = 140000;
 
         AssetManager.init(range);
-        console.log("AssetManager.init" + range)
 
         // /// DEBUG : show circle
         // Ellipse.draw(Loader.root.asset.boundingSphere.center, "ORANGE", Loader.root.asset.boundingSphere.radius);
@@ -53,7 +42,7 @@ Map.onStarted.push(() => {
 
 
         /* load cities from boundingsphere position - radius */
-        cities.init(Loader.root.asset.boundingSphere.center, range);
+        // cities.init(Loader.root.asset.boundingSphere.center, range);
     });
 })
 

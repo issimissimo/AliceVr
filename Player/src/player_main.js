@@ -29,7 +29,7 @@ if (WURFL.complete_device_name === "Microsoft Edge") {
 
 
 
-SplashScreen.hide();
+
 
 
 /********************************************
@@ -75,7 +75,7 @@ window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
-    console.log("videoAssetClicked")
+    // console.log("videoAssetClicked")
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);

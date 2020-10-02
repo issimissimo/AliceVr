@@ -8,41 +8,25 @@ export default class AssetManager {
 
     static init(_range) {
 
-        console.log("INITTTTT")
-
         range = _range;
 
         zoomToAll();
 
-
-
+        ////////////////////////////////////////////////////////////////
         ///create root asset to send with postmessage to the Player!
+        ////////////////////////////////////////////////////////////////
         let rootForPlayer = [];
-        let rootAsset = {
-            id: "",
-            title: "",
-            description: "",
-            posterUrl: "",
-        };
         for (let i = 0; i < Loader.root.asset.children.length; i++) {
             if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
-                rootAsset.id = Loader.root.asset.children[i].asset.id;
-                console.log("-------------- " + Loader.root.asset.children[i].asset.title)
-                rootAsset.title = Loader.root.asset.children[i].asset.title;
-                rootAsset.description = Loader.root.asset.children[i].asset.description;
-                rootAsset.posterUrl = Loader.root.asset.children[i].asset.poster_url;
+                const rootAsset = {
+                    id: Loader.root.asset.children[i].asset.id,
+                    title: Loader.root.asset.children[i].asset.title,
+                    description: Loader.root.asset.children[i].asset.description,
+                    poster_url: Loader.root.asset.children[i].asset.poster_url,
+                };
                 rootForPlayer.push(rootAsset);
             }
         };
-
-
-        console.log("////////////////////////////////////////////")
-        for (let i = 0; i < rootForPlayer.length; i++) {
-            console.log(rootForPlayer[i])
-        }
-        console.log("////////////////////////////////////////////")
-
-
 
         /* if there's only one video asset
         click it */
@@ -58,13 +42,8 @@ export default class AssetManager {
         }
         /* or, send message for root asset */
         else {
-            console.log("SEEENNNNDDD.........")
-            console.log(Loader.root.asset)
-
-
             // window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
-            window.dispatcher.sendMessage("rootAssetClicked", null);
-            console.log("SEEENT")
+            window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
         }
 
 
@@ -94,7 +73,7 @@ export default class AssetManager {
                 })
 
                 /* send message for root asset */
-                window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
+                window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
             }
         );
 
@@ -207,7 +186,10 @@ export default class AssetManager {
 
 
             /* send message */
-            window.dispatcher.sendMessage("videoAssetOver", asset);
+            const assetForPlayer = {
+                title: asset.title,
+            }
+            window.dispatcher.sendMessage("videoAssetOver", assetForPlayer);
         }
     };
 
@@ -261,7 +243,16 @@ export default class AssetManager {
         });
 
         /* send message */
-        window.dispatcher.sendMessage("videoAssetClicked", selectedAsset);
+        const assetForPlayer = {
+            title: selectedAsset.title,
+            description: selectedAsset.description,
+            poster_url: selectedAsset.poster_url,
+            video_url1: selectedAsset.video_url1,
+            video_url2: selectedAsset.video_url2,
+            video_url3: selectedAsset.video_url3,
+            subtitles_url: selectedAsset.subtitles_url,
+        }
+        window.dispatcher.sendMessage("videoAssetClicked", assetForPlayer);
     };
 
 
