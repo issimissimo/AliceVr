@@ -3,28 +3,28 @@ let iframesLoaded = 0;
 var $;
 
 function init() {
-    if (typeof window.frames.testReceiver1 !== "undefined") {
+    if (typeof window.frames.Map !== "undefined") {
         iframesCount++;
         $(function () {
-            let iframe = document.getElementsByName("testReceiver1")[0]
+            let iframe = document.getElementsByName("Map")[0]
             $(iframe).ready(function () {
                 checkForIframesLoaded();
             });
         });
     };
-    if (typeof window.frames.testReceiver2 !== "undefined") {
+    if (typeof window.frames.Player !== "undefined") {
         iframesCount++;
         $(function () {
-            let iframe = document.getElementsByName("testReceiver2")[0]
+            let iframe = document.getElementsByName("Player")[0]
             $(iframe).ready(function () {
                 checkForIframesLoaded();
             });
         });
     };
-    if (typeof window.frames.testReceiver3 !== "undefined") {
+    if (typeof window.frames.Journal !== "undefined") {
         iframesCount++;
         $(function () {
-            let iframe = document.getElementsByName("testReceiver3")[0]
+            let iframe = document.getElementsByName("Journal")[0]
             $(iframe).ready(function () {
                 checkForIframesLoaded();
             });
