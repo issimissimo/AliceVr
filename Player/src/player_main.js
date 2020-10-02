@@ -150,24 +150,3 @@ const t = () => {
 }
 
 t();
-
-
-
-
-
-
-
-// ////////////////////////////////////////// DEBUG
-// let asset = {
-//     videoUrl: "https://player.vimeo.com/external/347803220.m3u8?s=61a66fd483813c89da138ac578628ca68bb65fe3",
-//     videoUrl_1: "43236",
-//     subtitles: "coppi_subtitles.xml",
-//     title: "Titolo di prova",
-//     description: "Per debug"
-// }
-
-
-
-// player.load(asset)
-// overlay.load(player, asset);
-// subtitles.load(asset);

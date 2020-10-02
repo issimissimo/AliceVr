@@ -1,6 +1,6 @@
-import {
-    dispatcher
-} from "../../lib/dispatcher.js";
+// import {
+//     dispatcher
+// } from "../../lib/dispatcher.js";
 import Map from "../lib/Map.js";
 import * as cities from "../lib/add-on/cities.js";
 import Loader from "../lib/managers/Loader.js"
@@ -63,7 +63,8 @@ Map.onStarted.push(() => {
 *******************************************/
 Map.onReady.push(function () {
 
-    dispatcher.sendMessage("mapReady");
+    console.log("map ready!")
+    window.dispatcher.sendMessage("mapReady");
 
     /* change Map changed sensitivity */
     Map.camera.percentageChanged = 0.3; /// default 0.5
