@@ -10,10 +10,10 @@ import SplashScreen from "../lib/UI/SplashScreen.js"
 /********************************************
 Swap player on platform
 ********************************************/
-let player;
-console.log("****************************************")
-console.log(WURFL.complete_device_name)
-console.log("****************************************")
+let player = null;
+// console.log("****************************************")
+// console.log(WURFL.complete_device_name)
+// console.log("****************************************")
 // if (WURFL.complete_device_name === "Microsoft Edge" || WURFL.complete_device_name === "Apple iPhone" ||
 //     WURFL.complete_device_name === "Apple Safari")
 if (WURFL.complete_device_name === "Microsoft Edge") {
@@ -37,7 +37,7 @@ Register handlers
 ********************************************/
 player.onReadyHandlers.push(function () {
     // $("#videoPlayer-preloader").fadeOut();
- 
+
     if (SplashScreen.enabled) SplashScreen.hide();
     overlay.showOnReady();
 });
@@ -96,10 +96,69 @@ window.dispatcher.receiveMessage("videoPlayerSeek", function (time) {
 
 
 let oldTime = 0;
-const t = () => {
-    setInterval(() => {
+// const t = () => {
+//     setInterval(() => {
+
+//         let time = player.time;
+//         if (player.isPlaying && time !== oldTime) {
+
+//             oldTime = time;
+
+//             //////////////////////////////////////////////
+//             /// send message during playback
+//             //////////////////////////////////////////////
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPlaying", {
+//                 time: time,
+//                 angle: angle,
+//             });
+
+
+//             //////////////////////////////////////////////
+//             /// rotate overlay viewAngle
+//             //////////////////////////////////////////////
+//             overlay.viewAngle.rotate(angle);
+
+
+
+//             //////////////////////////////////////////////
+//             /// check for subtitles
+//             //////////////////////////////////////////////
+//             subtitles.check(time);
+//         }
+
+//         else if (player.isPlaying && time == oldTime) {
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPaused", {
+//                 angle: angle,
+//             });
+//         }
+
+
+//         else if (player.isPaused) {
+//             let angle = player.angle;
+//             window.dispatcher.sendMessage("playerPaused", {
+//                 angle: angle,
+//             });
+//         }
+
+
+
+
+
+//     }, 500);
+// }
+// t();
+
+
+
+
+setInterval(() => {
+    if (player) {
 
         let time = player.time;
+        let angle = player.angle;
+
         if (player.isPlaying && time !== oldTime) {
 
             oldTime = time;
@@ -115,19 +174,12 @@ const t = () => {
 
 
             //////////////////////////////////////////////
-            /// rotate overlay viewAngle
-            //////////////////////////////////////////////
-            overlay.viewAngle.rotate(angle);
-
-
-
-            //////////////////////////////////////////////
             /// check for subtitles
             //////////////////////////////////////////////
             subtitles.check(time);
         }
 
-        else if (player.isPlaying && time == oldTime){
+        else if (player.isPlaying && time == oldTime) {
             let angle = player.angle;
             window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
@@ -142,9 +194,15 @@ const t = () => {
             });
         }
 
+        //////////////////////////////////////////////
+        /// rotate overlay viewAngle
+        //////////////////////////////////////////////
+        overlay.viewAngle.rotate(angle);
+    }
 
 
-    }, 500);
-}
 
-t();
+
+
+
+}, 500);

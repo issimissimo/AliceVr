@@ -30,8 +30,14 @@ const Clappr_player = {
     },
 
     get angle() {
-        let angle = ((this.plugin360.viewer.controls.theta / this.defTheta) - 1) * -90;
-        return angle;
+        if (this.plugin360){
+            let angle = ((this.plugin360.viewer.controls.theta / this.defTheta) - 1) * -90;
+            return angle;
+        }
+        else{
+            return 0;
+        }
+        
     },
 
     play: function () {

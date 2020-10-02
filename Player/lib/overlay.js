@@ -77,17 +77,19 @@ export const viewAngle = {
     },
 
     rotate: function (angle) {
-        if (typeof vp.plugin360 !== "undefined") {
-            let $viewCone = $("#videoPlayer_viewAngle-cone");
-
-            // For webkit browsers: e.g. Chrome
-            $viewCone.css({
-                WebkitTransform: 'rotate(' + angle + 'deg)'
-            });
-            // For Mozilla browser: e.g. Firefox
-            $viewCone.css({
-                '-moz-transform': 'rotate(' + angle + 'deg)'
-            });
+        if (vp){
+            if (typeof vp.plugin360 !== "undefined") {
+                let $viewCone = $("#videoPlayer_viewAngle-cone");
+    
+                // For webkit browsers: e.g. Chrome
+                $viewCone.css({
+                    WebkitTransform: 'rotate(' + angle + 'deg)'
+                });
+                // For Mozilla browser: e.g. Firefox
+                $viewCone.css({
+                    '-moz-transform': 'rotate(' + angle + 'deg)'
+                });
+            }
         }
     },
 
