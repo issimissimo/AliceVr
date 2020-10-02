@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../../lib/dispatcher.js";
 
 
 function slideShowCycle() {
@@ -64,19 +61,19 @@ export default class SplashScreen {
                             divs[i].css('background-color', 'rgba(26, 27, 33, 1');
 
                             /* send message */
-                            dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
+                            window.dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
                         },
                         function () {
                             divs[i].css('background-color', 'rgba(26, 27, 33, 0.4');
 
                             /* send message */
-                            dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
+                            window.dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
                         });
                     divs[i].click(
                         function () {
 
                             /* send message */
-                            dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
+                            window.dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
                         },
                     )
                 }
@@ -112,7 +109,7 @@ SplashScreen.enabled = false;
 Receive messages
 ********************************************/
 let selectedDiv = null;
-dispatcher.receiveMessage("videoAssetOver", function (asset) {
+window.dispatcher.receiveMessage("videoAssetOver", function (asset) {
     let index;
     for (let i = 0; i < rootAsset.children.length; i++) {
         if (asset.title === rootAsset.children[i].asset.title) {
@@ -124,7 +121,7 @@ dispatcher.receiveMessage("videoAssetOver", function (asset) {
     selectedDiv.css('background-color', 'rgba(0,0,0,1');
 });
 
-dispatcher.receiveMessage("videoAssetExit", function () {
+window.dispatcher.receiveMessage("videoAssetExit", function () {
     selectedDiv.css('background-color', 'rgba(0,0,0,0.4');
 });
 

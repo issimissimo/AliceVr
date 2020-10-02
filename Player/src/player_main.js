@@ -1,6 +1,3 @@
-import {
-    dispatcher
-} from "../../lib/dispatcher.js";
 import Clappr_player from "../lib/Clappr_player.js";
 import OmniVirt_player from "../lib/OmniVirt_player.js";
 import * as overlay from "../lib/overlay.js";
@@ -46,21 +43,21 @@ player.onReadyHandlers.push(function () {
 });
 
 player.onStartedHandlers.push(function () {
-    dispatcher.sendMessage("playerStarted");
+    window.dispatcher.sendMessage("playerStarted");
     overlay.showOnPlay();
 });
 
 player.onPausedHandlers.push(function () {
-    dispatcher.sendMessage("playerPaused");
+    window.dispatcher.sendMessage("playerPaused");
 });
 
 player.onSeekedHandlers.push(function () {
-    dispatcher.sendMessage("playerSeeking");
+    window.dispatcher.sendMessage("playerSeeking");
     subtitles.restart();
 });
 
 player.onEndedHandlers.push(function () {
-    dispatcher.sendMessage("playerEnded");
+    window.dispatcher.sendMessage("playerEnded");
     overlay.showOnReady();
 });
 
@@ -72,23 +69,23 @@ player.onEndedHandlers.push(function () {
 /********************************************
 Receive messages
 ********************************************/
-dispatcher.receiveMessage("rootAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
     player.stop();
     SplashScreen.show(asset);
 });
 
-dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
     // console.log(asset)
 });
 
-dispatcher.receiveMessage("videoPlayerPlay", function () {
+window.dispatcher.receiveMessage("videoPlayerPlay", function () {
     player.play();
 });
 
-dispatcher.receiveMessage("videoPlayerSeek", function (time) {
+window.dispatcher.receiveMessage("videoPlayerSeek", function (time) {
     player.seek(time);
 });
 
@@ -110,7 +107,7 @@ const t = () => {
             /// send message during playback
             //////////////////////////////////////////////
             let angle = player.angle;
-            dispatcher.sendMessage("playerPlaying", {
+            window.dispatcher.sendMessage("playerPlaying", {
                 time: time,
                 angle: angle,
             });
@@ -131,7 +128,7 @@ const t = () => {
 
         else if (player.isPlaying && time == oldTime){
             let angle = player.angle;
-            dispatcher.sendMessage("playerPaused", {
+            window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
             });
         }
@@ -139,14 +136,14 @@ const t = () => {
 
         else if (player.isPaused) {
             let angle = player.angle;
-            dispatcher.sendMessage("playerPaused", {
+            window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
             });
         }
 
 
 
-    }, 200);
+    }, 500);
 }
 
 t();

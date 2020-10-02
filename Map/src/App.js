@@ -58,7 +58,6 @@ Map.onStarted.push(() => {
 *******************************************/
 Map.onReady.push(function () {
 
-    console.log("map ready!")
     window.dispatcher.sendMessage("mapReady");
 
     /* change Map changed sensitivity */
