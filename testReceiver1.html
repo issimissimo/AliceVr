@@ -2,59 +2,46 @@
 <html lang="it">
 
 <head>
-
+    <script src="iframe2dispatcher.js"></script>
 </head>
 
 <body>
 
-    <button onclick="sendMessage('PROVA')">SEND MESSAGE</button>
+    <button onclick="TEST()">SEND MESSAGE</button>
 
 
 
     <script>
 
-        var parentWindow = null;
-
-        
-        /////////////////////////////////////
-        /// receive message from parent window
-        /////////////////////////////////////
-        window.addEventListener("message", function (event) {
-
-            console.log(event.data)
-            
-            /// register parentWindow
-            if (event.data === "hello") {
-                parentWindow = event.source;
-                console.log("** INIT ** sono receiver 1, ho ricevuto source")
-            }
-            /// receive message
-            else {
-                console.log("-------------------");
-                console.log("sono receiver 1 e ho ricevuto:");
-                console.log(event.data);
-                console.log("-------------------");
-
-            }
-        });
 
 
-        /////////////////////////////////////
-        /// send message to parent window
-        /////////////////////////////////////
-        function sendMessage(message, data = null) {
 
-            if (parentWindow) {
-                let msg = {
-                    message: message,
-                    data: data
-                }
-                parentWindow.postMessage(msg, "*");
-            }
-            else{
-                console.warn("Parent window script not yet loaded...");
-            }
-        };
+
+
+
+
+
+
+        /*****************
+messages receivers
+******************/
+        // receiveMessage("UUUU", (data) => {
+
+        //     console.log("UEEEEEEEEEEEEEEEEE !!!!!")
+        //     console.log(data)
+        // });
+
+
+
+        function TEST() {
+            sendMessage("UUUU", {
+                time: 1245,
+                angle: 90,
+            });
+        }
+
+
+
 
     </script>
 
