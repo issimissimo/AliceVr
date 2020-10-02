@@ -1,14 +1,20 @@
 // import {
 //     dispatcher
-// } from "../../lib/dispatcher.js";
-import Map from "../lib/Map.js";
-import * as cities from "../lib/add-on/cities.js";
-import Loader from "../lib/managers/Loader.js"
-import AssetManager from "../lib/managers/AssetManager.js"
-import Preloader from "../lib/UI/Preloader.js";
+// } from "../../lib/dispatcherNew.js";
+// import Map from "../lib/Map.js";
+// import * as cities from "../lib/add-on/cities.js";
+// import Loader from "../lib/managers/Loader.js"
+// import AssetManager from "../lib/managers/AssetManager.js"
+// import Preloader from "../lib/UI/Preloader.js";
 
 
-
+console.log("FFFFFFFF")
+console.log(window.AAA)
+window.BBB();
+window.CCC.test();
+setTimeout(function(){
+    window.dispatcher.sendMessage("mapReady");
+}, 2000)
 
 
 /*******************************************

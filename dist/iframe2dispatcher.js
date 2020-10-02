@@ -16,6 +16,7 @@ window.addEventListener("message", function (event) {
 
     /// dispatch message
     else {
+        console.log(event.data.data)
         for (let i in receivedMessageHandlers) {
             if (receivedMessageHandlers[i].message === event.data.message) {
                 receivedMessageHandlers[i].func(event.data.data);
@@ -47,7 +48,7 @@ function messagesQueueManager(msg) {
 
 
 
-const dispatcher = {
+var dispatcher = {
 
     /////////////////////////////////////
     /// send message to parent window
