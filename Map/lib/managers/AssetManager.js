@@ -18,6 +18,7 @@ export default class AssetManager {
         let rootForPlayer = [];
         for (let i = 0; i < Loader.root.asset.children.length; i++) {
             if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
+                console.log(Loader.root.asset.children[i].asset)
                 const rootAsset = {
                     id: Loader.root.asset.children[i].asset.id,
                     title: Loader.root.asset.children[i].asset.title,
@@ -42,7 +43,6 @@ export default class AssetManager {
         }
         /* or, send message for root asset */
         else {
-            // window.dispatcher.sendMessage("rootAssetClicked", Loader.root.asset);
             window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
         }
 
