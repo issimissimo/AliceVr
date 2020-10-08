@@ -13,6 +13,7 @@ function slideShowCycle() {
 
 
 let created = false;
+let preloaderVisible = true;
 let cycle = null;
 let rootAsset;
 let divs = [];
@@ -145,6 +146,17 @@ export default class SplashScreen {
             cycle = null;
         };
         $("#videoPlayer-SplashScreen").fadeOut();
+    }
+
+    static hideImmediately() {
+        $("#videoPlayer-SplashScreen").hide();
+    }
+
+    static hidePreloader(){
+        if (preloaderVisible){
+            $("#videoPlayer-preloader").fadeOut();
+            preloaderVisible = false;
+        }
     }
 }
 

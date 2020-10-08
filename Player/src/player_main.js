@@ -78,6 +78,10 @@ window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
+
+    /// if there's only 1 video we need to hide the preloader,
+    /// and hide the splashscreen
+    SplashScreen.hideImmediately();
     SplashScreen.hidePreloader();
 });
 
