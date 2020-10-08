@@ -8,14 +8,27 @@
     <script type="text/javascript" src="/AliceVr/dist/iframe2dispatcher.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../css/scrollbar.css">
+
+    <!-- app -->
     <script type="module" src="src/Journal.js"></script>
 
     <style>
         html,
         body {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            background-color: rgb(24, 24, 24);
+            letter-spacing: 1px;
+        }
+
+        #journal>div {
+            padding: 2em;
+            /* required */
+            background-color: rgb(24, 24, 24);
         }
 
         .absolute {
@@ -26,24 +39,54 @@
             bottom: 0;
         }
 
-        /* width */
-        ::-webkit-scrollbar {
-            width: 10px;
+        p {
+            color: rgba(255, 255, 255, 0.767);
+            line-height: 200%;
+            font-weight: 300;
+            font-size: 0.8em;
+            margin: 0;
         }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: lightgray
+        b {
+            font-weight: 600;
+            color: rgb(255, 255, 255);
         }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
+        a {
+            color: rgb(116, 186, 255);
         }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4e4e4e;
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a:active {
+            text-decoration: underline;
+        }
+
+        .i {
+            font-style: italic;
+        }
+
+        .small {
+            font-size: small;
+            margin: 0;
+        }
+
+        .large {
+            font-size: large;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid rgb(136, 136, 136);
         }
     </style>
 
@@ -52,8 +95,7 @@
 <body>
     <div>
 
-        <div class="absolute"
-            style="z-index: 1; display: flex;  align-items: center; justify-content: center;">
+        <div class="absolute" style="z-index: 1; display: flex;  align-items: center; justify-content: center;">
             <div style="display: flex; flex-direction: column;">
                 <img src="images/guide.svg" width="100px" style="opacity: 0.3; margin: auto;">
                 <p style="opacity: 0.3;">NESSUN PERCORSO SELEZIONATO</p>
@@ -74,4 +116,22 @@
 
 
     </div>
+
+
+    <!-- <script>
+
+        const folder = "../data/html/";
+        const id = "#journal";
+
+        let htmlToLoad = "LineaCadorna.html";
+
+        /// load and append external html
+        $(id).append($('<div>').load(folder + htmlToLoad, function (responseTxt, statusTxt, xhr) {
+            if (statusTxt !== "success") {
+                console.error("Something was wrong loading html...")
+            }
+        }));
+
+
+    </script> -->
 </body>

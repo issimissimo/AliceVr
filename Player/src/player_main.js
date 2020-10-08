@@ -80,11 +80,6 @@ window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     player.load(asset, () => {
         SplashScreen.hideForSingleVideo();
     });
-
-    // /// if there's only 1 video we need to hide the preloader,
-    // /// and hide the splashscreen
-    // SplashScreen.hideImmediately();
-    // SplashScreen.hidePreloader();
 });
 
 window.dispatcher.receiveMessage("videoPlayerPlay", function () {

@@ -201,8 +201,8 @@ export default class Map {
         
         /* credits */
         let credits = Map.params.useMapbox ?
-            " Realized by ISSIMISSIMO - Imagery data attribution Mapbox" :
-            " Realized by ISSIMISSIMO - Imagery data attribution Bing Maps";
+            "by ISSIMISSIMO - Imagery data attribution Mapbox" :
+            "by ISSIMISSIMO - Imagery data attribution Bing Maps";
         $('#credits-text').text(credits);
         
 
