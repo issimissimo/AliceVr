@@ -75,11 +75,10 @@ window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
-    // console.log("videoAssetClicked")
     player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
-    // console.log(asset)
+    SplashScreen.hidePreloader();
 });
 
 window.dispatcher.receiveMessage("videoPlayerPlay", function () {
