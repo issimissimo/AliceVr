@@ -2,7 +2,11 @@ import Map from "../Map.js";
 import Loader from "./Loader.js";
 import Player from "./Player.js"
 
-
+let range = null;
+let selectedAsset = null;
+let hoverAsset = null;
+let navigatorButtonEnabled = true;
+let overlayLabelVisible = false;
 
 export default class AssetManager {
 
@@ -18,12 +22,13 @@ export default class AssetManager {
         let rootForPlayer = [];
         for (let i = 0; i < Loader.root.asset.children.length; i++) {
             if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
-                console.log(Loader.root.asset.children[i].asset)
+                // console.log(Loader.root.asset.children[i].asset)
                 const rootAsset = {
                     id: Loader.root.asset.children[i].asset.id,
                     title: Loader.root.asset.children[i].asset.title,
                     description: Loader.root.asset.children[i].asset.description,
                     poster_url: Loader.root.asset.children[i].asset.poster_url,
+                    location: Loader.root.asset.children[i].asset.location,
                 };
                 rootForPlayer.push(rootAsset);
             }
@@ -34,10 +39,11 @@ export default class AssetManager {
         if (Loader.root.asset.constructor.name === "Video") {
             navigatorButtonEnabled = false;
             Map.onReady.push(() => {
-                const timeout = 2000;
+                const timeout = 200;
                 setTimeout(() => {
-                    const entity = Loader.root.asset.entity;
-                    AssetManager.OnClick_Video(entity);
+                    console.log(Loader.root.asset)
+                    selectedAsset = Loader.root.asset;
+                    AssetManager.OnClick_Video();
                 }, timeout)
             })
         }
@@ -273,11 +279,11 @@ export default class AssetManager {
 
 };
 
-let range = null;
-let selectedAsset = null;
-let hoverAsset = null;
-let navigatorButtonEnabled = true;
-let overlayLabelVisible = false;
+// let range = null;
+// let selectedAsset = null;
+// let hoverAsset = null;
+// let navigatorButtonEnabled = true;
+// let overlayLabelVisible = false;
 
 
 
