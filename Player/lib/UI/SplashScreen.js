@@ -148,12 +148,20 @@ export default class SplashScreen {
         $("#videoPlayer-SplashScreen").fadeOut();
     }
 
-    static hideImmediately() {
-        $("#videoPlayer-SplashScreen").hide();
-    }
+    // static hideImmediately() {
+    //     $("#videoPlayer-SplashScreen").hide();
+    // }
 
-    static hidePreloader(){
+    // static hidePreloader(){
+    //     if (preloaderVisible){
+    //         $("#videoPlayer-preloader").fadeOut();
+    //         preloaderVisible = false;
+    //     }
+    // }
+
+    static hideForSingleVideo(){
         if (preloaderVisible){
+            $("#videoPlayer-SplashScreen").hide();
             $("#videoPlayer-preloader").fadeOut();
             preloaderVisible = false;
         }

@@ -65,7 +65,7 @@ const Clappr_player = {
     //////////////////////////////////////////
     /// load
     //////////////////////////////////////////
-    load: function (asset) {
+    load: function (asset, callback) {
 
         this.isStarted = false;
         this.isPlaying = false;
@@ -97,15 +97,15 @@ const Clappr_player = {
                 let posterImg = new Image();
                 posterImg.src = poster;
                 posterImg.onload = () => {
-                    this.setup(url, poster);
+                    this.setup(url, callback, poster);
                 }
             } else {
-                this.setup(url);
+                this.setup(url, callback);
             }
         }
     },
 
-    setup: function (url, poster = null) {
+    setup: function (url, callback, poster = null) {
 
         // console.warn("SETUP VIDEOPLAYER")
         /// destroy old video
@@ -208,6 +208,8 @@ const Clappr_player = {
         this.player.getPlugin('click_to_pause').disable();
 
         window.dur = Clappr_player.player.getDuration();
+
+        callback();
     }
 };
 

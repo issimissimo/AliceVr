@@ -75,14 +75,16 @@ window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
-    player.load(asset);
     overlay.load(player, asset);
     subtitles.load(asset);
+    player.load(asset, () => {
+        SplashScreen.hideForSingleVideo();
+    });
 
-    /// if there's only 1 video we need to hide the preloader,
-    /// and hide the splashscreen
-    SplashScreen.hideImmediately();
-    SplashScreen.hidePreloader();
+    // /// if there's only 1 video we need to hide the preloader,
+    // /// and hide the splashscreen
+    // SplashScreen.hideImmediately();
+    // SplashScreen.hidePreloader();
 });
 
 window.dispatcher.receiveMessage("videoPlayerPlay", function () {
@@ -99,63 +101,6 @@ window.dispatcher.receiveMessage("videoPlayerSeek", function (time) {
 
 
 let oldTime = 0;
-// const t = () => {
-//     setInterval(() => {
-
-//         let time = player.time;
-//         if (player.isPlaying && time !== oldTime) {
-
-//             oldTime = time;
-
-//             //////////////////////////////////////////////
-//             /// send message during playback
-//             //////////////////////////////////////////////
-//             let angle = player.angle;
-//             window.dispatcher.sendMessage("playerPlaying", {
-//                 time: time,
-//                 angle: angle,
-//             });
-
-
-//             //////////////////////////////////////////////
-//             /// rotate overlay viewAngle
-//             //////////////////////////////////////////////
-//             overlay.viewAngle.rotate(angle);
-
-
-
-//             //////////////////////////////////////////////
-//             /// check for subtitles
-//             //////////////////////////////////////////////
-//             subtitles.check(time);
-//         }
-
-//         else if (player.isPlaying && time == oldTime) {
-//             let angle = player.angle;
-//             window.dispatcher.sendMessage("playerPaused", {
-//                 angle: angle,
-//             });
-//         }
-
-
-//         else if (player.isPaused) {
-//             let angle = player.angle;
-//             window.dispatcher.sendMessage("playerPaused", {
-//                 angle: angle,
-//             });
-//         }
-
-
-
-
-
-//     }, 500);
-// }
-// t();
-
-
-
-
 setInterval(() => {
     if (player) {
 
@@ -202,10 +147,4 @@ setInterval(() => {
         //////////////////////////////////////////////
         overlay.viewAngle.rotate(angle);
     }
-
-
-
-
-
-
 }, 500);
