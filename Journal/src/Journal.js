@@ -1,4 +1,3 @@
-console.log("ECCOMI")
 
 /********************************************
 Receive messages

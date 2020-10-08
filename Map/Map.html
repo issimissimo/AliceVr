@@ -52,6 +52,12 @@
             font-family: roboto-regular;
             src: url("fonts/roboto-regular.ttf") format("truetype");
         } */
+
+        @media (max-width: 768px) {
+            #logo {
+                display: none;
+            }
+        }
     </style>
 
 </head>
@@ -72,13 +78,9 @@
         </div>
 
 
-        <!-- <p
-            style="position: absolute; top: 0; left: 0;z-index: 0; font-family: roboto-medium; font-size: 50px; color: white">
-            FONT</p> -->
 
-
-
-        <div id="credits">
+        <div id="credits" style="display: flex; align-items: flex-end;">
+            <img id="logo" src="../images/logo.svg" height="20px">
             <span id="credits-text"></span>
         </div>
 
@@ -91,7 +93,7 @@
         </div>
 
 
-        <div id="UI">
+        <!-- <div id="UI"> -->
 
             <!-- <img id="logo" src="../images/logo.svg"> -->
 
@@ -110,15 +112,15 @@
 
             <!-- <img id="homeButton" src="images/icon_home_off.svg" height="35rem" width="35rem" style="position: absolute; pointer-events: auto;
                 cursor: pointer; display: none;"> -->
-        </div>
+        <!-- </div> -->
 
 
-        <div id="topBar" style="position: absolute; left: 0; right: 0; top:0; height: 10%; background-color: rgba(0, 0, 0, 0.767);
+        <!-- <div id="topBar" style="position: absolute; left: 0; right: 0; top:0; height: 10%; background-color: rgba(0, 0, 0, 0.767);
             z-index: 999; padding: 1.5vmax; display: flex; align-items: center">
             <img src="../images/logo.svg" style="height: 70%;">
             <img id="homeButton" src="images/icon_home_off.svg" style="height: 80%; margin-left: auto; pointer-events: auto;
                 cursor: pointer; display: none;">
-        </div>
+        </div> -->
 
     </div>
 </body>

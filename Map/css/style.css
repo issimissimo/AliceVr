@@ -62,10 +62,11 @@ html, body, #cesiumContainer {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 2vh;
+    /* height: 2vh; */
     max-height: 20px;
     z-index: 999;
 }
+
 #credits span {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
