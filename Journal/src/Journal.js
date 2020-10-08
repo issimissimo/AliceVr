@@ -1,21 +1,17 @@
-import {
-    dispatcher
-} from "../../lib/dispatcher.js";
-
-
+console.log("ECCOMI")
 
 /********************************************
 Receive messages
 ********************************************/
-dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     init(asset);
 });
 
-dispatcher.receiveMessage("rootAssetClicked", function () {
+window.dispatcher.receiveMessage("rootAssetClicked", function () {
     hide();
 });
 
-dispatcher.receiveMessage("showGuideWarningForNoTrack", function () {
+window.dispatcher.receiveMessage("showGuideWarningForNoTrack", function () {
     // console.warn("--> showGuideWarningForNoTrack")
     showWarn();
 });
@@ -37,7 +33,7 @@ function init(asset) {
     $(id).empty();
 
         if(asset.journal_url) {
-    
+
             let htmlToLoad = asset.journal_url;
     
             /// load and append external html

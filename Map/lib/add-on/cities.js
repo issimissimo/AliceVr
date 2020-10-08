@@ -68,7 +68,7 @@ export function init(position = null, range = null) {
         })
 
     } else {
-        console.warn("cities already started");
+        // console.warn("cities already started");
     }
 };
 
@@ -83,7 +83,7 @@ function onCameraChanged(position = null, range = null) {
     bigArea.check()
         .then((response) => {
             if (!response.isInside) {
-                console.log("> load big cities <");
+                // console.log("> load big cities <");
                 loadBigCities(response.position ? response.position : position,
                     response.range ? response.range : range, () => {
 
@@ -92,7 +92,7 @@ function onCameraChanged(position = null, range = null) {
                             mediumArea.check()
                                 .then((response) => {
                                     if (!response.isInside) {
-                                        console.log("> load small cities <");
+                                        // console.log("> load small cities <");
                                         loadCities(10000, response.position ? response.position : position,
                                             response.range ? response.range : range,
                                             () => {
@@ -100,7 +100,7 @@ function onCameraChanged(position = null, range = null) {
                                                     smallArea.check()
                                                         .then((response) => {
                                                             if (!response.isInside) {
-                                                                console.log("> load very small cities <");
+                                                                // console.log("> load very small cities <");
                                                                 loadCities(1000, response.position ? response.position : position,
                                                                     response.range ? response.range : range);
                                                             }
@@ -112,7 +112,7 @@ function onCameraChanged(position = null, range = null) {
                                             smallArea.check()
                                                 .then((response) => {
                                                     if (!response.isInside) {
-                                                        console.log("> load very small cities <");
+                                                        // console.log("> load very small cities <");
                                                         loadCities(1000, response.position ? response.position : position,
                                                             response.range ? response.range : range);
                                                     }
@@ -132,7 +132,7 @@ function onCameraChanged(position = null, range = null) {
                     mediumArea.check()
                         .then((response) => {
                             if (!response.isInside) {
-                                console.log("> load small cities <");
+                                // console.log("> load small cities <");
                                 loadCities(10000, response.position ? response.position : position,
                                     response.range ? response.range : range,
                                     () => {
@@ -140,7 +140,7 @@ function onCameraChanged(position = null, range = null) {
                                             smallArea.check()
                                                 .then((response) => {
                                                     if (!response.isInside) {
-                                                        console.log("> load very small cities <");
+                                                        // console.log("> load very small cities <");
                                                         loadCities(1000, response.position ? response.position : position,
                                                             response.range ? response.range : range);
                                                     }
@@ -152,7 +152,7 @@ function onCameraChanged(position = null, range = null) {
                                     smallArea.check()
                                         .then((response) => {
                                             if (!response.isInside) {
-                                                console.log("> load very small cities <");
+                                                // console.log("> load very small cities <");
                                                 loadCities(1000, response.position ? response.position : position,
                                                     response.range ? response.range : range);
                                             }
@@ -246,7 +246,7 @@ const queueManager = (minPopulation, position, range, callback) => {
                 waitForRequest();
             }
             else {
-                console.warn("! --> cities request resumed from queue");
+                // console.warn("! --> cities request resumed from queue");
                 loadCities(minPopulation, position, range, callback);
             }
         }, 200);
@@ -263,7 +263,7 @@ function loadCities(minPopulation, position = null, range = null, callback = nul
 
     /// if there's a previous request...
     if (wait) {
-        console.warn("! --> cities request not allowed because there's another one in queue");
+        // console.warn("! --> cities request not allowed because there's another one in queue");
         queueManager(minPopulation, position, range, callback);
     } else {
         wait = function () {
@@ -275,7 +275,7 @@ function loadCities(minPopulation, position = null, range = null, callback = nul
                 let radius = range ? range / 2000 : Map.range / 2000;
                 /// if the radius is < 1km don't request
                 if (radius <= 1) {
-                    console.warn("camera too near to terrain, don't request cities");
+                    // console.warn("camera too near to terrain, don't request cities");
                 } else {
                     /// get the coordinates in the center of the window
                     let _position = position ? position : Map.getPointFromCamera();
@@ -283,7 +283,7 @@ function loadCities(minPopulation, position = null, range = null, callback = nul
                     let cartographic = Cesium.Cartographic.fromCartesian(_position);
                     let longitude = Cesium.Math.toDegrees(cartographic.longitude);
                     let latitude = Cesium.Math.toDegrees(cartographic.latitude);
-                    console.info("? - looking for cities with min population = " + minPopulation);
+                    // console.info("? - looking for cities with min population = " + minPopulation);
 
                     getDataFromWebServer(minPopulation, latitude, longitude, radius, callback);
                 }
@@ -310,12 +310,12 @@ function getDataFromWebServer(minPopulation, latitude, longitude, radius, callba
 
             /// handle the error from webserver
             if (data === undefined) {
-                console.error("error loading cities from webserver");
+                // console.error("error loading cities from webserver");
                 isServerAvailable = true;
                 return;
             }
             if (data.length === 0) {
-                console.info("! -- no cities with " + minPopulation + " people in this area");
+                // console.info("! -- no cities with " + minPopulation + " people in this area");
             }
 
 
@@ -343,7 +343,7 @@ function getDataFromWebServer(minPopulation, latitude, longitude, radius, callba
                         if (category !== "A1")
                             Label.draw(position, result.city, category)
 
-                        console.info("--- new city: " + result.city);
+                        // console.info("--- new city: " + result.city);
                     }
                     // else {
                     //     console.info("refused city: " + result.city);

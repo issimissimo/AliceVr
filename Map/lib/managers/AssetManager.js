@@ -29,6 +29,7 @@ export default class AssetManager {
                     description: Loader.root.asset.children[i].asset.description,
                     poster_url: Loader.root.asset.children[i].asset.poster_url,
                     location: Loader.root.asset.children[i].asset.location,
+                    
                 };
                 rootForPlayer.push(rootAsset);
             }
@@ -41,7 +42,6 @@ export default class AssetManager {
             Map.onReady.push(() => {
                 const timeout = 200;
                 setTimeout(() => {
-                    console.log(Loader.root.asset)
                     selectedAsset = Loader.root.asset;
                     AssetManager.OnClick_Video();
                 }, timeout)
@@ -257,6 +257,7 @@ export default class AssetManager {
             video_url2: selectedAsset.video_url2,
             video_url3: selectedAsset.video_url3,
             subtitles_url: selectedAsset.subtitles_url,
+            journal_url: selectedAsset.journal_url,
         }
         window.dispatcher.sendMessage("videoAssetClicked", assetForPlayer);
     };
