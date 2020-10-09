@@ -2,7 +2,7 @@ import Map from "../Map.js";
 
 export default class Preloader {
 
-    static init () {
+    static init() {
 
         Map.viewer.scene.globe.tileLoadProgressEvent.addEventListener((valProgress) => {
             if (!Map.ready) {
@@ -24,7 +24,7 @@ export default class Preloader {
                         $("#progressBar").css("right", (100 - mapLoadingPercent) + '%');
                     }
                 }
-            } 
+            }
         });
     };
 }
@@ -37,6 +37,5 @@ let isProgressing = false;
 
 
 const hide = () => {
-    $("#preloader").fadeOut();
+    $(".preloader").fadeOut();
 };
-
