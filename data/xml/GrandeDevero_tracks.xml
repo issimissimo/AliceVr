@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <type>track</type>
+    <track>
+        <title>GrandeDevero track 1</title>
+        <description></description>
+        <gpx_url>MTB Grande Est Devero_20ag2020_1.gpx</gpx_url>
+    </track>
+    <track>
+        <title>GrandeDevero track 2</title>
+        <description></description>
+        <gpx_url>MTB Grande Est Devero_20ag2020_2.gpx</gpx_url>
+    </track>
+   
+</root>
