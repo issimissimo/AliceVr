@@ -10,7 +10,7 @@ const poster = {
     id: "videoPlayer-poster",
     title: null,
     description: null,
-    show: function () {
+    show: function() {
 
         /// wait for title loaded...
         if (!poster.title) {
@@ -22,7 +22,7 @@ const poster = {
                 $('#poster-description').text(poster.description);
         }
     },
-    hide: function () {
+    hide: function() {
         $("#" + this.id).fadeOut();
     }
 }
@@ -30,10 +30,10 @@ const poster = {
 
 const icon360 = {
     id: "icon-360",
-    show: function () {
+    show: function() {
         $("#" + this.id).fadeIn(0);
     },
-    hide: function () {
+    hide: function() {
         $("#" + this.id).fadeOut();
     }
 }
@@ -41,17 +41,28 @@ const icon360 = {
 
 const icon360big = {
     id: "icon-360-big",
-    show: function () {
+    show: function() {
         $("#" + this.id).attr("src", "images/icon_360-anim-big.gif");
         $("#" + this.id).fadeIn();
         let _id = this.id;
-        setTimeout(function () {
+        setTimeout(function() {
             $("#" + _id).fadeOut();
         }, 6000)
     },
-    hide: function () {
+    hide: function() {
         $("#" + this.id).fadeOut(0);
     }
+}
+
+
+export const subtitlesIcon = {
+    id: "subtitlesIcon",
+    show: function() {
+        $("#" + this.id).fadeIn();
+    },
+    hide: function() {
+        $("#" + this.id).fadeOut(0);
+    },
 }
 
 
@@ -59,28 +70,28 @@ const icon360big = {
 
 export const viewAngle = {
     id: "videoPlayer_viewAngle",
-    show: function () {
+    show: function() {
         $("#" + this.id).fadeIn();
     },
-    hide: function () {
+    hide: function() {
         $("#" + this.id).fadeOut(0);
     },
 
     over: {
         id: "videoPlayer_viewAngle-over",
-        show: function () {
+        show: function() {
             $("#" + this.id).fadeIn();
         },
-        hide: function () {
+        hide: function() {
             $("#" + this.id).fadeOut();
         },
     },
 
-    rotate: function (angle) {
-        if (vp){
+    rotate: function(angle) {
+        if (vp) {
             if (typeof vp.plugin360 !== "undefined") {
                 let $viewCone = $("#videoPlayer_viewAngle-cone");
-    
+
                 // For webkit browsers: e.g. Chrome
                 $viewCone.css({
                     WebkitTransform: 'rotate(' + angle + 'deg)'
@@ -94,7 +105,7 @@ export const viewAngle = {
     },
 
 
-    resetCamera: function () {
+    resetCamera: function() {
         let initTheta = vp.plugin360.viewer.controls.theta;
         let initPhi = vp.plugin360.viewer.controls.phi;
 
@@ -104,7 +115,7 @@ export const viewAngle = {
         let lerpTime = 2000;
         let sampleInterval = lerpTime / 50;
         let initTime = 0;
-        let lerp = setInterval(function () {
+        let lerp = setInterval(function() {
 
             initTime += sampleInterval;
             if (initTime < lerpTime) {
@@ -137,16 +148,16 @@ const viewArrows = {
     rotInterval: null,
     increment: 0,
 
-    show: function () {
+    show: function() {
         if (this.isActive)
             $("#" + this.id).fadeIn();
     },
 
-    hide: function (time) {
+    hide: function(time) {
         $("#" + this.id).fadeOut(time);
     },
 
-    right_ON: function (div) {
+    right_ON: function(div) {
         $(div).find("img:first").fadeIn();
         if (this.rotInterval) {
             clearInterval(this.rotInterval);
@@ -164,7 +175,7 @@ const viewArrows = {
         }, 10);
     },
 
-    right_OFF: function (div) {
+    right_OFF: function(div) {
         $(div).find("img:first").fadeOut();
         if (this.rotInterval) {
             clearInterval(this.rotInterval);
@@ -189,7 +200,7 @@ const viewArrows = {
 
     },
 
-    left_ON: function (div) {
+    left_ON: function(div) {
         $(div).find("img:first").fadeIn();
         if (this.rotInterval) {
             clearInterval(this.rotInterval);
@@ -207,7 +218,7 @@ const viewArrows = {
         }, 10);
     },
 
-    left_OFF: function (div) {
+    left_OFF: function(div) {
         $(div).find("img:first").fadeOut();
         if (this.rotInterval) {
             clearInterval(this.rotInterval);
@@ -248,7 +259,8 @@ export function showOnReady() {
     viewAngle.hide();
     viewAngle.over.hide();
     viewArrows.isActive = false;
-    viewArrows.hide(0);
+    viewArrows.hide();
+    subtitlesIcon.hide();
 }
 
 
@@ -258,6 +270,8 @@ export function showOnPlay() {
     icon360big.show();
     viewAngle.show();
     viewArrows.isActive = true;
+    viewArrows.show();
+    subtitlesIcon.show();
 }
 
 
