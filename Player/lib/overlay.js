@@ -284,4 +284,3 @@ export function showOnPlay() {
 /// expose for DOM
 window.viewArrows = viewArrows;
 window.viewAngle = viewAngle;
-window.subtitlesIcon = subtitlesIcon;

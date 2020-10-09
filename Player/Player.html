@@ -64,14 +64,13 @@
     <div id="wrapper" style="display: flex; flex-direction: column; overflow: hidden;">
 
 
-
+        <!-- top bar -->
         <div class="topBar">
             <img src="../images/logo.svg" style="height: 48%;">
 
             <!-- container for buttons in the top bar -->
             <div>
-
-                <img id="homeButton" src="../images/icon_home_off.svg" style="height: 65%; max-height: 25px; pointer-events: auto; cursor: pointer; margin: 0.75em;">
+                <img id="homeButton" src="../images/icon_home_off.svg" style="height: 65%; max-height: 25px; pointer-events: auto; cursor: pointer; margin: 0.75em; display: none;">
             </div>
         </div>
 
@@ -96,7 +95,7 @@
 
 
 
-            <!-- every item that is overlayed on the player and that fade-in on mouse over -->
+            <!-- every item that is overlayed on the player and that fade-in/out on mouse over -->
             <div id="overlay-fade" class="absolute">
 
                 <img id="subtitlesIcon" src="images/subtitlesIcon.svg" onclick="subtitlesIcon.toggle()">
@@ -128,21 +127,11 @@
         </div>
 
 
-        <!-- poster -->
-        <!-- <div id="videoPlayer-poster" class="gradient" style="position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none;">
-            <div id="poster-textContainer" style="position: absolute; left: 5%; right: 5%; bottom: 5%; pointer-events: auto;">
-                <p id="poster-title" class="title"></p>
-                <p id="poster-description" class="description"></p>
-            </div>
-        </div> -->
 
-
-
-        <div id="videoPlayer-poster" class="gradient" style="position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-end; padding: 5%;">
-            <!-- <div id="poster-textContainer" style="position: absolute; left: 5%; right: 5%; bottom: 5%; pointer-events: auto;"> -->
+        <!-- title and description -->
+        <div id="videoPlayer-poster" class="gradient" style="position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5em;">
             <p id="poster-title" class="title"></p>
             <p id="poster-description" class="description"></p>
-            <!-- </div> -->
         </div>
 
 
@@ -153,8 +142,8 @@
 
 
         <!-- overlay -->
-        <div id="videoPlayer-overlay" class="absolute" style="pointer-events: none;">
-        </div>
+        <!-- <div id="videoPlayer-overlay" class="absolute" style="pointer-events: none;">
+        </div> -->
 
 
         <!-- preloader -->

@@ -7,10 +7,13 @@
     <!-- dispatcher -->
     <script type="text/javascript" src="/AliceVr/dist/iframe2dispatcher.js"></script>
 
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- stylesheets -->
+    <!-- external stylesheets -->
     <link rel="stylesheet" type="text/css" href="../css/scrollbar.css">
 
     <!-- app -->
@@ -23,14 +26,15 @@
             font-family: 'Open Sans', sans-serif;
             background-color: rgb(24, 24, 24);
             letter-spacing: 1px;
+            overflow: hidden;
         }
-
+        
         #journal>div {
-            padding: 2em;
+            padding: 1.5em;
             /* required */
             background-color: rgb(24, 24, 24);
         }
-
+        
         .absolute {
             position: absolute;
             top: 0;
@@ -38,7 +42,7 @@
             right: 0;
             bottom: 0;
         }
-
+        
         p {
             color: rgba(255, 255, 255, 0.767);
             line-height: 200%;
@@ -46,53 +50,80 @@
             font-size: 0.8em;
             margin: 0;
         }
-
+        
         b {
             font-weight: 600;
             color: rgb(255, 255, 255);
         }
-
+        
         a {
             color: rgb(116, 186, 255);
         }
-
+        
         a:link {
             text-decoration: none;
         }
-
+        
         a:visited {
             text-decoration: none;
         }
-
+        
         a:hover {
             text-decoration: underline;
         }
-
+        
         a:active {
             text-decoration: underline;
         }
-
+        
         .i {
             font-style: italic;
         }
-
+        
         .small {
             font-size: small;
             margin: 0;
         }
-
+        
         .large {
             font-size: large;
         }
-
+        
         .border-bottom {
             border-bottom: 1px solid rgb(136, 136, 136);
+        }
+        
+        .preloader {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            z-index: 9999;
+        }
+        
+        .preloader img {
+            width: 60px;
+            height: 60px;
         }
     </style>
 
 </head>
 
 <body>
+
+
+    <!-- preloader -->
+    <div class="preloader">
+        <img src="../images/preloader.gif" alt="">
+    </div>
+
+
+
     <div>
 
         <div class="absolute" style="z-index: 1; display: flex;  align-items: center; justify-content: center;">
@@ -102,7 +133,7 @@
             </div>
         </div>
 
-        <div class="absolute" id="journal" style="z-index: 2;"></div>
+        <div class="absolute" id="journal" style="z-index: 2; overflow: auto;"></div>
 
         <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
             <div class="absolute" style="display: flex;  align-items: center;
