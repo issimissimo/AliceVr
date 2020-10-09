@@ -14,7 +14,8 @@ p {
     color: white;
 }
 
-#videoPlayer-preloader {
+
+/* #videoPlayer-preloader {
     background-color: white;
     z-index: 9999;
 }
@@ -26,7 +27,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-}
+} */
 
 #videoPlayer_viewAngle {
     position: absolute;

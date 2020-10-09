@@ -124,7 +124,7 @@ export default class SplashScreen {
             //     }
             // }
 
-            $("#videoPlayer-preloader").fadeOut();
+            $(".preloader").fadeOut();
             preloaderVisible = false;
         }
 
@@ -160,7 +160,7 @@ export default class SplashScreen {
     static hideForSingleVideo() {
         if (preloaderVisible) {
             $("#videoPlayer-SplashScreen").hide();
-            $("#videoPlayer-preloader").fadeOut();
+            $(".preloader").fadeOut();
             preloaderVisible = false;
         }
     }
