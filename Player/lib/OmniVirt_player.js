@@ -30,21 +30,21 @@ const OmniVirt_player = {
     get angle() {
         return this._angle - 180;
     },
-    play: function () {
+    play: function() {
         OmniVirt.api.sendMessage('play', null, this.omniVirtIframe);
         this.isPlaying = true;
         console.log("************************PLAY!!!!!!!!!!!!!!!!!!!")
         console.log(OmniVirt_player.isPlaying)
     },
-    pause: function () {
+    pause: function() {
         OmniVirt.api.sendMessage('pause', null, this.omniVirtIframe);
     },
-    seek: function (time) {
+    seek: function(time) {
         let percent = time / this.duration;
         OmniVirt.api.sendMessage('seek', percent, this.omniVirtIframe);
     },
-    stop: function(){
-        OmniVirt.api.sendMessage('pause', null, this.omniVirtIframe);/// non c'è lo STOP nelle API !!!!
+    stop: function() {
+        OmniVirt.api.sendMessage('pause', null, this.omniVirtIframe); /// non c'è lo STOP nelle API !!!!
         this.isPlaying = false;
         this.isPaused = false;
         this._oldTime = -1;
@@ -52,14 +52,14 @@ const OmniVirt_player = {
         OmniVirt.api.unbind(window);
     },
 
-    load: function (asset) {
+    load: function(asset, callback) {
         console.log("////////////////////// LOAD ////////////////////////")
 
         // OmniVirt.api.unbind(window);
 
         /// get the right URL
         let url = asset.video_url2;
-        
+
         this.isStarted = false;
         this.isPlaying = false;
         this.isPaused = false;
@@ -89,7 +89,7 @@ const OmniVirt_player = {
 
         /// register listeners
 
-       
+
 
         OmniVirt.api.receiveMessage('loaded', (eventName, data, instance) => {
             for (let i in this.onReadyHandlers) this.onReadyHandlers[i]();
@@ -165,6 +165,9 @@ const OmniVirt_player = {
         OmniVirt.api.receiveMessage('longitude', (eventName, data, instance) => {
             this._angle = data;
         });
+
+
+        callback();
     },
 };
 

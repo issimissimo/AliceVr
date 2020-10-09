@@ -1,12 +1,10 @@
-
-
 function slideShowCycle() {
     var $active = $('#videoPlayer-slideshow .active');
     var $next = ($active.next().length > 0) ? $active.next() : $('#videoPlayer-slideshow img:first');
-    $next.css('z-index', 1002);//move the next image up the pile
-    $active.fadeOut(1500, function () {//fade out the top image
-        $active.css('z-index', 1001).show().removeClass('active');//reset the z-index and unhide the image
-        $next.css('z-index', 1003).addClass('active');//make the next image the top one
+    $next.css('z-index', 1002); //move the next image up the pile
+    $active.fadeOut(1500, function() { //fade out the top image
+        $active.css('z-index', 1001).show().removeClass('active'); //reset the z-index and unhide the image
+        $next.css('z-index', 1003).addClass('active'); //make the next image the top one
     });
 };
 
@@ -47,8 +45,7 @@ export default class SplashScreen {
                 if (i === 0) {
                     $('.active').attr('src', $url);
                     divs.push(e);
-                }
-                else {
+                } else {
                     $("#videoPlayer-slideshow").append("<img src='" + $url + "'></img>");
                     var f = e.clone().insertAfter(e);
                     divs.push(f);
@@ -59,20 +56,20 @@ export default class SplashScreen {
                 divs[i].find('.splashScreen-title').text(title);
                 divs[i].find('.splashScreen-description').text(description);
                 divs[i].hover(
-                    function () {
+                    function() {
                         divs[i].css('background-color', 'rgba(26, 27, 33, 1');
 
                         /* send message */
                         window.dispatcher.sendMessage("splashScreenOver", divs[i].data().id);
                     },
-                    function () {
+                    function() {
                         divs[i].css('background-color', 'rgba(26, 27, 33, 0.4');
 
                         /* send message */
                         window.dispatcher.sendMessage("splashScreenExit", divs[i].data().id);
                     });
                 divs[i].click(
-                    function () {
+                    function() {
 
                         /* send message */
                         window.dispatcher.sendMessage("splashScreenClicked", divs[i].data().id);
@@ -128,11 +125,12 @@ export default class SplashScreen {
             // }
 
             $("#videoPlayer-preloader").fadeOut();
+            preloaderVisible = false;
         }
 
 
         /* start cycle */
-        cycle = setInterval(function () {
+        cycle = setInterval(function() {
             slideShowCycle();
         }, 4000);
 
@@ -159,8 +157,8 @@ export default class SplashScreen {
     //     }
     // }
 
-    static hideForSingleVideo(){
-        if (preloaderVisible){
+    static hideForSingleVideo() {
+        if (preloaderVisible) {
             $("#videoPlayer-SplashScreen").hide();
             $("#videoPlayer-preloader").fadeOut();
             preloaderVisible = false;
@@ -176,7 +174,7 @@ SplashScreen.enabled = false;
 Receive messages
 ********************************************/
 let selectedDiv = null;
-window.dispatcher.receiveMessage("videoAssetOver", function (asset) {
+window.dispatcher.receiveMessage("videoAssetOver", function(asset) {
     let index;
     for (let i = 0; i < rootAsset.length; i++) {
         if (asset.title === rootAsset[i].title) {
@@ -188,15 +186,8 @@ window.dispatcher.receiveMessage("videoAssetOver", function (asset) {
     selectedDiv.css('background-color', 'rgba(0,0,0,1');
 });
 
-window.dispatcher.receiveMessage("videoAssetExit", function () {
-    if (selectedDiv){
+window.dispatcher.receiveMessage("videoAssetExit", function() {
+    if (selectedDiv) {
         selectedDiv.css('background-color', 'rgba(0,0,0,0.4');
     }
 });
-
-
-
-
-
-
-
