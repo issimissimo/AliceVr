@@ -310,7 +310,7 @@ export default class Map {
 
 
 Map.params = {
-    useMapbox: true,
+    useMapbox: false,
     fxaa: false,
     maxScreenSpaceError: 1,
     occlusion: false,
