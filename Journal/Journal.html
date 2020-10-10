@@ -26,7 +26,6 @@
         body {
             margin: 0;
             font-family: 'Open Sans', sans-serif;
-            /* background-color: rgb(24, 24, 24); */
             letter-spacing: 1px;
             overflow: hidden;
         }
@@ -92,15 +91,15 @@
 
 
     <!-- preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <img src="../images/preloader.gif" alt="">
-    </div>
+    </div> -->
 
 
 
     <div>
 
-        <div class="absolute" style="z-index: 1; display: flex;  align-items: center; justify-content: center;">
+        <div class="absolute" style="display: flex;  align-items: center; justify-content: center;">
             <div style="display: flex; flex-direction: column;">
                 <img src="images/guide.svg" width="100px" style="opacity: 0.3; margin: auto;">
                 <p style="opacity: 0.3;">NESSUN PERCORSO SELEZIONATO</p>
@@ -108,9 +107,9 @@
         </div>
 
         <!-- html container -->
-        <div class="absolute background-color-1;" id="journal" style="padding: 1.5em; z-index: 2; overflow: auto;"></div>
+        <div class="absolute background-color-1" id="journal" style="padding: 1.5em; z-index: 2; overflow: auto;"></div>
 
-        <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
+        <!-- <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
             <div class="absolute" style="display: flex;  align-items: center;
             justify-content: center; background-color: white;">
                 <div style="display: flex; flex-direction: column;">
@@ -118,13 +117,13 @@
                     <p>QUESTO VIDEO NON HA TRACCE REGISTRATE</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
     </div>
 
 
-    <!-- <script>
+    <script>
         const folder = "../data/html/";
         const id = "#journal";
 
@@ -136,5 +135,5 @@
                 console.error("Something was wrong loading html...")
             }
         }));
-    </script> -->
+    </script>
 </body>
