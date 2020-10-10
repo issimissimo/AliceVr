@@ -84,9 +84,6 @@
         .large {
             font-size: large;
         }
-        /* .border-bottom {
-            border-bottom: 1px solid rgb(136, 136, 136);
-        } */
     </style>
 
 </head>
@@ -110,7 +107,8 @@
             </div>
         </div>
 
-        <div class="absolute background-color-1" id="journal" style="z-index: 2; overflow: auto;"></div>
+        <!-- html container -->
+        <div class="absolute background-color-1;" id="journal" style="padding: 1.5em; z-index: 2; overflow: auto;"></div>
 
         <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
             <div class="absolute" style="display: flex;  align-items: center;
@@ -127,19 +125,16 @@
 
 
     <!-- <script>
-
         const folder = "../data/html/";
         const id = "#journal";
 
         let htmlToLoad = "LineaCadorna.html";
 
         /// load and append external html
-        $(id).append($('<div>').load(folder + htmlToLoad, function (responseTxt, statusTxt, xhr) {
+        $(id).append($('<div>').load(folder + htmlToLoad, function(responseTxt, statusTxt, xhr) {
             if (statusTxt !== "success") {
                 console.error("Something was wrong loading html...")
             }
         }));
-
-
     </script> -->
 </body>
