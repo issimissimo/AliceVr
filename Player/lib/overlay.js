@@ -7,23 +7,24 @@ let vp = null;
 
 
 const poster = {
-    id: "videoPlayer-poster",
     title: null,
     description: null,
+    location: null,
     show: function() {
 
         /// wait for title loaded...
         if (!poster.title) {
             setTimeout(this.show, 250);
         } else {
-            $("#" + poster.id).fadeIn();
+            $("#videoPlayer-poster").fadeIn();
             $('#poster-title').text(poster.title);
+            $('#poster-location').text(poster.location);
             if (poster.description)
                 $('#poster-description').text(poster.description);
         }
     },
     hide: function() {
-        $("#" + this.id).fadeOut();
+        $("#videoPlayer-poster").fadeOut();
     }
 }
 
@@ -249,6 +250,7 @@ export function load(videoPlayer, asset) {
     vp = videoPlayer;
     poster.title = asset.title;
     poster.description = asset.description;
+    poster.location = asset.location;
 }
 
 
