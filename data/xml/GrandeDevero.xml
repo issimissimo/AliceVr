@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <type>video</type>
+    <owner>VCO</owner>
+    <date>Thr Ago 20 2020</date>
+    <location>Verbania (VCO) - Italy</location>
+    <title>Il Grande Est del Devero in MTB</title>
+    <description>Nel cuore delle Alpi Lepontine fra Alta Ossola e Canton Vallese.</description>
+
+    <video_url1></video_url1>
+    <video_url2></video_url2>
+    <video_url3>https://alicevr.it/data/video/GrandeDevero_2k_101020.mp4</video_url3>
+
+    <poster_url>GrandeDevero.jpg</poster_url>
+    <subtitles_url>LineaCadorna_subtitles.xml</subtitles_url>
+    <markers_url>LineaCadorna_markers.xml</markers_url>
+
+    <journal_url>GrandeDevero.html</journal_url>
+
+    <id>GrandeDevero_tracks</id>
+    
+    
+    
+    
+</root>
