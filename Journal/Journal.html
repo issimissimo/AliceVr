@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- external stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../css/preloader.css">
 
@@ -25,15 +26,8 @@
         body {
             margin: 0;
             font-family: 'Open Sans', sans-serif;
-            background-color: rgb(24, 24, 24);
             letter-spacing: 1px;
             overflow: hidden;
-        }
-        
-        #journal>div {
-            padding: 1.5em;
-            /* required */
-            background-color: rgb(24, 24, 24);
         }
         
         .absolute {
@@ -89,32 +83,11 @@
         .large {
             font-size: large;
         }
-        
-        .border-bottom {
-            border-bottom: 1px solid rgb(136, 136, 136);
-        }
-        /* .preloader {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            z-index: 9999;
-        }
-        
-        .preloader img {
-            width: 60px;
-            height: 60px;
-        } */
     </style>
 
 </head>
 
-<body>
+<body class="background-color-1">
 
 
     <!-- preloader -->
@@ -126,14 +99,15 @@
 
     <div>
 
-        <div class="absolute" style="z-index: 1; display: flex;  align-items: center; justify-content: center;">
+        <div class="absolute" style="display: flex;  align-items: center; justify-content: center;">
             <div style="display: flex; flex-direction: column;">
                 <img src="images/guide.svg" width="100px" style="opacity: 0.3; margin: auto;">
                 <p style="opacity: 0.3;">NESSUN PERCORSO SELEZIONATO</p>
             </div>
         </div>
 
-        <div class="absolute" id="journal" style="z-index: 2; overflow: auto;"></div>
+        <!-- html container -->
+        <div class="absolute background-color-1 padded-1" id="journal" style="z-index: 2; overflow: auto;"></div>
 
         <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
             <div class="absolute" style="display: flex;  align-items: center;
@@ -150,19 +124,16 @@
 
 
     <!-- <script>
-
         const folder = "../data/html/";
         const id = "#journal";
 
         let htmlToLoad = "LineaCadorna.html";
 
         /// load and append external html
-        $(id).append($('<div>').load(folder + htmlToLoad, function (responseTxt, statusTxt, xhr) {
+        $(id).append($('<div>').load(folder + htmlToLoad, function(responseTxt, statusTxt, xhr) {
             if (statusTxt !== "success") {
                 console.error("Something was wrong loading html...")
             }
         }));
-
-
     </script> -->
 </body>

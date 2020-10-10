@@ -1,4 +1,6 @@
-html, body, #cesiumContainer {
+html,
+body,
+#cesiumContainer {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -17,12 +19,12 @@ html, body, #cesiumContainer {
     right: 0px;
 }
 
+
 /* hide all credits for Cesium */
 
 .cesium-widget-credits {
     display: none !important;
 }
-
 
 #overlayLabel {
     position: absolute;
@@ -41,26 +43,28 @@ html, body, #cesiumContainer {
     padding: 0.4em;
 }
 
-
 .overlayLabel-bold {
     font-weight: 500;
     font-size: 13px;
 }
+
 .overlayLabel-regular {
     font-weight: 500;
     font-size: 11px;
 }
+
 .overlayLabel-light {
     font-weight: 300;
     font-size: 11px;
 }
 
+
 /* credits */
+
 #credits {
     position: absolute;
     margin: 1em;
     left: 0;
-    right: 0;
     bottom: 0;
     /* height: 2vh; */
     max-height: 20px;
@@ -73,11 +77,10 @@ html, body, #cesiumContainer {
     font-size: x-small;
     color: white;
 }
+
 #credits img {
     margin-right: 0.5em;
 }
-
-
 
 #UI {
     position: absolute;
@@ -143,9 +146,11 @@ html, body, #cesiumContainer {
     margin-bottom: 10px;
 }
 
+
 /*******************
 navigator
 *******************/
+
 
 /* #navigator {
     position: absolute;
@@ -178,6 +183,7 @@ navigator
     pointer-events: auto;
     cursor: pointer;
 } */
+
 
 /* #homeButton {
     pointer-events: auto;

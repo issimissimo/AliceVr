@@ -9,11 +9,14 @@
 
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/preloader.css">
 
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script src="../node_modules/element-qsa-scope/index.js"></script> <!-- For compatibility with Ms Edge -->
+    <script src="../node_modules/element-qsa-scope/index.js"></script>
+    <!-- For compatibility with Ms Edge -->
 
     <!-- cesium -->
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.73/Build/Cesium/Cesium.js"></script>
@@ -21,12 +24,14 @@
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="preload" as="style">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="preload" rel="stylesheet" as="style">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> -->
 
     <!-- wurfl -->
     <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
-    <script> var isMobile = WURFL.is_mobile ? true : false; </script>
+    <script>
+        var isMobile = WURFL.is_mobile ? true : false;
+    </script>
 
 
     <!-- main app -->
@@ -38,12 +43,11 @@
             font-family: Acumin-bold;
             src: url("fonts/Acumin-BdPro.otf") format("opentype");
         } */
-
+        
         @font-face {
             font-family: roboto-medium;
             src: url("fonts/roboto-medium.ttf") format("truetype");
         }
-
         /* @font-face {
             font-family: roboto-bold;
             src: url("fonts/roboto-bold.ttf") format("truetype");
@@ -52,7 +56,7 @@
             font-family: roboto-regular;
             src: url("fonts/roboto-regular.ttf") format("truetype");
         } */
-
+        
         @media (max-width: 400px) {
             #logo {
                 display: none;
@@ -63,28 +67,27 @@
 </head>
 
 
-<body>
-    <div id="cesiumContainer" class="absolute">
+<body class="background-color-1 padded-1">
 
-        <div id="preloader" class="absolute">
-            <div>
-                <img src="images/mapLoadingSpinner.gif" alt="LOADING">
-                <div style="width: 100px; height: 3px; position: relative;">
-                    <div id="progressBar"
-                        style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(129, 129, 129);">
-                    </div>
+    <!-- preloader -->
+    <div class="preloader">
+        <div style="text-align: center;">
+            <img src="images/mapLoadingSpinner.gif" alt="">
+            <div style="width: 100px; height: 3px; position: relative;">
+                <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(129, 129, 129);">
                 </div>
             </div>
         </div>
+    </div>
 
 
+
+    <div id="cesiumContainer" style="position: relative;">
 
         <div id="credits" style="display: flex; align-items: flex-end;">
             <img id="logo" src="../images/logo.svg" height="20px">
             <span id="credits-text"></span>
         </div>
-
-
 
         <div id="overlayLabel">
             <p class="overlayLabel-bold"></p>
@@ -95,9 +98,9 @@
 
         <!-- <div id="UI"> -->
 
-            <!-- <img id="logo" src="../images/logo.svg"> -->
+        <!-- <img id="logo" src="../images/logo.svg"> -->
 
-            <!-- <div id="toolbar">
+        <!-- <div id="toolbar">
                 <img id="cameraLinkButton" src="images/icon_linked.svg" width="35rem">
                 <img id="mapLayersToggle" src="images/icon_layers_on.svg" width="35rem">
                 <div id="navigation">
@@ -110,7 +113,7 @@
                 </div>
             </div> -->
 
-            <!-- <img id="homeButton" src="images/icon_home_off.svg" height="35rem" width="35rem" style="position: absolute; pointer-events: auto;
+        <!-- <img id="homeButton" src="images/icon_home_off.svg" height="35rem" width="35rem" style="position: absolute; pointer-events: auto;
                 cursor: pointer; display: none;"> -->
         <!-- </div> -->
 

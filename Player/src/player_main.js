@@ -16,17 +16,19 @@ let player = null;
 // console.log("****************************************")
 // if (WURFL.complete_device_name === "Microsoft Edge" || WURFL.complete_device_name === "Apple iPhone" ||
 //     WURFL.complete_device_name === "Apple Safari")
-if (WURFL.complete_device_name === "Microsoft Edge") {
-    player = OmniVirt_player;
-    $("#Clappr-container").remove();
-    $("#poster-textContainer").css("max-height", "27%");
-    $("#poster-textContainer").css("bottom", "60px");
-} else {
-    player = Clappr_player;
-    $("#OmniVirt-container").remove();
-}
 
+// if (WURFL.complete_device_name === "Microsoft Edge") {
+//     player = OmniVirt_player;
+//     $("#Clappr-container").remove();
+//     $("#poster-textContainer").css("max-height", "27%");
+//     $("#poster-textContainer").css("bottom", "60px");
+// } else {
+//     player = Clappr_player;
+//     $("#OmniVirt-container").remove();
+// }
 
+player = Clappr_player;
+// $("#OmniVirt-container").remove();
 
 
 
@@ -35,28 +37,28 @@ if (WURFL.complete_device_name === "Microsoft Edge") {
 /********************************************
 Register handlers
 ********************************************/
-player.onReadyHandlers.push(function () {
+player.onReadyHandlers.push(function() {
     // $("#videoPlayer-preloader").fadeOut();
 
     if (SplashScreen.enabled) SplashScreen.hide();
     overlay.showOnReady();
 });
 
-player.onStartedHandlers.push(function () {
+player.onStartedHandlers.push(function() {
     window.dispatcher.sendMessage("playerStarted");
     overlay.showOnPlay();
 });
 
-player.onPausedHandlers.push(function () {
+player.onPausedHandlers.push(function() {
     window.dispatcher.sendMessage("playerPaused");
 });
 
-player.onSeekedHandlers.push(function () {
+player.onSeekedHandlers.push(function() {
     window.dispatcher.sendMessage("playerSeeking");
     subtitles.restart();
 });
 
-player.onEndedHandlers.push(function () {
+player.onEndedHandlers.push(function() {
     window.dispatcher.sendMessage("playerEnded");
     overlay.showOnReady();
 });
@@ -69,12 +71,12 @@ player.onEndedHandlers.push(function () {
 /********************************************
 Receive messages
 ********************************************/
-window.dispatcher.receiveMessage("rootAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("rootAssetClicked", function(asset) {
     player.stop();
     SplashScreen.show(asset);
 });
 
-window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
+window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
     overlay.load(player, asset);
     subtitles.load(asset);
     player.load(asset, () => {
@@ -82,11 +84,11 @@ window.dispatcher.receiveMessage("videoAssetClicked", function (asset) {
     });
 });
 
-window.dispatcher.receiveMessage("videoPlayerPlay", function () {
+window.dispatcher.receiveMessage("videoPlayerPlay", function() {
     player.play();
 });
 
-window.dispatcher.receiveMessage("videoPlayerSeek", function (time) {
+window.dispatcher.receiveMessage("videoPlayerSeek", function(time) {
     player.seek(time);
 });
 
@@ -120,17 +122,12 @@ setInterval(() => {
             /// check for subtitles
             //////////////////////////////////////////////
             subtitles.check(time);
-        }
-
-        else if (player.isPlaying && time == oldTime) {
+        } else if (player.isPlaying && time == oldTime) {
             let angle = player.angle;
             window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
             });
-        }
-
-
-        else if (player.isPaused) {
+        } else if (player.isPaused) {
             let angle = player.angle;
             window.dispatcher.sendMessage("playerPaused", {
                 angle: angle,
