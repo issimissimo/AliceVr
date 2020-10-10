@@ -67,27 +67,27 @@
 </head>
 
 
-<body>
-    <div id="cesiumContainer" class="absolute bordered">
+<body class="background-color-1 padded-1">
 
-        <div class="preloader">
-            <div>
-                <img src="images/mapLoadingSpinner.gif" alt="">
-                <div style="width: 100px; height: 3px; position: relative;">
-                    <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(129, 129, 129);">
-                    </div>
+    <!-- preloader -->
+    <div class="preloader">
+        <div style="text-align: center;">
+            <img src="images/mapLoadingSpinner.gif" alt="">
+            <div style="width: 100px; height: 3px; position: relative;">
+                <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(129, 129, 129);">
                 </div>
             </div>
         </div>
+    </div>
 
 
+
+    <div id="cesiumContainer" style="position: relative;">
 
         <div id="credits" style="display: flex; align-items: flex-end;">
             <img id="logo" src="../images/logo.svg" height="20px">
             <span id="credits-text"></span>
         </div>
-
-
 
         <div id="overlayLabel">
             <p class="overlayLabel-bold"></p>

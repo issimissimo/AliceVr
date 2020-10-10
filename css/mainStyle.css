@@ -13,3 +13,8 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.padded-1 {
+    padding: 2vw;
+    box-sizing: border-box;
+}
