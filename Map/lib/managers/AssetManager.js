@@ -29,7 +29,7 @@ export default class AssetManager {
                     description: Loader.root.asset.children[i].asset.description,
                     poster_url: Loader.root.asset.children[i].asset.poster_url,
                     location: Loader.root.asset.children[i].asset.location,
-                    
+
                 };
                 rootForPlayer.push(rootAsset);
             }
@@ -57,19 +57,19 @@ export default class AssetManager {
 
 
         /* HOME button
-        ***************/
+         ***************/
         $('#homeButton').hover(
-            function () {
+            function() {
                 $(this).attr('src', 'images/icon_home_on.svg');
             },
-            function () {
+            function() {
                 $(this).attr('src', 'images/icon_home_off.svg');
             }
         );
 
 
         $('#homeButton').click(
-            function () {
+            function() {
                 $(this).fadeOut();
                 // selectedAsset.entityClicked.utils.setOpacity(0.01);
                 reset(() => {
@@ -136,8 +136,7 @@ export default class AssetManager {
 
                         AssetManager.OnClick_Video();
                     });
-                }
-                else {
+                } else {
                     selectedAsset = typeof entity.asset === "undefined" ?
                         Loader.root.getAssetById(entity.id.asset.id) :
                         Loader.root.getAssetById(entity.asset.id);
@@ -176,7 +175,7 @@ export default class AssetManager {
 
             var htmlOverlay = document.getElementById('overlayLabel');
             var scratch = new Cesium.Cartesian2();
-            Map.viewer.scene.preRender.addEventListener(function () {
+            Map.viewer.scene.preRender.addEventListener(function() {
                 var position = asset.entity.position._value;
                 var canvasPosition = Map.viewer.scene.cartesianToCanvasCoordinates(position, scratch);
                 if (Cesium.defined(canvasPosition)) {
@@ -233,7 +232,7 @@ export default class AssetManager {
         /* fly there */
         Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
             offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2),
-            complete: function () {
+            complete: function() {
                 // console.log("FLYING COMPLETE");
 
                 Player.showStartPoints();
@@ -258,6 +257,7 @@ export default class AssetManager {
             video_url3: selectedAsset.video_url3,
             subtitles_url: selectedAsset.subtitles_url,
             journal_url: selectedAsset.journal_url,
+            location: selectedAsset.location,
         }
         window.dispatcher.sendMessage("videoAssetClicked", assetForPlayer);
     };
@@ -314,8 +314,9 @@ function zoomToAll(slow) {
 
 
 let rotateInterval = null;
+
 function startCameraRotation() {
-    rotateInterval = setInterval(function () {
+    rotateInterval = setInterval(function() {
         Map.camera.rotateLeft(0.0015);
     }, 50);
 };
@@ -329,7 +330,7 @@ function stopCameraRotation() {
 };
 
 
-Map.onDown.push(function () {
+Map.onDown.push(function() {
     stopCameraRotation();
 })
 
@@ -349,7 +350,7 @@ window.dispatcher.receiveMessage("playerEnded", () => {
     /* fly there */
     Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
         offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2),
-        complete: function () {
+        complete: function() {
             // console.log("FLYING COMPLETE");
 
             Player.showStartPoints();
@@ -394,10 +395,8 @@ window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
             selectedAsset = Loader.root.getAssetById(id);
             AssetManager.OnClick_Video();
         });
-    }
-    else {
+    } else {
         selectedAsset = Loader.root.getAssetById(id);
         AssetManager.OnClick_Video();
     }
 });
-

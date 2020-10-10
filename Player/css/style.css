@@ -115,6 +115,15 @@ p {
     /* letter-spacing: 1px; */
 }
 
+.location {
+    font-size: 0.7em;
+    /* font-family: 'Roboto', sans-serif; */
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 1em;
+    /* letter-spacing: 1px; */
+}
+
 .description {
     /* font-size: 13px; */
     /* font-family: 'Roboto', sans-serif; */
