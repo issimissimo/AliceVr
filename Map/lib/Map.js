@@ -62,7 +62,7 @@ export default class Map {
 
         /// add height to the cartographics array
         let promise = Cesium.sampleTerrainMostDetailed(Map.viewer.terrainProvider, cartographics);
-        Cesium.when(promise, function () {
+        Cesium.when(promise, function() {
             /// add the height from cartesian to the array of log lat coordinates
             let i = 0;
             let ii = 0;
@@ -161,8 +161,8 @@ export default class Map {
 
 
     /*******************************************************
-    *********************** INIT ***************************
-    *******************************************************/
+     *********************** INIT ***************************
+     *******************************************************/
     static init() {
 
         /* main */
@@ -195,16 +195,16 @@ export default class Map {
         Map.viewer.scene.skyAtmosphere.hueShift = Map.params.useMapbox ? 0.04 : 0;
         Map.viewer.scene.skyAtmosphere.saturationShift = Map.params.useMapbox ? -0.01 : 0.1;
 
-    
 
 
-        
+
+
         /* credits */
         let credits = Map.params.useMapbox ?
             "by ISSIMISSIMO - Imagery data attribution Mapbox" :
             "by ISSIMISSIMO - Imagery data attribution Bing Maps";
         $('#credits-text').text(credits);
-        
+
 
         /* call handlers on viewer defined */
         for (let i = 0; i < Map.onStarted.length; i++) {
@@ -213,7 +213,7 @@ export default class Map {
 
 
         /// over / exit entity
-        Map.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+        Map.viewer.screenSpaceEventHandler.setInputAction(function(movement) {
 
             let _entity = Map.viewer.scene.pick(movement.endPosition);
             if (Cesium.defined(_entity)) {
@@ -221,7 +221,7 @@ export default class Map {
                 if (!_entity.id.selectable) return;
 
                 document.body.style.cursor = "pointer";
-                
+
                 if (Map.entity !== _entity) {
                     Map.entity = _entity;
 
@@ -232,8 +232,8 @@ export default class Map {
                     // }
 
                     /* wait a little to avoid rapid movement */
-                    setTimeout(function(){
-                        if (Map.entity){
+                    setTimeout(function() {
+                        if (Map.entity) {
                             for (let i = 0; i < Map.onOverEntity.length; i++) {
                                 Map.onOverEntity[i](Map.entity);
                             };
@@ -260,7 +260,7 @@ export default class Map {
 
 
         /// click on entity
-        Map.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+        Map.viewer.screenSpaceEventHandler.setInputAction(function(movement) {
             let _entity = Map.viewer.scene.pick(movement.position);
             if (Cesium.defined(_entity)) {
                 Map.entity = _entity;
@@ -272,7 +272,7 @@ export default class Map {
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
         /// mouse down on the map
-        Map.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+        Map.viewer.screenSpaceEventHandler.setInputAction(function(movement) {
             for (let i = 0; i < Map.onDown.length; i++) {
                 Map.onDown[i]();
             };
@@ -315,14 +315,14 @@ Map.params = {
     maxScreenSpaceError: 1,
     occlusion: false,
     useBrowserRecommendedResolution: false,
-    imageryProvider: function () {
+    imageryProvider: function() {
         return (
             this.useMapbox ?
-                new Cesium.MapboxImageryProvider({
-                    mapId: 'mapbox.satellite',
-                    accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
-                }) :
-                null
+            new Cesium.MapboxImageryProvider({
+                mapId: 'mapbox.satellite',
+                accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
+            }) :
+            null
         );
     },
 };
@@ -341,4 +341,3 @@ Map.onDown = [];
 Map.onOverEntity = [];
 Map.onExitEntity = [];
 Map.onClickEntity = [];
-
