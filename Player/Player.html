@@ -22,7 +22,7 @@
     </script>
 
     <!-- omnivirt -->
-    <script type="text/javascript" src="//cdn.omnivirt.com/scripts/embed.js"></script>
+    <!-- <script type="text/javascript" src="//cdn.omnivirt.com/scripts/embed.js"></script> -->
 
     <!-- wurfl -->
     <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
@@ -31,11 +31,32 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
+    <!-- readmore.js -->
+    <script src="../node_modules/readmore-js/dist/readmore.js"></script>
+
     <!-- main app -->
     <script type="module" src="./src/player_main.js"></script>
 </head>
 
 <style>
+    .wrapper,
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+    
+    * {
+        /* disable bluebox on tap for mobile */
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(24, 24, 24);
+    }
+    
     .topBar {
         height: 12vh;
         max-height: 50px;
@@ -56,6 +77,141 @@
         display: flex;
         align-items: center
     }
+    
+    p {
+        color: white;
+        /* font-family: 'Roboto', sans-serif; */
+        font-family: 'Open Sans', sans-serif;
+        /* font-weight: 300; */
+    }
+    
+    .splashScreen-title {
+        font-size: 1.1em;
+        font-weight: 600;
+        opacity: 80%;
+        margin-bottom: 0.2em;
+    }
+    
+    .splashScreen-location {
+        font-weight: 400;
+        font-size: 0.7em;
+        opacity: 60%;
+        margin: 0;
+    }
+    
+    .splashScreen-description {
+        font-weight: 400;
+        /* font-size: smaller; */
+        /* line-height: 150%;
+        letter-spacing: 1px; */
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8em;
+        opacity: 75%;
+    }
+    /* #splashScreen-div {
+        min-width: 250px;
+        flex: 1;
+        box-sizing: border-box;
+        padding: 1em;
+        cursor: pointer;
+        overflow: auto;
+    } */
+    
+    .splashScreen-div-container {
+        min-width: 250px;
+        flex: 1;
+        box-sizing: border-box;
+        padding: 1em;
+        cursor: pointer;
+        overflow: auto;
+    }
+    
+    .splashScreen-posterContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .splashScreen-posterContainer>div {
+        margin-top: 1em;
+    }
+    
+    .splashScreen-posterContainer>img {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .topBar {
+        height: 12vh;
+        max-height: 50px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .topBar>div {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center
+    }
+    
+    @media (max-width: 580px) {
+        .splashScreen-posterContainer {
+            flex-direction: row;
+            align-items: center;
+        }
+        .splashScreen-posterContainer>div {
+            margin-top: 0;
+            margin-left: 1em;
+        }
+        .splashScreen-posterContainer>img {
+            width: 90px;
+            height: 60px;
+            object-fit: cover;
+        }
+        .topBar {
+            justify-content: flex-start;
+            margin-left: 1em;
+        }
+        .topBar>div {
+            justify-content: flex-end;
+        }
+    }
+    
+    .playButton {
+        height: 50px;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+        position: absolute;
+        top: 50%;
+        width: 50px;
+    }
+    
+    .transparentGradient-top {
+        background-image: linear-gradient(rgb(24, 24, 24), rgba(24, 24, 24, 0));
+        position: fixed;
+        width: 100%;
+        height: 1em;
+        z-index: 1;
+    }
+    
+    .transparentGradient-bottom {
+        background-image: linear-gradient(to top, rgb(24, 24, 24), rgba(24, 24, 24, 0));
+        position: fixed;
+        width: 100%;
+        height: 1em;
+        z-index: 1;
+        bottom: 0;
+    }
 </style>
 
 
@@ -63,45 +219,35 @@
 
 <body>
 
-    <div id="wrapper" style="display: flex; flex-direction: column; overflow: hidden;">
+    <!-- preloader -->
+    <div class="preloader">
+        <img src="../images/preloader.gif" alt="">
+    </div>
 
+
+    <div id="wrapper" class="background-color-1" style="display: flex; flex-direction: column;">
 
         <!-- top bar -->
         <div class="topBar background-color-1">
             <img src="../images/logo.svg" style="height: 48%;">
-
             <!-- container for buttons in the top bar -->
             <div>
                 <img id="homeButton" src="../images/icon_home_off.svg" style="height: 65%; max-height: 25px; pointer-events: auto; cursor: pointer; margin: 0.75em; display: none;">
             </div>
         </div>
 
-
-
-        <!-- OMNIVIRT container -->
-        <!-- <iframe id="OmniVirt-container" src="about:blank" frameborder="0" width="100%" height="100%" webkitAllowFullScreen="0" mozallowfullscreen="0" allowFullScreen="0" scrolling="no"></iframe> -->
-
         <!-- CLAPPR container -->
-        <div id="Clappr-container" style="flex: 1; position: relative;" onmouseover="$('#overlay-fade').show();" onmouseleave="$('#overlay-fade').hide();">
-
-            <!-- <img id="icon-360" src="images/icon_360-anim.gif"> -->
+        <div id="Clappr-container" style="display: none; flex: 1; position: relative;" onmouseover="$('#overlay-fade').show();" onmouseleave="$('#overlay-fade').hide();">
             <img id="icon-360-big">
-
             <div id="videoPlayer_viewAngle" onclick="viewAngle.resetCamera()" onmouseover="viewAngle.over.show()" onmouseleave="viewAngle.over.hide()">
                 <img id="videoPlayer_viewAngle-over" src="images/blackCircle.svg">
                 <img id="videoPlayer_viewAngle-background" src="images/videoPlayer_viewAngle-background.svg">
                 <img id="videoPlayer_viewAngle-cone" src="images/videoPlayer_viewAngle-cone.svg">
             </div>
 
-
-
-
-
             <!-- every item that is overlayed on the player and that fade-in/out on mouse over -->
             <div id="overlay-fade" class="absolute">
-
                 <img id="subtitlesIcon" src="images/subtitlesIcon.svg" onclick="subtitlesIcon.toggle()">
-
                 <div id="videoPlayer_viewArrows" class="absolute">
                     <div onmouseover="viewArrows.left_ON(this)" onmouseleave="viewArrows.left_OFF(this)">
                         <img src="images/blackCircle.svg" class="absolute" style="opacity: 0.5; display: none;">
@@ -112,51 +258,33 @@
                         <img src="images/doubleArrow.svg" class="absolute">
                     </div>
                 </div>
-
             </div>
-
-
-
-
-
-
         </div>
-
 
         <!-- subtitles container -->
         <div id="subtitlesContainer">
             <p id="subtitle"></p>
         </div>
 
-
-
         <!-- title and description -->
-        <div id="videoPlayer-poster" class="gradient padded-1" style="position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-end;">
-            <p id="poster-title" class="title"></p>
-            <p id="poster-location" class="location"></p>
-            <p id="poster-description" class="description"></p>
+        <div id="videoPlayer-poster" class="gradient padded-1" style="display:none; position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none;">
+
+            <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+
+                <p id="poster-title" class="title"></p>
+                <p id="poster-location" class="location"></p>
+                <p id="poster-description" class="description"></p>
+
+            </div>
+
+
         </div>
 
 
-
-
-
-
-
-
-        <!-- overlay -->
-        <!-- <div id="videoPlayer-overlay" class="absolute" style="pointer-events: none;">
-        </div> -->
-
-
-        <!-- preloader -->
-        <div class="preloader">
-            <img src="../images/preloader.gif" alt="">
-        </div>
 
 
         <!-- SplashScreen -->
-        <div id="videoPlayer-SplashScreen" class="absolute">
+        <!-- <div id="videoPlayer-SplashScreen" class="absolute">
 
             <div id="videoPlayer-slideshow" class="absolute" style="background-color:black">
                 <img src="" class="active">
@@ -173,15 +301,62 @@
                     <p class="splashScreen-title"></p>
                     <p class="splashScreen-description"></p>
                 </div>
+            </div>
+        </div> -->
 
 
 
+
+        <!-- container for all -->
+
+
+
+        <div id="videoPlayer-SplashScreen" style="flex: 1; overflow: auto; position: relative;">
+
+            <div class="transparentGradient-top"></div>
+            <div class="transparentGradient-bottom"></div>
+
+            <!-- <div style="">
+
+            </div> -->
+
+
+
+
+
+            <div id="titles" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+
+
+                <!-- the div of the poster -->
+                <div id="splashScreen-div" class="splashScreen-div-container" onclick="onClickOnDiv(this)">
+                    <div class="splashScreen-posterContainer">
+                        <img class="splashScreen-poster" src="">
+                        <div>
+                            <p class="splashScreen-title" style="margin: 0;"></p>
+                            <p class="splashScreen-location" style="margin: 0;"></p>
+                        </div>
+                    </div>
+                    <p class="splashScreen-description"></p>
+                </div>
+
+
+                <!-- empty div for pairing - required! -->
+                <div class="splashScreen-div-container"></div>
             </div>
         </div>
 
 
-        <!-- <img id="logo" src="../images/logo.svg"> -->
-
     </div>
+
+
+
+    <script>
+        function onClickOnDiv(elem) {
+            $(elem).css('background-color', 'rgb(50,50,50)');
+            setTimeout(() => {
+                $(elem).css('background-color', 'rgb(24, 24, 24)');
+            }, 300);
+        }
+    </script>
 
 </body>
