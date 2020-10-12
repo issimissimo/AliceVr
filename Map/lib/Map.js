@@ -311,10 +311,10 @@ export default class Map {
 
 Map.params = {
     useMapbox: false,
-    fxaa: false,
+    fxaa: true,
     maxScreenSpaceError: 1,
     occlusion: false,
-    useBrowserRecommendedResolution: false,
+    useBrowserRecommendedResolution: true,
     imageryProvider: function() {
         return (
             this.useMapbox ?

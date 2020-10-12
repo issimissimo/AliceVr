@@ -95,13 +95,13 @@ Loader.root = {
     asset: null,
 
     /* utility */
-    getAssetById: function (id, parentAsset = null) {
+    getAssetById: function(id, parentAsset = null) {
         let parent = parentAsset ? parentAsset : this.asset;
         return getAssetRecursive(parent, "id", id);
     },
 
     /* utility */
-    getAssetByClass: function (className, parentAsset = null) {
+    getAssetByClass: function(className, parentAsset = null) {
         let parent = parentAsset ? parentAsset : this.asset;
         for (let i = 0; i < parent.children.length; i++) {
             if (!parent.children[i].asset) return null;
@@ -117,15 +117,16 @@ Loader.root = {
 /* return an asset by property key-value,
 starting to search from a parent asset */
 function getAssetRecursive(parentAsset, key, value) {
-    if (parentAsset[key] === value){
+    if (parentAsset[key] === value) {
         return (parentAsset);
-    }
-    else {
+    } else {
         for (let i = 0; i < parentAsset.children.length; i++) {
-            if (parentAsset.children[i].asset[key] === value) {
-                return (parentAsset.children[i].asset);
-            } else {
-                getAssetRecursive(parentAsset.children[i].asset, key, value);
+            if (parentAsset.children[i].asset) {
+                if (parentAsset.children[i].asset[key] === value) {
+                    return (parentAsset.children[i].asset);
+                } else {
+                    getAssetRecursive(parentAsset.children[i].asset, key, value);
+                }
             }
         }
     }

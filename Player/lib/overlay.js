@@ -16,11 +16,11 @@ const poster = {
         if (!poster.title) {
             setTimeout(this.show, 250);
         } else {
-            $("#videoPlayer-poster").fadeIn();
             $('#poster-title').text(poster.title);
             $('#poster-location').text(poster.location);
             if (poster.description)
                 $('#poster-description').text(poster.description);
+            $("#videoPlayer-poster").fadeIn();
         }
     },
     hide: function() {

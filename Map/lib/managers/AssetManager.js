@@ -7,6 +7,7 @@ let selectedAsset = null;
 let hoverAsset = null;
 let navigatorButtonEnabled = true;
 let overlayLabelVisible = false;
+let rootForPlayer = [];
 
 export default class AssetManager {
 
@@ -19,7 +20,7 @@ export default class AssetManager {
         ////////////////////////////////////////////////////////////////
         ///create root asset to send with postmessage to the Player!
         ////////////////////////////////////////////////////////////////
-        let rootForPlayer = [];
+
         for (let i = 0; i < Loader.root.asset.children.length; i++) {
             if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
                 // console.log(Loader.root.asset.children[i].asset)
@@ -58,30 +59,31 @@ export default class AssetManager {
 
         /* HOME button
          ***************/
-        $('#homeButton').hover(
-            function() {
-                $(this).attr('src', 'images/icon_home_on.svg');
-            },
-            function() {
-                $(this).attr('src', 'images/icon_home_off.svg');
-            }
-        );
+        // $('#homeButton').hover(
+        //     function() {
+        //         $(this).attr('src', 'images/icon_home_on.svg');
+        //     },
+        //     function() {
+        //         $(this).attr('src', 'images/icon_home_off.svg');
+        //     }
+        // );
 
 
-        $('#homeButton').click(
-            function() {
-                $(this).fadeOut();
-                // selectedAsset.entityClicked.utils.setOpacity(0.01);
-                reset(() => {
-                    selectedAsset = null;
-                    hoverAsset = null;
-                    zoomToAll(true);
-                })
+        // $('#homeButton').click(
+        //     function() {
+        //         console.log("HOME")
+        //         $(this).fadeOut();
+        //         // selectedAsset.entityClicked.utils.setOpacity(0.01);
+        //         reset(() => {
+        //             selectedAsset = null;
+        //             hoverAsset = null;
+        //             zoomToAll(true);
+        //         })
 
-                /* send message for root asset */
-                window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
-            }
-        );
+        //         /* send message for root asset */
+        //         window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
+        //     }
+        // );
 
 
         if (!WURFL.is_mobile) {
@@ -190,31 +192,33 @@ export default class AssetManager {
             overlayLabelVisible = true;
 
 
-            /* send message */
-            const assetForPlayer = {
-                title: asset.title,
-            }
-            window.dispatcher.sendMessage("videoAssetOver", assetForPlayer);
+            // /* send message */
+            // const assetForPlayer = {
+            //         title: asset.title,
+            //     }
+            // window.dispatcher.sendMessage("videoAssetOver", assetForPlayer);
         }
     };
 
 
     static OnExit(asset, forced = false) {
-        if (asset !== selectedAsset || forced) {
-            // console.log("EXITTTTTTTTT")
-            // console.log(asset)
-            asset.entity.utils.fade(1);
-            asset.entity.utils.zoom(1);
-            asset.entityOver.utils.fade(0.1);
-            asset.entityOver.utils.zoom(1, () => {
-                hoverAsset = null;
-            });
+        if (asset) {
+            if (asset !== selectedAsset || forced) {
+                // console.log("EXITTTTTTTTT")
+                // console.log(asset)
+                asset.entity.utils.fade(1);
+                asset.entity.utils.zoom(1);
+                asset.entityOver.utils.fade(0.1);
+                asset.entityOver.utils.zoom(1, () => {
+                    hoverAsset = null;
+                });
 
-            $('#overlayLabel').hide();
-            overlayLabelVisible = false;
+                $('#overlayLabel').hide();
+                overlayLabelVisible = false;
 
-            /* send message */
-            window.dispatcher.sendMessage("videoAssetExit");
+                /* send message */
+                window.dispatcher.sendMessage("videoAssetExit");
+            }
         }
     };
 
@@ -367,20 +371,17 @@ window.dispatcher.receiveMessage("playerEnded", () => {
 });
 
 window.dispatcher.receiveMessage("splashScreenOver", (id) => {
-    // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnOver(asset);
 
 });
 
 window.dispatcher.receiveMessage("splashScreenExit", (id) => {
-    // console.log(id)
     const asset = Loader.root.getAssetById(id);
     AssetManager.OnExit(asset);
 });
 
 window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
-    // console.log(id)
     $("#homeButton").fadeIn();
 
     if (overlayLabelVisible) {
@@ -399,4 +400,27 @@ window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
         selectedAsset = Loader.root.getAssetById(id);
         AssetManager.OnClick_Video();
     }
+});
+
+window.dispatcher.receiveMessage("homeButtonClicked", () => {
+    // console.log("HOMEBUTTONCLICKED")
+    if (selectedAsset) {
+        if (selectedAsset.entityClicked) {
+            selectedAsset.entityClicked.utils.setOpacity(0.01);
+        }
+
+        reset(() => {
+            selectedAsset = null;
+            hoverAsset = null;
+            zoomToAll(true);
+        })
+        window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
+    }
+
+    // reset(() => {
+    //     selectedAsset = null;
+    //     hoverAsset = null;
+    //     zoomToAll(true);
+    // })
+    // window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
 });

@@ -1,57 +1,50 @@
-/********************************************
-Receive messages
-********************************************/
+let states = {
+    PRELOADER: 'preloader',
+    JOURNAL: 'journal',
+    IDLE: 'idle',
+}
+
+let state = states.PRELOADER;
+
+
 window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
-    init(asset);
-});
 
-window.dispatcher.receiveMessage("rootAssetClicked", function() {
-    hide();
-});
-
-window.dispatcher.receiveMessage("showGuideWarningForNoTrack", function() {
-    // console.warn("--> showGuideWarningForNoTrack")
-    showWarn();
-});
-
-
-
-/********************************************
-constants
-********************************************/
-const folder = "../data/html/";
-const id = "#journal";
-
-
-
-/********************************************
-functions
-********************************************/
-function init(asset) {
-    $(id).empty();
+    /// load and append external html
+    $("#journal").empty();
 
     if (asset.journal_url) {
-
         let htmlToLoad = asset.journal_url;
 
-        /// load and append external html
-        $(id).append($('<div>').load(folder + htmlToLoad, function(responseTxt, statusTxt, xhr) {
+        $("#journal").append($('<div>').load("../data/html/" + htmlToLoad, function(responseTxt, statusTxt, xhr) {
             if (statusTxt !== "success") {
                 console.error("Something was wrong loading html...")
             } else {
-                $(".preloader").hide();
+
+                if (state === states.PRELOADER)
+                    $(".preloader").hide();
+
+                state = states.JOURNAL;
+                $("#journal").show();
             }
         }));
     }
-};
+});
 
-function hide() {
-    $(id).empty();
-}
 
-function showWarn() {
-    $('#warnMsg').show();
-    setTimeout(function() {
-        $('#warnMsg').fadeOut();
-    }, 5000);
-}
+
+window.dispatcher.receiveMessage("rootAssetClicked", function() {
+
+    /// hide journal or preloader
+    switch (state) {
+        case states.PRELOADER:
+            $(".preloader").hide();
+        case states.JOURNAL:
+            $("#journal").hide();
+    }
+    state = states.IDLE;
+});
+
+// window.dispatcher.receiveMessage("showGuideWarningForNoTrack", function() {
+//     // console.warn("--> showGuideWarningForNoTrack")
+//     showWarn();
+// });

@@ -6,7 +6,7 @@ let messagesInterval = null;
 
 
 /// register listener to receive message from parent window
-window.addEventListener("message", function (event) {
+window.addEventListener("message", function(event) {
 
     /// register parentWindow
     if (event.data === "hello") {
@@ -53,7 +53,7 @@ var dispatcher = {
     /////////////////////////////////////
     /// send message to parent window
     /////////////////////////////////////
-    sendMessage: function (message, data = null) {
+    sendMessage: function(message, data = null) {
 
         let msg = {
             message: message,
@@ -62,9 +62,8 @@ var dispatcher = {
 
         if (parentWindow) {
             parentWindow.postMessage(msg, "*");
-        }
-        else {
-            console.info("Parent window script not yet defined. Maybe parent window is still loading, or the iframes are not fully loaded. This is not an issue!");
+        } else {
+            console.warn("Parent window script not yet defined. Maybe parent window is still loading, or the iframes are not fully loaded. Maybe do you have a slow network?");
             messagesQueueManager(msg);
         }
     },
@@ -72,7 +71,7 @@ var dispatcher = {
     /////////////////////////////////////
     /// register a callback for a specific message
     /////////////////////////////////////
-    receiveMessage: function (message, func) {
+    receiveMessage: function(message, func) {
 
         let msg = {
             message: message,
