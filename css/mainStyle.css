@@ -18,3 +18,17 @@
     padding: 2vw;
     box-sizing: border-box;
 }
+
+.absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0
+}
+
+.centeredContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

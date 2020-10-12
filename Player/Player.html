@@ -212,6 +212,23 @@
         z-index: 1;
         bottom: 0;
     }
+    
+    #homeButton {
+        height: 65%;
+        max-height: 25px;
+        pointer-events: auto;
+        cursor: pointer;
+        margin: 0.75em;
+        opacity: 60%;
+    }
+    
+    #homeButton:hover {
+        opacity: 100%;
+    }
+    
+    #splashScreen-div:hover {
+        background-color: rgb(20, 20, 20);
+    }
 </style>
 
 
@@ -232,7 +249,7 @@
             <img src="../images/logo.svg" style="height: 48%;">
             <!-- container for buttons in the top bar -->
             <div>
-                <img id="homeButton" src="../images/icon_home_off.svg" style="height: 65%; max-height: 25px; pointer-events: auto; cursor: pointer; margin: 0.75em; display: none;">
+                <img id="homeButton" src="../images/icon_home_on.svg" onclick="dispatcher.sendMessage('homeButtonClicked')">
             </div>
         </div>
 
@@ -259,51 +276,29 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- subtitles container -->
-        <div id="subtitlesContainer">
-            <p id="subtitle"></p>
-        </div>
 
-        <!-- title and description -->
-        <div id="videoPlayer-poster" class="gradient padded-1" style="display:none; position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none;">
 
-            <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
 
-                <p id="poster-title" class="title"></p>
-                <p id="poster-location" class="location"></p>
-                <p id="poster-description" class="description"></p>
-
+            <!-- subtitles container -->
+            <div id="subtitlesContainer">
+                <p id="subtitle"></p>
             </div>
 
-
-        </div>
-
-
-
-
-        <!-- SplashScreen -->
-        <!-- <div id="videoPlayer-SplashScreen" class="absolute">
-
-            <div id="videoPlayer-slideshow" class="absolute" style="background-color:black">
-                <img src="" class="active">
-            </div>
-
-
-
-            <div id="titles" style="position: absolute; top: 1em; left: 1em; right: 1em; bottom: 1em; z-index: 9999;
-                display: flex; justify-content: space-around;">
-
-                <div id="splashScreen-div" style="width: 10em; background-color: rgba(26, 27, 33, 0.4);
-                padding: 0.5em; margin: 0.5em; flex: 1; cursor: pointer; overflow: auto;">
-                    <img class="splashScreen-poster" src="" width="100%">
-                    <p class="splashScreen-title"></p>
-                    <p class="splashScreen-description"></p>
+            <!-- title and description -->
+            <div id="videoPlayer-poster" class="gradient padded-1" style="z-index: 999; display:none; position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none;">
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                    <p id="poster-title" class="title"></p>
+                    <p id="poster-location" class="location"></p>
+                    <p id="poster-description" class="description"></p>
                 </div>
             </div>
-        </div> -->
 
+
+
+
+
+        </div>
 
 
 
@@ -316,19 +311,11 @@
             <div class="transparentGradient-top"></div>
             <div class="transparentGradient-bottom"></div>
 
-            <!-- <div style="">
-
-            </div> -->
-
-
-
-
-
-            <div id="titles" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+            <div id="titles" style="display: flex; flex-wrap: wrap; justify-content: space-evenly; padding-top: 1em;">
 
 
                 <!-- the div of the poster -->
-                <div id="splashScreen-div" class="splashScreen-div-container" onclick="onClickOnDiv(this)">
+                <div id="splashScreen-div" class="splashScreen-div-container">
                     <div class="splashScreen-posterContainer">
                         <img class="splashScreen-poster" src="">
                         <div>
@@ -347,16 +334,4 @@
 
 
     </div>
-
-
-
-    <script>
-        function onClickOnDiv(elem) {
-            $(elem).css('background-color', 'rgb(50,50,50)');
-            setTimeout(() => {
-                $(elem).css('background-color', 'rgb(24, 24, 24)');
-            }, 300);
-        }
-    </script>
-
 </body>

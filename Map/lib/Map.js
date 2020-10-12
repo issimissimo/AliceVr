@@ -310,9 +310,9 @@ export default class Map {
 
 
 Map.params = {
-    useMapbox: true,
+    useMapbox: false,
     fxaa: true,
-    maxScreenSpaceError: 4,
+    maxScreenSpaceError: 1,
     occlusion: false,
     useBrowserRecommendedResolution: true,
     imageryProvider: function() {

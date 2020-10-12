@@ -30,14 +30,6 @@
             overflow: hidden;
         }
         
-        .absolute {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-        
         p {
             color: rgba(255, 255, 255, 0.767);
             line-height: 200%;
@@ -107,7 +99,7 @@
 
     <div>
 
-        <div class="absolute" style="display: flex;  align-items: center; justify-content: center;">
+        <div class="absolute centeredContent">
             <div style="display: flex; flex-direction: column;">
                 <img src="images/guide.svg" width="100px" style="opacity: 0.3; margin: auto;">
                 <p style="opacity: 0.3;">NESSUN PERCORSO SELEZIONATO</p>
@@ -115,9 +107,9 @@
         </div>
 
         <!-- html container -->
-        <div class="absolute background-color-1 padded-1" id="journal" style="z-index: 2; overflow: auto;"></div>
+        <div id="journal" class="absolute background-color-1 padded-1" style="z-index: 2; overflow: auto;"></div>
 
-        <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
+        <!-- <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
             <div class="absolute" style="display: flex;  align-items: center;
             justify-content: center; background-color: white;">
                 <div style="display: flex; flex-direction: column;">
@@ -125,7 +117,7 @@
                     <p>QUESTO VIDEO NON HA TRACCE REGISTRATE</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
     </div>
