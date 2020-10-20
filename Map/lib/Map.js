@@ -36,12 +36,17 @@ export default class Map {
         //     if (callback) callback();
         // }
         if (p === undefined) {
-            p = new Cesium.Cartesian3(0, 0, 0);
-            console.error("Get camera range error");
+            if (Map._ready) {
+                console.error("Get camera range error");
+            } else {
+                p = new Cesium.Cartesian3(0, 0, 0);
+                Map._range = Cesium.Cartesian3.distance(Map.camera.positionWC, p);
+                if (callback) callback();
+            }
+        } else {
+            Map._range = Cesium.Cartesian3.distance(Map.camera.positionWC, p);
+            if (callback) callback();
         }
-        Map._range = Cesium.Cartesian3.distance(Map.camera.positionWC, p);
-        if (callback) callback();
-
     };
 
 
@@ -171,15 +176,24 @@ export default class Map {
     /*******************************************************
      *********************** INIT ***************************
      *******************************************************/
-    static init() {
+    static init(useMapbox, token) {
 
         /* main */
-        // Cesium.Ion.defaultAccessToken = getParameterFromIframe("token");
-        Cesium.Ion.defaultAccessToken =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZDU1NWMyOC00YjFkLTQ5OTUtODg5Yy0zZDRlNGI1NTg3ZjciLCJpZCI6MTUxNTgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjcyNDQ4NjR9.WDQmliwvLOArHiI9n4ET2TBELHRsGofW1unvSsbuyR8';
+        Cesium.Ion.defaultAccessToken = token;
+
+        const imageryProvider = useMapbox ?
+            new Cesium.MapboxImageryProvider({
+                mapId: 'mapbox.satellite',
+                accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
+            }) :
+            null;
+
+
         Map.viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider: Map.params.imageryProvider(),
+            imageryProvider: imageryProvider,
             terrainProvider: Cesium.createWorldTerrain(),
+
+            /// hide default template
             animation: false,
             baseLayerPicker: false,
             fullscreenButton: false,
@@ -189,28 +203,33 @@ export default class Map {
             sceneModePicker: false,
             timeline: false,
             navigationHelpButton: false,
-            useBrowserRecommendedResolution: false, /// change this to improve rendering speed on mobile
         });
+
         Map.camera = Map.viewer.scene.camera;
         Map.canvas = Map.viewer.scene.canvas;
 
 
         /* parameters */
-        Map.viewer.scene.globe.depthTestAgainstTerrain = Map.params.occlusion;
-        Map.viewer.scene.postProcessStages.fxaa.enabled = Map.params.fxaa;
-        Map.viewer.scene.globe.maximumScreenSpaceError = Map.params.maxScreenSpaceError;
-        Map.viewer.scene.skyAtmosphere.brightnessShift = Map.params.useMapbox ? 0.3 : -0.1;
-        Map.viewer.scene.skyAtmosphere.hueShift = Map.params.useMapbox ? 0.04 : 0;
-        Map.viewer.scene.skyAtmosphere.saturationShift = Map.params.useMapbox ? -0.01 : 0.1;
+        Map.viewer.scene.globe.depthTestAgainstTerrain = false;
+        Map.viewer.scene.postProcessStages.fxaa.enabled = true;
+
+        let screenspaceError;
+        if (useMapbox) screenspaceError = 4;
+        else screenspaceError = window.isMobile ? 2 : 1;
+        Map.viewer.scene.globe.maximumScreenSpaceError = screenspaceError;
+
+        Map.viewer.scene.skyAtmosphere.brightnessShift = useMapbox ? 0.3 : -0.1;
+        Map.viewer.scene.skyAtmosphere.hueShift = useMapbox ? 0.04 : 0;
+        Map.viewer.scene.skyAtmosphere.saturationShift = useMapbox ? -0.01 : 0.1;
 
 
 
 
 
         /* credits */
-        let credits = Map.params.useMapbox ?
-            "Imagery data attribution Mapbox" :
-            "Imagery data attribution Bing Maps";
+        let credits = useMapbox ?
+            "AliceVr - Imagery data attribution Mapbox" :
+            "AliceVr - Imagery data attribution Bing Maps";
         $('#credits-text').text(credits);
 
 
@@ -311,30 +330,6 @@ export default class Map {
     }
 }
 
-
-
-
-
-
-
-Map.params = {
-    useMapbox: false,
-    fxaa: true,
-    maxScreenSpaceError: window.isMobile ? 2 : 1,
-    // maxScreenSpaceError: 1,
-    occlusion: false,
-    useBrowserRecommendedResolution: true,
-    imageryProvider: function() {
-        return (
-            this.useMapbox ?
-            new Cesium.MapboxImageryProvider({
-                mapId: 'mapbox.satellite',
-                accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
-            }) :
-            null
-        );
-    },
-};
 
 
 Map._ready = false;
