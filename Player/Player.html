@@ -148,13 +148,6 @@
             height: 60px;
             object-fit: cover;
         }
-        /* .topBar {
-            justify-content: flex-start;
-            margin-left: 1em;
-        }
-        .topBar>div {
-            justify-content: flex-end;
-        } */
     }
     
     .playButton {
@@ -225,6 +218,7 @@
 
         <!-- CLAPPR container -->
         <div id="Clappr-container" class="absolute" onmouseover="onMouseOverPlayerContainer()" onmouseleave="onMouseLeavePlayerContainer()">
+            <img id="icon-360" src="images/icon_360-anim.gif">
             <img id="icon-360-big">
             <div id="videoPlayer_viewAngle" onclick="viewAngle.resetCamera()" onmouseover="viewAngle.over.show()" onmouseleave="viewAngle.over.hide()">
                 <img id="videoPlayer_viewAngle-over" src="images/blackCircle.svg">
@@ -298,18 +292,19 @@
                 <p id="subtitle"></p>
             </div>
 
-            <!-- title and description -->
-            <div id="videoPlayer-poster" class="gradient padded-1" style="z-index: 999; display:none; position: absolute; left: 0; top: 50%; right: 0; bottom: 0; pointer-events: none;">
-                <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
-                    <p id="poster-title" class="title"></p>
-                    <p id="poster-location" class="location"></p>
-                    <p id="poster-description" class="description"></p>
+            <!-- container for stuff on top of player poster image -->
+            <div id="videoPlayer-poster" class="gradient padded-1 absolute" style="z-index: 999; display:none; pointer-events: none;">
+
+                <!-- container for title and description -->
+                <div class="gradient padded-1 absolute" style="top: 50%;">
+                    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <p id="poster-title" class="title"></p>
+                        <p id="poster-location" class="location"></p>
+                        <p id="poster-description" class="description"></p>
+                    </div>
                 </div>
+
             </div>
-
-
-
-
 
         </div>
 

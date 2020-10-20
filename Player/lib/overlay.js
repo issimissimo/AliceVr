@@ -264,10 +264,10 @@ export function showOnReady() {
     viewArrows.hide();
     subtitlesIcon.hide();
 
-    if (!window.isMobile) {
-        $(".topBar").hide();
-        $("#gradientForLogoOnTop").hide();
-    }
+    // if (!window.isMobile) {
+    //     $(".topBar").hide();
+    //     $("#gradientForLogoOnTop").hide();
+    // }
 }
 
 

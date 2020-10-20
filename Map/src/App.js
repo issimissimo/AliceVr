@@ -7,15 +7,15 @@ import Preloader from "../lib/UI/Preloader.js";
 
 
 /*******************************************
-*********** ON MAP STARTED
-*******************************************/
+ *********** ON MAP STARTED
+ *******************************************/
 Map.onStarted.push(() => {
 
     /* get URL parameters from Map.html (derived from index.html) */
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const idToLoad = urlParams.get('id')
-    // console.log(idToLoad);
+        // console.log(idToLoad);
 
     /* init preloader DIV */
     Preloader.init();
@@ -30,7 +30,7 @@ Map.onStarted.push(() => {
     Loader.load(idToLoad, () => {
 
         // console.log(Loader.root.asset)
-       
+
         let range = Loader.root.asset.boundingSphere.radius * 3;
         // let range = 140000;
 
@@ -49,9 +49,9 @@ Map.onStarted.push(() => {
 
 
 /*******************************************
-*********** ON MAP READY
-*******************************************/
-Map.onReady.push(function () {
+ *********** ON MAP READY
+ *******************************************/
+Map.onReady.push(function() {
 
     window.dispatcher.sendMessage("mapReady");
 
@@ -66,6 +66,11 @@ Map.onReady.push(function () {
 
 
 /*******************************************
-*********** INIT
-*******************************************/
-Map.init();
+ *********** INIT
+ *******************************************/
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const hq = urlParams.get('hq');
+const useMapbox = hq == "false" ? true : false;
+const token = urlParams.get('token');
+Map.init(useMapbox, token);
