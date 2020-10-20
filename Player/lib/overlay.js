@@ -263,6 +263,11 @@ export function showOnReady() {
     viewArrows.isActive = false;
     viewArrows.hide();
     subtitlesIcon.hide();
+
+    if (!window.isMobile) {
+        $(".topBar").hide();
+        $("#gradientForLogoOnTop").hide();
+    }
 }
 
 
