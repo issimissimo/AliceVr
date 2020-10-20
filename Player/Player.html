@@ -26,6 +26,9 @@
 
     <!-- wurfl -->
     <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
+    <script>
+        var isMobile = WURFL.is_mobile ? true : false;
+    </script>
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700&display=swap" rel="stylesheet">
@@ -57,27 +60,6 @@
         background-color: rgb(24, 24, 24);
     }
     
-    .topBar {
-        height: 12vh;
-        max-height: 50px;
-        z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        /* background-color: rgb(43, 43, 43); */
-    }
-    
-    .topBar>div {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center
-    }
-    
     p {
         color: white;
         /* font-family: 'Roboto', sans-serif; */
@@ -101,21 +83,10 @@
     
     .splashScreen-description {
         font-weight: 400;
-        /* font-size: smaller; */
-        /* line-height: 150%;
-        letter-spacing: 1px; */
         font-family: 'Open Sans', sans-serif;
         font-size: 0.8em;
         opacity: 75%;
     }
-    /* #splashScreen-div {
-        min-width: 250px;
-        flex: 1;
-        box-sizing: border-box;
-        padding: 1em;
-        cursor: pointer;
-        overflow: auto;
-    } */
     
     .splashScreen-div-container {
         min-width: 250px;
@@ -221,10 +192,9 @@
         margin: 0.75em;
         opacity: 60%;
     }
-    
-    #homeButton:hover {
+    /* #homeButton:hover {
         opacity: 100%;
-    }
+    } */
     
     #splashScreen-div:hover {
         background-color: rgb(20, 20, 20);
@@ -245,7 +215,7 @@
     <div id="wrapper" class="background-color-1" style="display: flex; flex-direction: column;">
 
         <!-- top bar -->
-        <div class="topBar background-color-1">
+        <div class="topBar" style="pointer-events: none;">
             <img src="../images/logo.svg" style="height: 48%;">
             <!-- container for buttons in the top bar -->
             <div>
@@ -254,7 +224,7 @@
         </div>
 
         <!-- CLAPPR container -->
-        <div id="Clappr-container" style="display: none; flex: 1; position: relative;" onmouseover="$('#overlay-fade').show();" onmouseleave="$('#overlay-fade').hide();">
+        <div id="Clappr-container" class="absolute" onmouseover="onMouseOverPlayerContainer()" onmouseleave="onMouseLeavePlayerContainer()">
             <img id="icon-360-big">
             <div id="videoPlayer_viewAngle" onclick="viewAngle.resetCamera()" onmouseover="viewAngle.over.show()" onmouseleave="viewAngle.over.hide()">
                 <img id="videoPlayer_viewAngle-over" src="images/blackCircle.svg">
@@ -262,8 +232,51 @@
                 <img id="videoPlayer_viewAngle-cone" src="images/videoPlayer_viewAngle-cone.svg">
             </div>
 
+
+            <script>
+                let isOverHomeButton = false;
+
+                $('#homeButton').hover(
+                    function() {
+                        isOverHomeButton = true;
+                        $(this).css('opacity', '100%');
+                    },
+                    function() {
+                        isOverHomeButton = false;
+                        $(this).css('opacity', '60%');
+                    }
+                );
+
+
+                function onMouseOverPlayerContainer() {
+                    $('#overlay-fade').fadeIn();
+                    $('#gradientForLogoOnTop').fadeIn();
+                    $('.topBar').fadeIn();
+                }
+
+                function onMouseLeavePlayerContainer() {
+                    setTimeout(() => {
+                        if (!isOverHomeButton) {
+                            $('#overlay-fade').fadeOut();
+                            $('#gradientForLogoOnTop').fadeOut();
+                            $('.topBar').fadeOut();
+                        }
+                    }, 200)
+                }
+            </script>
+
+
+
+
+
+            <!-- the gradient for the logo on top -->
+            <div id="gradientForLogoOnTop" class="absolute" style="pointer-events: none; z-index: 99; bottom:70%; background: linear-gradient(180deg, rgba(24, 24, 24, 0.9) 0%, rgba(24, 24, 24, 0.3) 60%, rgba(24, 24, 24, 0) 100%);">
+            </div>
+
+
             <!-- every item that is overlayed on the player and that fade-in/out on mouse over -->
-            <div id="overlay-fade" class="absolute">
+            <div id="overlay-fade" class="absolute" style="z-index: 9; pointer-events: none;">
+
                 <img id="subtitlesIcon" src="images/subtitlesIcon.svg" onclick="subtitlesIcon.toggle()">
                 <div id="videoPlayer_viewArrows" class="absolute">
                     <div onmouseover="viewArrows.left_ON(this)" onmouseleave="viewArrows.left_OFF(this)">

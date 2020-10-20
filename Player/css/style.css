@@ -22,7 +22,7 @@ p {
     height: 50px;
     pointer-events: auto;
     cursor: pointer;
-    z-index: 99
+    z-index: 999
 }
 
 #videoPlayer_viewAngle img {
@@ -41,7 +41,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 99;
+    z-index: 999;
     pointer-events: none;
     padding: 1em;
 }
@@ -61,7 +61,7 @@ p {
     height: 35px;
     pointer-events: auto;
     cursor: pointer;
-    z-index: 99;
+    z-index: 999;
     opacity: 50%;
 }
 

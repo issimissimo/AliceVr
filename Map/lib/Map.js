@@ -29,11 +29,12 @@ export default class Map {
     static updateRange(position = null, callback = null) {
         let p = position ? position : Map.getPointFromCamera();
         if (p === undefined) {
-            p = new Cesium.Cartesian3(0, 0, 0);
+            // p = new Cesium.Cartesian3(0, 0, 0);
             console.error("Get camera range error");
+        } else {
+            Map._range = Cesium.Cartesian3.distance(Map.camera.positionWC, p);
+            if (callback) callback();
         }
-        Map._range = Cesium.Cartesian3.distance(Map.camera.positionWC, p);
-        if (callback) callback();
     };
 
 
@@ -312,7 +313,7 @@ export default class Map {
 Map.params = {
     useMapbox: false,
     fxaa: true,
-    maxScreenSpaceError: 1,
+    maxScreenSpaceError: window.isMobile ? 2 : 1,
     occlusion: false,
     useBrowserRecommendedResolution: true,
     imageryProvider: function() {

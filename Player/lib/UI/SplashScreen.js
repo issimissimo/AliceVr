@@ -14,6 +14,7 @@ export default class SplashScreen {
 
         $("#Clappr-container").hide();
         $("#videoPlayer-SplashScreen").show();
+        $("#topBar").show();
 
 
         /* populate */
