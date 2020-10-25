@@ -40,14 +40,12 @@
         var robotoMedium = new FontFace('roboto-medium', 'url("fonts/roboto-medium.ttf")');
         robotoMedium.load().then(function(loaded_face) {
             document.fonts.add(loaded_face);
-            console.log("font is added")
         }).catch(function(error) {
             console.log(error);
         });
         var robotoBold = new FontFace('roboto-bold', 'url("fonts/roboto-bold.ttf")', {});
         robotoBold.load().then(function(loaded_face) {
             document.fonts.add(loaded_face);
-            console.log("font is added")
         }).catch(function(error) {
             console.log(error);
         });

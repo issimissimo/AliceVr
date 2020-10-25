@@ -52,7 +52,7 @@ function getPropertiesFromCategory(category) {
         verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
         heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND,
         pixelOffset: new Cesium.Cartesian2(0, -5),
-        // disableDepthTestDistance: Number.POSITIVE_INFINITY,
+        disableDepthTestDistance: Number.POSITIVE_INFINITY,
         minDistance: 50000,
         maxDistance: 800000,
     };
@@ -123,8 +123,6 @@ export default class Label {
     /// DRAW
     static draw(position, text, category, collection = null) {
 
-        console.log("draw label..")
-
         const properties = getPropertiesFromCategory(category)
 
         if (text.length > 15) text = stringDivider(text, 15);
@@ -179,7 +177,7 @@ export default class Label {
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 verticalOrigin: properties.verticalOrigin,
                 heightReference: properties.heightReference,
-                // pixelOffset: properties.pixelOffset,
+                pixelOffset: properties.pixelOffset,
                 // disableDepthTestDistance: properties.disableDepthTestDistance,
             },
         });
