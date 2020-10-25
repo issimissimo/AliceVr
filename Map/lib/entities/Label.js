@@ -52,7 +52,7 @@ function getPropertiesFromCategory(category) {
         verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
         heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND,
         pixelOffset: new Cesium.Cartesian2(0, -5),
-        disableDepthTestDistance: Number.POSITIVE_INFINITY,
+        // disableDepthTestDistance: Number.POSITIVE_INFINITY,
         minDistance: 50000,
         maxDistance: 800000,
     };
@@ -71,7 +71,7 @@ function getPropertiesFromCategory(category) {
             properties.maxDistance = 800000;
             break;
         case "A3":
-            properties.font = WURFL.is_mobile ? "13px Helvetica" : "15px Helvetica";
+            properties.font = WURFL.is_mobile ? "13px roboto-medium" : "15px roboto-medium";
             properties.outlineWidth = 2;
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
@@ -96,16 +96,16 @@ function getPropertiesFromCategory(category) {
             properties.maxDistance = 70000;
             break;
         case "BLUE":
-            properties.font = WURFL.is_mobile ? "11px Helvetica" : "13px Helvetica";
+            properties.font = WURFL.is_mobile ? "11px roboto-bold" : "13px roboto-bold";
             properties.outlineWidth = 2;
             properties.fillColor = new Cesium.Cartesian3(0.6, 0.8, 1);
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
             break;
         case "GREEN":
-            properties.font = WURFL.is_mobile ? "11px Helvetica" : "13px Helvetica";
+            properties.font = WURFL.is_mobile ? "11px roboto-bold" : "13px roboto-bold";
             properties.outlineWidth = 2;
-            properties.fillColor = new Cesium.Cartesian3(0.7, 1, 0.9);
+            properties.fillColor = new Cesium.Cartesian3(0.7, 1, 0.8);
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
             break;
@@ -122,6 +122,8 @@ export default class Label {
 
     /// DRAW
     static draw(position, text, category, collection = null) {
+
+        console.log("draw label..")
 
         const properties = getPropertiesFromCategory(category)
 
@@ -178,7 +180,7 @@ export default class Label {
                 verticalOrigin: properties.verticalOrigin,
                 heightReference: properties.heightReference,
                 // pixelOffset: properties.pixelOffset,
-                disableDepthTestDistance: properties.disableDepthTestDistance,
+                // disableDepthTestDistance: properties.disableDepthTestDistance,
             },
         });
 
