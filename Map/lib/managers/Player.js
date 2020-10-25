@@ -43,10 +43,13 @@ export default class Player {
             Player.radar = Ellipse.draw(video.boundingSphere.center, "POSITION");
             window.dispatcher.sendMessage("showGuideWarningForNoTrack");
             // console.warn("showGuideWarningForNoTrack")
+
+            /* create start points */
+            createStartPoints();
         }
 
-        /* create start points */
-        createStartPoints();
+        // /* create start points */
+        // createStartPoints();
     };
 
 
@@ -83,7 +86,7 @@ export default class Player {
             }, 250);
         }
         t();
-      
+
     };
 
     static hideStartPoints() {
@@ -120,7 +123,7 @@ window.dispatcher.receiveMessage("playerPlaying", (data) => {
 });
 window.dispatcher.receiveMessage("playerPaused", (data) => {
     Player.playing = false;
-    if (data){
+    if (data) {
         Player.radar.ellipse.stRotation = Cesium.Math.toRadians(data.angle) + radarHeading;
     }
 });
@@ -188,7 +191,7 @@ const check = time => {
                                 the ellipse because otherwise
                                 it would be totally white for a couple of frames */
                                 Player.radar = Ellipse.draw(position, "POSITION");
-                                setTimeout(function () {
+                                setTimeout(function() {
                                     entityUtils.fadeIn(Player.radar);
                                 }, 500)
                             });
@@ -236,8 +239,7 @@ const createStartPoints = () => {
             if (spIndex < markers.length - 1) {
                 spIndex++;
                 createStartPoints();
-            }
-            else {
+            } else {
                 spIndex = 0;
             }
         })

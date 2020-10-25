@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <type>point</type>
+    
+    <point>
+        <longitude>8.6282923</longitude>
+        <latitude>46.0090721</latitude>
+        <type>LABEL</type>
+        <category>A3</category>
+        <title>Piancavallo</title>
+    </point>
+
+    <!-- <point>
+        <longitude>8.6365359</longitude>
+        <latitude>46.0213919</latitude>
+        <type>LABEL</type>
+        <category>A3</category>
+        <title>Cima di Morissolo</title>
+    </point> -->
+
+    <point>
+        <longitude>8.625364</longitude>
+        <latitude>46.024852</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Alpe Colle</title>
+    </point>
+
+    <point>
+        <longitude>8.618282</longitude>
+        <latitude>46.031556</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Monte Spalavera</title>
+    </point>
+
+    <point>
+        <longitude>8.600169</longitude>
+        <latitude>46.035445</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Pian Puzzo</title>
+    </point>
+
+    <point>
+        <longitude>8.582328</longitude>
+        <latitude>46.040805</latitude>
+        <type>LABEL</type>
+        <category>GREEN</category>
+        <title>Passo Folungo</title>
+    </point>
+    
+</root>

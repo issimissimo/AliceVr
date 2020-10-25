@@ -15,8 +15,9 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script src="../node_modules/element-qsa-scope/index.js"></script>
     <!-- For compatibility with Ms Edge -->
+    <script src="../node_modules/element-qsa-scope/index.js"></script>
+
 
     <!-- cesium -->
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.73/Build/Cesium/Cesium.js"></script>
@@ -24,8 +25,8 @@
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="preload" rel="stylesheet" as="style">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> -->
+    <!--  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> -->
 
     <!-- wurfl -->
     <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
@@ -43,11 +44,10 @@
             font-family: Acumin-bold;
             src: url("fonts/Acumin-BdPro.otf") format("opentype");
         } */
-        
-        @font-face {
+        /* @font-face {
             font-family: roboto-medium;
             src: url("fonts/roboto-medium.ttf") format("truetype");
-        }
+        } */
         /* @font-face {
             font-family: roboto-bold;
             src: url("fonts/roboto-bold.ttf") format("truetype");
@@ -76,8 +76,8 @@
     <div class="preloader">
         <div style="text-align: center;">
             <img src="images/mapLoadingSpinner.gif" alt="">
-            <div style="width: 100px; height: 3px; position: relative;">
-                <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(129, 129, 129);">
+            <div style="width: 100px; height: 1px; position: relative;">
+                <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(131, 131, 131);">
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
 
     <div id="cesiumContainer" style="position: relative;">
 
-        <div id="credits" style="display: flex; align-items: flex-end;">
+        <div id="credits" style="display: flex; align-items: flex-end; opacity: 75%;">
             <!-- <img id="logo" src="../images/logo.svg" height="20px"> -->
             <span id="credits-text"></span>
         </div>
@@ -129,6 +129,7 @@
         </div> -->
 
     </div>
+
 </body>
 
 

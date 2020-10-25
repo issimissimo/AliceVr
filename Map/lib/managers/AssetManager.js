@@ -8,6 +8,7 @@ let hoverAsset = null;
 let navigatorButtonEnabled = true;
 let overlayLabelVisible = false;
 let rootForPlayer = [];
+let flyDuration = 8; //default
 
 export default class AssetManager {
 
@@ -15,7 +16,8 @@ export default class AssetManager {
 
         range = _range;
 
-        zoomToAll();
+        // console.log("init")
+        // zoomToAll();
 
         ////////////////////////////////////////////////////////////////
         ///create root asset to send with postmessage to the Player!
@@ -39,11 +41,13 @@ export default class AssetManager {
         /* if there's only one video asset
         click it */
         if (Loader.root.asset.constructor.name === "Video") {
+            // console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
             Map.onReady.push(() => {
                 const timeout = 200;
                 setTimeout(() => {
                     selectedAsset = Loader.root.asset;
+                    flyDuration = 0;
                     AssetManager.OnClick_Video();
                 }, timeout)
             })
@@ -51,10 +55,16 @@ export default class AssetManager {
         /* or, send message for root asset */
         else {
             window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
+
+            zoomToAll();
         }
 
 
-
+        // /// set the listener for the map loading ready to receive data
+        // setTimeout(() => {
+        //     Map.checkForTileLoadProgressEvent = true;
+        //     console.log("ADESSSOO...")
+        // }, 200)
 
 
         /* HOME button
@@ -224,6 +234,8 @@ export default class AssetManager {
 
 
     static OnClick_Video() {
+        // console.log("OnClickVideo")
+        // console.log(flyDuration)
         selectedAsset.entity.utils.setOpacity(0.01);
         selectedAsset.entityOver.utils.setOpacity(1);
         selectedAsset.entityOver.utils.setScale(1.2);
@@ -235,7 +247,7 @@ export default class AssetManager {
 
         /* fly there */
         Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
-            offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2),
+            offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2.5),
             complete: function() {
                 // console.log("FLYING COMPLETE");
 
@@ -247,7 +259,7 @@ export default class AssetManager {
                 // selectedAsset.entityClicked.utils.fade(1);
                 // selectedAsset.entityClicked.utils.setScale(1);
             },
-            duration: 8,
+            duration: flyDuration,
             easingFunction: Cesium.EasingFunction.QUADRACTIC_IN_OUT,
         });
 
@@ -303,6 +315,8 @@ function reset(callback = null) {
 
 
 function zoomToAll(slow) {
+
+    // console.log("zoom to all")
 
     stopCameraRotation();
 
@@ -403,7 +417,7 @@ window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
 });
 
 window.dispatcher.receiveMessage("homeButtonClicked", () => {
-    // console.log("HOMEBUTTONCLICKED")
+    console.log("HOMEBUTTONCLICKED")
     if (selectedAsset) {
         if (selectedAsset.entityClicked) {
             selectedAsset.entityClicked.utils.setOpacity(0.01);
