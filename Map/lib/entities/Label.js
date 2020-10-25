@@ -44,7 +44,7 @@ function updateOpacity(entity) {
 
 function getPropertiesFromCategory(category) {
     let properties = {
-        font: "300 15px Roboto",
+        font: "15px Helvetica",
         outlineWidth: 2,
         fillColor: new Cesium.Cartesian3(1, 1, 1),
         outlineColor: new Cesium.Cartesian3(0, 0, 0),
@@ -59,41 +59,55 @@ function getPropertiesFromCategory(category) {
 
     switch (category) {
         case "A1":
-            properties.font = WURFL.is_mobile ? "16px roboto-medium" : "18px roboto-medium";
+            properties.font = WURFL.is_mobile ? "16px Helvetica" : "18px Helvetica";
             properties.outlineWidth = 2;
             properties.minDistance = 800000;
             properties.maxDistance = 2000000;
             break;
         case "A2":
-            properties.font = WURFL.is_mobile ? "14px roboto-medium" : "16px roboto-medium";
+            properties.font = WURFL.is_mobile ? "14px Helvetica" : "16px Helvetica";
             properties.outlineWidth = 2;
             properties.minDistance = 170000;
             properties.maxDistance = 800000;
             break;
         case "A3":
-            properties.font = WURFL.is_mobile ? "12px roboto-medium" : "14px roboto-medium";
+            properties.font = WURFL.is_mobile ? "13px Helvetica" : "15px Helvetica";
             properties.outlineWidth = 2;
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
             break;
         case "A4":
-            properties.font = WURFL.is_mobile ? "10px roboto-medium" : "12px roboto-medium";
+            properties.font = WURFL.is_mobile ? "10px Helvetica" : "13px Helvetica";
             properties.outlineWidth = 2;
             properties.minDistance = 50000;
             properties.maxDistance = 70000;
             break;
         case "A5":
-            properties.font = WURFL.is_mobile ? "9px roboto-medium" : "11px roboto-medium";
+            properties.font = WURFL.is_mobile ? "9px Helvetica" : "12px Helvetica";
             properties.outlineWidth = 2;
             properties.minDistance = 35000;
             properties.maxDistance = 45000;
             break;
         case "BIG_PARK":
-            properties.font = WURFL.is_mobile ? "11px roboto-medium" : "13px roboto-medium";
+            properties.font = WURFL.is_mobile ? "11px Helvetica" : "13px Helvetica";
             properties.outlineWidth = 2;
             properties.fillColor = new Cesium.Cartesian3(0.5, 1, 0.5);
             properties.minDistance = 50000;
             properties.maxDistance = 70000;
+            break;
+        case "BLUE":
+            properties.font = WURFL.is_mobile ? "11px Helvetica" : "13px Helvetica";
+            properties.outlineWidth = 2;
+            properties.fillColor = new Cesium.Cartesian3(0.6, 0.8, 1);
+            properties.minDistance = 130000;
+            properties.maxDistance = 500000;
+            break;
+        case "GREEN":
+            properties.font = WURFL.is_mobile ? "11px Helvetica" : "13px Helvetica";
+            properties.outlineWidth = 2;
+            properties.fillColor = new Cesium.Cartesian3(0.7, 1, 0.9);
+            properties.minDistance = 130000;
+            properties.maxDistance = 500000;
             break;
     }
 
@@ -113,6 +127,34 @@ export default class Label {
 
         if (text.length > 15) text = stringDivider(text, 15);
 
+        // const entity = Map.viewer.entities.add({
+        //     opacity: 0, /// default value at start
+        //     minDistance: properties.minDistance,
+        //     maxDistance: properties.maxDistance,
+        //     fillColor: properties.fillColor,
+        //     outlineColor: properties.outlineColor,
+        //     position: position,
+        //     category: category,
+        //     selectable: false,
+        //     label: {
+        //         text: text,
+        //         font: properties.font,
+        //         fillColor: new Cesium.CallbackProperty(function() {
+        //             return new Cesium.Color(entity.fillColor.x, entity.fillColor.y, entity.fillColor.z, entity.opacity)
+        //         }, false),
+        //         outlineColor: new Cesium.CallbackProperty(function() {
+        //             return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity)
+        //         }, false),
+        //         outlineWidth: properties.outlineWidth,
+        //         style: properties.style,
+        //         verticalOrigin: properties.verticalOrigin,
+        //         heightReference: properties.heightReference,
+        //         pixelOffset: properties.pixelOffset,
+        //         disableDepthTestDistance: properties.disableDepthTestDistance,
+        //     }
+        // });
+
+
         const entity = Map.viewer.entities.add({
             opacity: 0, /// default value at start
             minDistance: properties.minDistance,
@@ -125,20 +167,24 @@ export default class Label {
             label: {
                 text: text,
                 font: properties.font,
-                fillColor: new Cesium.CallbackProperty(function () {
+                fillColor: new Cesium.CallbackProperty(function() {
                     return new Cesium.Color(entity.fillColor.x, entity.fillColor.y, entity.fillColor.z, entity.opacity)
                 }, false),
-                outlineColor: new Cesium.CallbackProperty(function () {
+                outlineColor: new Cesium.CallbackProperty(function() {
                     return new Cesium.Color(entity.outlineColor.x, entity.outlineColor.y, entity.outlineColor.z, entity.opacity)
                 }, false),
                 outlineWidth: properties.outlineWidth,
-                style: properties.style,
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 verticalOrigin: properties.verticalOrigin,
                 heightReference: properties.heightReference,
-                pixelOffset: properties.pixelOffset,
+                // pixelOffset: properties.pixelOffset,
                 disableDepthTestDistance: properties.disableDepthTestDistance,
-            }
+            },
         });
+
+
+
+
         if (collection) collection.push(entity);
 
         entityCollection.push(entity);

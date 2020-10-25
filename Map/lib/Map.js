@@ -212,6 +212,7 @@ export default class Map {
         /* parameters */
         Map.viewer.scene.globe.depthTestAgainstTerrain = false;
         Map.viewer.scene.postProcessStages.fxaa.enabled = true;
+        Map.viewer.scene.highDynamicRange = true;
 
         let screenspaceError;
         if (useMapbox) screenspaceError = 4;
@@ -328,6 +329,7 @@ export default class Map {
             }
         });
     }
+
 }
 
 
@@ -345,3 +347,4 @@ Map.onDown = [];
 Map.onOverEntity = [];
 Map.onExitEntity = [];
 Map.onClickEntity = [];
+// Map.checkForTileLoadProgressEvent = false;
