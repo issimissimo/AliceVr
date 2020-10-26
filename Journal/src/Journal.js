@@ -7,7 +7,7 @@ let states = {
 let state = states.PRELOADER;
 
 
-window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
+window.dispatcher.receiveMessage("videoAssetClicked", (asset) => {
 
     /// load and append external html
     $("#journal").empty();
@@ -31,8 +31,17 @@ window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
 });
 
 
+///////////////////////////////
+/////////////////////////////////
+/////////// NEW!!!!!!!!!!!!!!
+/////////////////////////////
 
-window.dispatcher.receiveMessage("rootAssetClicked", function() {
+// window.dispatcher.receiveMessage("mapPreloaderFinished", function() {
+//     $(".preloader").fadeOut();
+// });
+
+
+window.dispatcher.receiveMessage("rootAssetClicked", () => {
 
     /// hide journal or preloader
     switch (state) {
@@ -43,8 +52,3 @@ window.dispatcher.receiveMessage("rootAssetClicked", function() {
     }
     state = states.IDLE;
 });
-
-// window.dispatcher.receiveMessage("showGuideWarningForNoTrack", function() {
-//     // console.warn("--> showGuideWarningForNoTrack")
-//     showWarn();
-// });

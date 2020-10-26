@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <type>point</type>
+
+    <point>
+        <longitude>8.260798</longitude>
+        <latitude>46.315157</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Alpe Devero</title>
+    </point>
+
+    <point>
+        <longitude>8.307099</longitude>
+        <latitude>46.347088</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Alpe La Satta</title>
+    </point>
+
+    <point>
+        <longitude>8.3091044</longitude>
+        <latitude>46.3241586</latitude>
+        <type>LABEL</type>
+        <category>BLUE</category>
+        <title>Monte Corbenas</title>
+    </point>
+
+    <point>
+        <longitude>8.2773387</longitude>
+        <latitude>46.3268575</latitude>
+        <type>LABEL</type>
+        <category>A3</category>
+        <title>Crampiolo</title>
+    </point>
+
+    <point>
+        <longitude>8.294510</longitude>
+        <latitude>46.341250</latitude>
+        <type>LABEL</type>
+        <category>GREEN</category>
+        <title>Lago di Devero</title>
+    </point>
+
+    <!-- <point>
+        <longitude>8.303470</longitude>
+        <latitude>46.340987</latitude>
+        <type>LABEL</type>
+        <category>A3</category>
+        <title>Alpe Della Valle</title>
+    </point> -->
     
 </root>

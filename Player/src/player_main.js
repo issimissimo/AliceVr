@@ -71,12 +71,19 @@ player.onEndedHandlers.push(function() {
 /********************************************
 Receive messages
 ********************************************/
+window.dispatcher.receiveMessage("mapPreloaderFinished", function() {
+    // console.log("HO RICEVUTO IL MESSAGGIO DALLA MAPPA CHE HA FINITO IL PRELOADING!")
+    $(".preloader").fadeOut();
+});
+
 window.dispatcher.receiveMessage("rootAssetClicked", function(asset) {
+    // console.log("ROOT ASSET CLICKED")
     player.stop();
     SplashScreen.show(asset);
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
+    // console.log("VIDEO ASSET CLICKED")
     overlay.load(player, asset);
     subtitles.load(asset);
     player.load(asset, () => {
