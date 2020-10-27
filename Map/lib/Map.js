@@ -243,6 +243,7 @@ export default class Map {
         Map.viewer.scene.skyAtmosphere.hueShift = style.useMapbox ? 0.04 : 0;
         Map.viewer.scene.skyAtmosphere.saturationShift = style.useMapbox ? -0.01 : 0.1;
         Map.viewer.resolutionScale = window.isMobile ? 1 : 2;
+        Map.viewer.useBrowserRecommendedResolution = false;
 
 
 
