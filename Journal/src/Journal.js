@@ -9,6 +9,8 @@ let state = states.PRELOADER;
 
 window.dispatcher.receiveMessage("videoAssetClicked", (asset) => {
 
+    // console.log("videoAssetClicked")
+
     /// load and append external html
     $("#journal").empty();
 
@@ -20,8 +22,8 @@ window.dispatcher.receiveMessage("videoAssetClicked", (asset) => {
                 console.error("Something was wrong loading html...")
             } else {
 
-                if (state === states.PRELOADER)
-                    $(".preloader").hide();
+                // if (state === states.PRELOADER)
+                //     $(".preloader").hide();
 
                 state = states.JOURNAL;
                 $("#journal").show();
@@ -36,12 +38,19 @@ window.dispatcher.receiveMessage("videoAssetClicked", (asset) => {
 /////////// NEW!!!!!!!!!!!!!!
 /////////////////////////////
 
-// window.dispatcher.receiveMessage("mapPreloaderFinished", function() {
-//     $(".preloader").fadeOut();
-// });
+
+
+window.dispatcher.receiveMessage("mapPreloaderFinished", function() {
+    // console.log("HO RICEVUTO IL MESSAGGIO DALLA MAPPA CHE HA FINITO IL PRELOADING!")
+    $(".preloader").fadeOut();
+});
+
 
 
 window.dispatcher.receiveMessage("rootAssetClicked", () => {
+
+    console.log("rootAssetClicked")
+
 
     /// hide journal or preloader
     switch (state) {
