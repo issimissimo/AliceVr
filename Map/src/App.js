@@ -11,6 +11,8 @@ import Preloader from "../lib/UI/Preloader.js";
  *******************************************/
 Map.onStarted.push(() => {
 
+    console.log("MAP STARTED")
+
     /* get URL parameters from Map.html (derived from index.html) */
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -28,6 +30,8 @@ Map.onStarted.push(() => {
     // const idToLoad = "main";
 
     Loader.load(idToLoad, () => {
+
+        console.log("Loader.root.asset ==> LOADED")
 
         // console.log(Loader.root.asset)
 
