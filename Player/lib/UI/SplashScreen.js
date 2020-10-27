@@ -101,7 +101,7 @@ export default class SplashScreen {
             $("#homeButton").hide();
             $("#videoPlayer-SplashScreen").hide();
             $("#Clappr-container").show();
-            $(".preloader").fadeOut();
+            // $(".preloader").fadeOut();
             preloaderVisible = false;
         }
     }

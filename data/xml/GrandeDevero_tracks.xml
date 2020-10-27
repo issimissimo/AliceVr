@@ -4,12 +4,17 @@
     <track>
         <title>GrandeDevero track 1</title>
         <description></description>
-        <gpx_url>MTB Grande Est Devero_20ag2020_1.gpx</gpx_url>
+        <gpx_url>MTB Grande Est Devero_20ag2020_1_opt.gpx</gpx_url>
     </track>
     <track>
         <title>GrandeDevero track 2</title>
         <description></description>
-        <gpx_url>MTB Grande Est Devero_20ag2020_2.gpx</gpx_url>
+        <gpx_url>MTB Grande Est Devero_20ag2020_2_opt.gpx</gpx_url>
+    </track>
+    <track>
+        <title>GrandeDevero track ricostruita</title>
+        <description></description>
+        <gpx_url>MTB Grande Est Devero_20ag2020_ricostruita.gpx</gpx_url>
     </track>
    
 </root>

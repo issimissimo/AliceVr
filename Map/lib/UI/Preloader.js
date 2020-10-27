@@ -9,6 +9,10 @@ let prevTileQueSum = -1;
 let isZeroTileReached = false;
 let checkForTimeout = null;
 
+/// set this variable to hide the preloader
+/// when a minimum is reached
+const minimumTileQueuSum = 30;
+
 
 
 function addToQueue(n) {
@@ -18,7 +22,7 @@ function addToQueue(n) {
         tileQueueSum = tileQueue.reduce((a, b) => a + b, 0);
         // console.log("queue: " + tileQueueSum + " - prev: " + prevTileQueSum)
 
-        if (tileQueueSum < 50 && tileQueueSum < prevTileQueSum) {
+        if (tileQueueSum < minimumTileQueuSum && tileQueueSum < prevTileQueSum) {
             hide();
 
         } else {
@@ -38,7 +42,7 @@ function waitTimeout() {
     if (checkForTimeout) clearInterval(checkForTimeout);
     checkForTimeout = setTimeout(() => {
         if (isLoading) {
-            if (tileQueueSum < 50) hide();
+            if (tileQueueSum < minimumTileQueuSum) hide();
             else waitTimeout();
         }
     }, 1000)
@@ -49,6 +53,9 @@ function waitTimeout() {
 function hide() {
     isLoading = false;
     $(".preloader").fadeOut();
+
+    /// send message that the preloading of the map is finished!
+    window.dispatcher.sendMessage("mapPreloaderFinished");
 };
 
 

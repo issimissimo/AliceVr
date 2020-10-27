@@ -70,7 +70,8 @@ Map.onReady.push(function() {
  *******************************************/
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const hq = urlParams.get('hq');
-const useMapbox = hq == "false" ? true : false;
+// const hq = urlParams.get('hq');
+// const useMapbox = hq == "false" ? true : false;
 const token = urlParams.get('token');
-Map.init(useMapbox, token);
+const style = urlParams.get('style');
+Map.init(style, token);

@@ -72,7 +72,7 @@ function getPropertiesFromCategory(category) {
             break;
         case "A3":
             properties.font = WURFL.is_mobile ? "13px roboto-medium" : "15px roboto-medium";
-            properties.outlineWidth = 2;
+            properties.outlineWidth = 4;
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
             break;
@@ -97,14 +97,14 @@ function getPropertiesFromCategory(category) {
             break;
         case "BLUE":
             properties.font = WURFL.is_mobile ? "11px roboto-bold" : "13px roboto-bold";
-            properties.outlineWidth = 2;
+            properties.outlineWidth = 4;
             properties.fillColor = new Cesium.Cartesian3(0.6, 0.8, 1);
             properties.minDistance = 130000;
             properties.maxDistance = 500000;
             break;
         case "GREEN":
             properties.font = WURFL.is_mobile ? "11px roboto-bold" : "13px roboto-bold";
-            properties.outlineWidth = 2;
+            properties.outlineWidth = 4;
             properties.fillColor = new Cesium.Cartesian3(0.7, 1, 0.8);
             properties.minDistance = 130000;
             properties.maxDistance = 500000;

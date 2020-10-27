@@ -3,6 +3,24 @@ import {
 } from "../../lib/Maf.js"
 
 
+const styles = [{
+        /// 0 - for debug
+        useMapbox: true,
+        screenspaceError: 4,
+    },
+    {
+        /// 1 - Bingmaps
+        useMapbox: false,
+        screenspaceError: 1,
+    },
+    {
+        /// 2 - Mapbox
+        useMapbox: true,
+        screenspaceError: 1,
+    },
+
+]
+
 
 export default class Map {
 
@@ -176,12 +194,14 @@ export default class Map {
     /*******************************************************
      *********************** INIT ***************************
      *******************************************************/
-    static init(useMapbox, token) {
+    static init(nStyle, token) {
+
+        const style = styles[parseInt(nStyle)];
 
         /* main */
         Cesium.Ion.defaultAccessToken = token;
 
-        const imageryProvider = useMapbox ?
+        const imageryProvider = style.useMapbox ?
             new Cesium.MapboxImageryProvider({
                 mapId: 'mapbox.satellite',
                 accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
@@ -214,21 +234,22 @@ export default class Map {
         Map.viewer.scene.postProcessStages.fxaa.enabled = true;
         Map.viewer.scene.highDynamicRange = true;
 
-        let screenspaceError;
-        if (useMapbox) screenspaceError = 4;
-        else screenspaceError = window.isMobile ? 2 : 1;
-        Map.viewer.scene.globe.maximumScreenSpaceError = screenspaceError;
+        // let screenspaceError;
+        // if (useMapbox) screenspaceError = 4;
+        // else screenspaceError = window.isMobile ? 2 : 1;
+        Map.viewer.scene.globe.maximumScreenSpaceError = style.screenspaceError;
 
-        Map.viewer.scene.skyAtmosphere.brightnessShift = useMapbox ? 0.3 : -0.1;
-        Map.viewer.scene.skyAtmosphere.hueShift = useMapbox ? 0.04 : 0;
-        Map.viewer.scene.skyAtmosphere.saturationShift = useMapbox ? -0.01 : 0.1;
+        Map.viewer.scene.skyAtmosphere.brightnessShift = style.useMapbox ? 0.3 : -0.1;
+        Map.viewer.scene.skyAtmosphere.hueShift = style.useMapbox ? 0.04 : 0;
+        Map.viewer.scene.skyAtmosphere.saturationShift = style.useMapbox ? -0.01 : 0.1;
+        Map.viewer.resolutionScale = window.isMobile ? 1 : 2;
 
 
 
 
 
         /* credits */
-        let credits = useMapbox ?
+        let credits = style.useMapbox ?
             "AliceVr - Imagery data attribution Mapbox" :
             "AliceVr - Imagery data attribution Bing Maps";
         $('#credits-text').text(credits);
