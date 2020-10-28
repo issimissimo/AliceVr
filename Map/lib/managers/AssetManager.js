@@ -281,8 +281,6 @@ export default class AssetManager {
             easingFunction: Cesium.EasingFunction.QUADRACTIC_IN_OUT,
         });
 
-        console.log("2")
-
         /* send message */
         const assetForPlayer = {
             title: selectedAsset.title,
