@@ -41,7 +41,7 @@ export default class AssetManager {
         /* if there's only one video asset
         click it */
         if (Loader.root.asset.constructor.name === "Video") {
-            // console.log("ONLY 1 video")
+            console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
             Map.onReady.push(() => {
                 const timeout = 200;
@@ -234,8 +234,8 @@ export default class AssetManager {
 
 
     static OnClick_Video() {
-        // console.log("OnClickVideo")
-        // console.log(flyDuration)
+        console.log("OnClickVideo")
+            // console.log(flyDuration)
         selectedAsset.entity.utils.setOpacity(0.01);
         selectedAsset.entityOver.utils.setOpacity(1);
         selectedAsset.entityOver.utils.setScale(1.2);
@@ -245,11 +245,13 @@ export default class AssetManager {
         /* initialize Player */
         Player.init(selectedAsset);
 
+        console.log(selectedAsset)
+
         /* fly there */
         Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
             offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2.5),
             complete: function() {
-                // console.log("FLYING COMPLETE");
+                console.log("FLYING COMPLETE");
 
                 Player.showStartPoints();
 

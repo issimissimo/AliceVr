@@ -33,7 +33,7 @@ Map.onStarted.push(() => {
 
         console.log("Loader.root.asset ==> LOADED")
 
-        // console.log(Loader.root.asset)
+        console.log(Loader.root.asset)
 
         let range = Loader.root.asset.boundingSphere.radius * 3;
         // let range = 140000;
@@ -46,7 +46,7 @@ Map.onStarted.push(() => {
 
 
         /* load cities from boundingsphere position - radius */
-        cities.init(Loader.root.asset.boundingSphere.center, range);
+        // cities.init(Loader.root.asset.boundingSphere.center, range);
     });
 })
 
