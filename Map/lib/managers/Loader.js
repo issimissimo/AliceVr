@@ -67,6 +67,10 @@ export default class Loader {
                         const loader = new Loader(id, node.asset.children[i], node.asset);
                     };
                 };
+            })
+            .catch(function(error) {
+                console.log(error);
+                alert(error);
             });
     };
 

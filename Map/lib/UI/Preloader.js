@@ -11,7 +11,7 @@ let checkForTimeout = null;
 
 /// set this variable to hide the preloader
 /// when a minimum is reached
-const minimumTileQueuSum = 30;
+const minimumTileQueuSum = 40;
 
 
 
@@ -86,17 +86,6 @@ export default class Preloader {
 
 
                     waitTimeout();
-
-                    // /// stop the preloader if after 1 sec
-                    // /// no more tiles are loaded
-                    // /// (which mean that the map is loaded and do not rotate)
-                    // if (checkForTimeout !== null) clearInterval(checkForTimeout);
-                    // checkForTimeout = setTimeout(() => {
-                    //     if (isLoading) {
-                    //         hide();
-                    //         console.log("TIMEOUT!")
-                    //     }
-                    // }, 1000)
                 }
             }
         });
