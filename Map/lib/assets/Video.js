@@ -72,7 +72,9 @@ export default class Video extends Asset {
                         let positions = Cesium.Cartesian3.fromDegreesArray(coordForBoundigSphere);
                         let boundingSphere = new Cesium.BoundingSphere.fromPoints(positions);
                         Asset.boundingSphereLoading--;
+
                         this.addBoundingSphere(boundingSphere);
+
                     } else Asset.boundingSphereLoading--;
                 });
         };
@@ -84,24 +86,24 @@ export default class Video extends Asset {
 
         /* set default placeholder */
         const asset = { id: this.id };
-        if (!this.entity) {
-            this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
-            console.log("- new video billboard is added")
-            this.entity.asset = asset;
-            this.entity.utils = new entityUtils.Utils(this.entity);
+        // if (!this.entity) {
+        //     this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
+        //     console.log("- new video billboard is added")
+        //     this.entity.asset = asset;
+        //     this.entity.utils = new entityUtils.Utils(this.entity);
 
-        } else {
-            this.entity.position = this.boundingSphere.center;
-        }
+        // } else {
+        //     this.entity.position = this.boundingSphere.center;
+        // }
 
-        /* set over placeholder */
-        if (!this.entityOver) {
-            this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
-            this.entityOver.asset = asset;
-            this.entityOver.utils = new entityUtils.Utils(this.entityOver);
+        // /* set over placeholder */
+        // if (!this.entityOver) {
+        //     this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
+        //     this.entityOver.asset = asset;
+        //     this.entityOver.utils = new entityUtils.Utils(this.entityOver);
 
-        } else {
-            this.entityOver.position = this.boundingSphere.center;
-        }
+        // } else {
+        //     this.entityOver.position = this.boundingSphere.center;
+        // }
     };
 }
