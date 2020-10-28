@@ -10,7 +10,6 @@ let overlayLabelVisible = false;
 let rootForPlayer = [];
 let flyDuration = 8; //default
 
-let interval;
 
 export default class AssetManager {
 
@@ -46,31 +45,19 @@ export default class AssetManager {
             console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
 
-            interval = setInterval(() => {
+            /// wait for map ready
+            (function waitForMapReady() {
                 if (Map._ready) {
-                    clearInterval(interval);
-                    console.log("done")
                     selectedAsset = Loader.root.asset;
                     flyDuration = 0;
                     AssetManager.OnClick_Video();
                 } else {
                     console.log(".....")
+                    setTimeout(waitForMapReady, 200);
                 }
-            }, 200);
-
-
-
-
-            // Map.onReady.push(() => {
-            //     console.log("sono asset manager e map is ready")
-            //     const timeout = 200;
-            //     setTimeout(() => {
-            //         selectedAsset = Loader.root.asset;
-            //         flyDuration = 0;
-            //         AssetManager.OnClick_Video();
-            //     }, timeout)
-            // })
+            })();
         }
+
         /* or, send message for root asset */
         else {
             window.dispatcher.sendMessage("rootAssetClicked", rootForPlayer);
