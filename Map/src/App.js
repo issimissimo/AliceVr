@@ -20,7 +20,7 @@ Map.onStarted.push(() => {
         // console.log(idToLoad);
 
     /* init preloader DIV */
-    Preloader.init();
+    // Preloader.init();
 
     /* load main asset */
     // const idToLoad = "1573827877573";
@@ -37,6 +37,8 @@ Map.onStarted.push(() => {
 
         let range = Loader.root.asset.boundingSphere.radius * 3;
         // let range = 140000;
+
+        Preloader.init();
 
         AssetManager.init(range);
 

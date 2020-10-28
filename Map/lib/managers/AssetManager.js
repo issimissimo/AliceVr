@@ -10,6 +10,8 @@ let overlayLabelVisible = false;
 let rootForPlayer = [];
 let flyDuration = 8; //default
 
+let interval;
+
 export default class AssetManager {
 
     static init(_range) {
@@ -24,7 +26,7 @@ export default class AssetManager {
         ////////////////////////////////////////////////////////////////
 
         for (let i = 0; i < Loader.root.asset.children.length; i++) {
-            if (Loader.root.asset.children[i].asset.constructor.name === "Video") {
+            if (Loader.root.asset.children[i].asset.constructor.name == "Video") {
                 // console.log(Loader.root.asset.children[i].asset)
                 const rootAsset = {
                     id: Loader.root.asset.children[i].asset.id,
@@ -40,17 +42,34 @@ export default class AssetManager {
 
         /* if there's only one video asset
         click it */
-        if (Loader.root.asset.constructor.name === "Video") {
+        if (Loader.root.asset.constructor.name == "Video") {
             console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
-            Map.onReady.push(() => {
-                const timeout = 200;
-                setTimeout(() => {
+
+            interval = setInterval(() => {
+                if (Map._ready) {
+                    clearInterval(interval);
+                    console.log("done")
                     selectedAsset = Loader.root.asset;
                     flyDuration = 0;
                     AssetManager.OnClick_Video();
-                }, timeout)
-            })
+                } else {
+                    console.log(".....")
+                }
+            }, 200);
+
+
+
+
+            // Map.onReady.push(() => {
+            //     console.log("sono asset manager e map is ready")
+            //     const timeout = 200;
+            //     setTimeout(() => {
+            //         selectedAsset = Loader.root.asset;
+            //         flyDuration = 0;
+            //         AssetManager.OnClick_Video();
+            //     }, timeout)
+            // })
         }
         /* or, send message for root asset */
         else {
