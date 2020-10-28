@@ -86,6 +86,7 @@ export default class Video extends Asset {
         const asset = { id: this.id };
         if (!this.entity) {
             this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
+            console.log("- new video billboard is added")
             this.entity.asset = asset;
             this.entity.utils = new entityUtils.Utils(this.entity);
 

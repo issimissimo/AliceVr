@@ -246,15 +246,22 @@ export default class AssetManager {
 
     static OnClick_Video() {
         console.log("=> OnClickVideo")
-            // console.log(flyDuration)
-        selectedAsset.entity.utils.setOpacity(0.01);
-        selectedAsset.entityOver.utils.setOpacity(1);
-        selectedAsset.entityOver.utils.setScale(1.2);
-        selectedAsset.entityOver.utils.fade(0.01, null, 1000);
-        selectedAsset.entityOver.utils.zoom(2, null, 1000);
+
+        if (selectedAsset.entity && selectedAsset.entityOver) {
+            console.log("- there's entity on selected asset")
+            selectedAsset.entity.utils.setOpacity(0.01);
+            selectedAsset.entityOver.utils.setOpacity(1);
+            selectedAsset.entityOver.utils.setScale(1.2);
+            selectedAsset.entityOver.utils.fade(0.01, null, 1000);
+            selectedAsset.entityOver.utils.zoom(2, null, 1000);
+        } else {
+            console.log("!- there's no entity on selected asset!!")
+        }
+
 
         /* initialize Player */
         Player.init(selectedAsset);
+
 
         /* fly there */
         Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
@@ -273,6 +280,8 @@ export default class AssetManager {
             duration: flyDuration,
             easingFunction: Cesium.EasingFunction.QUADRACTIC_IN_OUT,
         });
+
+        console.log("2")
 
         /* send message */
         const assetForPlayer = {

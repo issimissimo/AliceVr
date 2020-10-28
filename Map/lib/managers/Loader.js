@@ -68,10 +68,12 @@ export default class Loader {
                     };
                 };
             })
-            .catch(function(error) {
-                console.log(error);
-                alert(error);
-            });
+
+
+        .catch(function(error) {
+            console.log(error);
+            alert(error);
+        });
     };
 
 
