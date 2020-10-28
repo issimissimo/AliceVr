@@ -251,8 +251,6 @@ export default class AssetManager {
         /* initialize Player */
         Player.init(selectedAsset);
 
-        console.log(selectedAsset)
-
         /* fly there */
         Map.camera.flyToBoundingSphere(selectedAsset.boundingSphere, {
             offset: new Cesium.HeadingPitchRange(0, -0.5, selectedAsset.boundingSphere.radius * 2.5),
