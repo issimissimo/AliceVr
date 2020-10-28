@@ -333,9 +333,9 @@ export default class Map {
         /// check for ready
         //////////////////////////////
         Map.viewer.scene.globe.tileLoadProgressEvent.addEventListener((value) => {
-            if (!Map._ready && value === 0) {
+            if (!Map._ready && value == 0) {
                 Map._ready = true;
-                // console.log("map is ready")
+                console.log("map is ready")
 
                 ///update range immediately and call onReady functions
                 Map.updateRange(null, () => {

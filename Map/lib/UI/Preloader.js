@@ -42,8 +42,10 @@ function waitTimeout() {
     if (checkForTimeout) clearInterval(checkForTimeout);
     checkForTimeout = setTimeout(() => {
         if (isLoading) {
-            if (tileQueueSum < minimumTileQueuSum) hide();
-            else waitTimeout();
+            if (tileQueueSum < minimumTileQueuSum) {
+                console.log("TIMEOUT")
+                hide();
+            } else waitTimeout();
         }
     }, 1000)
 }
