@@ -45,17 +45,22 @@ export default class AssetManager {
             console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
 
-            /// wait for map ready
-            (function waitForMapReady() {
-                if (Map._ready) {
-                    selectedAsset = Loader.root.asset;
-                    flyDuration = 0;
-                    AssetManager.OnClick_Video();
-                } else {
-                    console.log(".....")
-                    setTimeout(waitForMapReady, 200);
-                }
-            })();
+
+            selectedAsset = Loader.root.asset;
+            flyDuration = 0;
+            AssetManager.OnClick_Video();
+
+            // /// wait for map ready
+            // (function waitForMapReady() {
+            //     if (Map._ready) {
+            //         selectedAsset = Loader.root.asset;
+            //         flyDuration = 0;
+            //         AssetManager.OnClick_Video();
+            //     } else {
+            //         console.log(".....")
+            //         setTimeout(waitForMapReady, 200);
+            //     }
+            // })();
         }
 
         /* or, send message for root asset */

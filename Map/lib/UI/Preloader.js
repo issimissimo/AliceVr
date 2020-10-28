@@ -43,7 +43,7 @@ function waitTimeout() {
     checkForTimeout = setTimeout(() => {
         if (isLoading) {
             if (tileQueueSum < minimumTileQueuSum) {
-                console.log("TIMEOUT")
+                console.log("hide preloader for Timeout")
                 hide();
             } else waitTimeout();
         }
@@ -58,6 +58,8 @@ function hide() {
 
     /// send message that the preloading of the map is finished!
     window.dispatcher.sendMessage("mapPreloaderFinished");
+
+    console.log(`>> Time for loading (sec): = ${Math.floor((Date.now() - loadingStartTime) / 1000)}`);
 };
 
 
