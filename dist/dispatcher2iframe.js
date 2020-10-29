@@ -5,27 +5,27 @@ var $;
 function init() {
     if (typeof window.frames.Map !== "undefined") {
         iframesCount++;
-        $(function () {
+        $(function() {
             let iframe = document.getElementsByName("Map")[0]
-            $(iframe).ready(function () {
+            $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
         });
     };
     if (typeof window.frames.Player !== "undefined") {
         iframesCount++;
-        $(function () {
+        $(function() {
             let iframe = document.getElementsByName("Player")[0]
-            $(iframe).ready(function () {
+            $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
         });
     };
     if (typeof window.frames.Journal !== "undefined") {
         iframesCount++;
-        $(function () {
+        $(function() {
             let iframe = document.getElementsByName("Journal")[0]
-            $(iframe).ready(function () {
+            $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
         });
@@ -50,7 +50,7 @@ function checkForIframesLoaded() {
 /////////////////////////////////////
 /// register listener to receive message from dispatchers
 /////////////////////////////////////
-window.addEventListener("message", function (event) {
+window.addEventListener("message", function(event) {
 
     ///send message to all iframes
     for (let i = 0; i < iframesCount; i++) {
@@ -63,16 +63,14 @@ window.addEventListener("message", function (event) {
 
 
 
-(function () {
+(function() {
     /// Load Jquery
     var script = document.createElement("SCRIPT");
-    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js';
     script.type = 'text/javascript';
-    script.onload = function () {
+    script.onload = function() {
         $ = window.jQuery;
         init();
     };
     document.getElementsByTagName("head")[0].appendChild(script);
 })();
-
-
