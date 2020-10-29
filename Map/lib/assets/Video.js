@@ -85,7 +85,7 @@ export default class Video extends Asset {
         /* set default placeholder */
         const asset = { id: this.id };
         if (!this.entity) {
-            this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
+            // this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
             this.entity.asset = asset;
             this.entity.utils = new entityUtils.Utils(this.entity);
 
@@ -95,7 +95,7 @@ export default class Video extends Asset {
 
         /* set over placeholder */
         if (!this.entityOver) {
-            this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
+            // this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
             this.entityOver.asset = asset;
             this.entityOver.utils = new entityUtils.Utils(this.entityOver);
 
