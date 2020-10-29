@@ -6,34 +6,28 @@ function init() {
     if (typeof window.frames.Map !== "undefined") {
         console.log("*** c'è Map.html")
         iframesCount++;
-        $(function() {
-            let iframe = document.getElementsByName("Map")[0]
-            $(iframe).ready(function() {
-                console.log("*** Map.html caricato")
-                checkForIframesLoaded();
-            });
+        let iframe = document.getElementsByName("Map")[0]
+        $(iframe).on('load', function() {
+            console.log("*** Map.html caricato")
+            checkForIframesLoaded();
         });
     };
     if (typeof window.frames.Player !== "undefined") {
         console.log("*** c'è Player.html")
         iframesCount++;
-        $(function() {
-            let iframe = document.getElementsByName("Player")[0]
-            $(iframe).ready(function() {
-                console.log("*** Player.html caricato")
-                checkForIframesLoaded();
-            });
+        let iframe = document.getElementsByName("Player")[0]
+        $(iframe).on('load', function() {
+            console.log("*** Player.html caricato")
+            checkForIframesLoaded();
         });
     };
     if (typeof window.frames.Journal !== "undefined") {
         console.log("*** c'è Journal.html")
         iframesCount++;
-        $(function() {
-            let iframe = document.getElementsByName("Journal")[0]
-            $(iframe).ready(function() {
-                console.log("*** Journal.html caricato")
-                checkForIframesLoaded();
-            });
+        let iframe = document.getElementsByName("Journal")[0]
+        $(iframe).on('load', function() {
+            console.log("*** Journal.html caricato")
+            checkForIframesLoaded();
         });
     };
 };
@@ -43,21 +37,23 @@ function checkForIframesLoaded() {
     console.log("iframesCount:" + iframesCount + " -- iframesLoaded:" + iframesLoaded)
     if (iframesLoaded === iframesCount) {
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
 
-            console.log("***** MANDO HELLO *****")
-                /// send message to all iframes
-                /// to register to parentWindow
-
-            var frames = window.frames;
-            console.log("\\\\\\\\\\\\ CE NE SONO: " + frames.length)
-            for (let i = 0; i < window.frames.length; i++) {
-                window.frames[i].postMessage("hello", "*");
-            };
 
 
-        }, 2000)
+
+        // }, 2000)
+
+        console.log("***** MANDO HELLO *****")
+            /// send message to all iframes
+            /// to register to parentWindow
+
+        var frames = window.frames;
+        console.log("\\\\\\\\\\\\ CE NE SONO: " + frames.length)
+        for (let i = 0; i < window.frames.length; i++) {
+            window.frames[i].postMessage("hello", "*");
+        };
 
 
 
