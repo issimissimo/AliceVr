@@ -46,30 +46,25 @@ export default class AssetManager {
             console.log("ONLY 1 video")
             navigatorButtonEnabled = false;
 
-            interval = setInterval(() => {
-                if (Map._ready) {
-                    clearInterval(interval);
-                    console.log("done")
-                    selectedAsset = Loader.root.asset;
-                    flyDuration = 0;
-                    AssetManager.OnClick_Video();
-                } else {
-                    console.log(".....")
-                }
-            }, 200);
-
-
-
-
-            // Map.onReady.push(() => {
-            //     console.log("sono asset manager e map is ready")
-            //     const timeout = 200;
-            //     setTimeout(() => {
+            // interval = setInterval(() => {
+            //     if (Map._ready) {
+            //         clearInterval(interval);
+            //         console.log("done")
             //         selectedAsset = Loader.root.asset;
             //         flyDuration = 0;
             //         AssetManager.OnClick_Video();
-            //     }, timeout)
-            // })
+            //     } else {
+            //         console.log(".....")
+            //     }
+            // }, 200);
+
+
+            selectedAsset = Loader.root.asset;
+            flyDuration = 0;
+            AssetManager.OnClick_Video();
+
+
+
         }
         /* or, send message for root asset */
         else {
@@ -255,11 +250,15 @@ export default class AssetManager {
     static OnClick_Video() {
         console.log("OnClickVideo")
             // console.log(flyDuration)
-        selectedAsset.entity.utils.setOpacity(0.01);
-        selectedAsset.entityOver.utils.setOpacity(1);
-        selectedAsset.entityOver.utils.setScale(1.2);
-        selectedAsset.entityOver.utils.fade(0.01, null, 1000);
-        selectedAsset.entityOver.utils.zoom(2, null, 1000);
+
+        if (selectedAsset.entity && selectedAsset.entityOver) {
+            selectedAsset.entity.utils.setOpacity(0.01);
+            selectedAsset.entityOver.utils.setOpacity(1);
+            selectedAsset.entityOver.utils.setScale(1.2);
+            selectedAsset.entityOver.utils.fade(0.01, null, 1000);
+            selectedAsset.entityOver.utils.zoom(2, null, 1000);
+        }
+
 
         /* initialize Player */
         Player.init(selectedAsset);
