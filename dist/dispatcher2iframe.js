@@ -5,22 +5,25 @@ var $;
 function init() {
     if (typeof window.frames.Map !== "undefined") {
         iframesCount++;
-        let iframe = document.getElementsByName("Map")[0]
-        $(iframe).on('load', function() {
+        const map = document.getElementsByName("Map")[0]
+        $(map).on('load', function() {
+            console.log(">>>>>>>Map loaded")
             checkForIframesLoaded();
         });
     };
     if (typeof window.frames.Player !== "undefined") {
         iframesCount++;
-        let iframe = document.getElementsByName("Player")[0]
-        $(iframe).on('load', function() {
+        const player = document.getElementsByName("Player")[0]
+        $(player).on('load', function() {
+            console.log(">>>>>>>Player loaded")
             checkForIframesLoaded();
         });
     };
     if (typeof window.frames.Journal !== "undefined") {
         iframesCount++;
-        let iframe = document.getElementsByName("Journal")[0]
-        $(iframe).on('load', function() {
+        const journal = document.getElementsByName("Journal")[0]
+        $(journal).on('load', function() {
+            console.log(">>>>>>>Journal loaded")
             checkForIframesLoaded();
         });
     };
@@ -28,9 +31,10 @@ function init() {
 
 function checkForIframesLoaded() {
     iframesLoaded++;
-    console.log("iframesCount:" + iframesCount + " -- iframesLoaded:" + iframesLoaded)
+    console.log(">>>iframesCount:" + iframesCount + " -- iframesLoaded:" + iframesLoaded)
     if (iframesLoaded === iframesCount) {
 
+        console.log(">>>>>>>MANDO HELLO")
         /// send message to all iframes
         /// to register to parentWindow
         for (let i = 0; i < window.frames.length; i++) {
