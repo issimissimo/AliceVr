@@ -159,7 +159,9 @@ export default class Video extends Asset {
 
             /// check init
             if (AssetManager.state != AssetManager.states.IDLE) {
-
+                if (AssetManager.state == AssetManager.states.VIDEO_SELECTED) {
+                    this.entity.utils.fade(0.01);
+                }
             }
 
 
