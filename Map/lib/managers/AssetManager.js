@@ -2,17 +2,6 @@ import Map from "../Map.js";
 import Loader from "./Loader.js";
 import Player from "./Player.js"
 
-<<<<<<< HEAD
-let range = null;
-let selectedAsset = null;
-let hoverAsset = null;
-let navigatorButtonEnabled = true;
-let overlayLabelVisible = false;
-let rootForPlayer = [];
-let flyDuration = 8; //default
-
-=======
->>>>>>> main
 
 export default class AssetManager {
 
@@ -58,28 +47,9 @@ export default class AssetManager {
             console.log("- single video in root")
             navigatorButtonEnabled = false;
 
-<<<<<<< HEAD
-
-            selectedAsset = Loader.root.asset;
-            flyDuration = 0;
-            AssetManager.OnClick_Video();
-
-            // /// wait for map ready
-            // (function waitForMapReady() {
-            //     if (Map._ready) {
-            //         selectedAsset = Loader.root.asset;
-            //         flyDuration = 0;
-            //         AssetManager.OnClick_Video();
-            //     } else {
-            //         console.log(".....")
-            //         setTimeout(waitForMapReady, 200);
-            //     }
-            // })();
-=======
             selectedAsset = Loader.root.asset;
             flyDuration = 0;
             this.OnClick_Video(selectedAsset);
->>>>>>> main
         }
 
         /* or, send message for root asset */
@@ -101,31 +71,10 @@ export default class AssetManager {
         this.state = this.states.VIDEO_SELECTED;
         callbackOnStateChange();
 
-<<<<<<< HEAD
-    static OnClick_Video() {
-        console.log("=> OnClickVideo")
-
-        if (selectedAsset.entity && selectedAsset.entityOver) {
-            console.log("- there's entity on selected asset")
-            selectedAsset.entity.utils.setOpacity(0.01);
-            selectedAsset.entityOver.utils.setOpacity(1);
-            selectedAsset.entityOver.utils.setScale(1.2);
-            selectedAsset.entityOver.utils.fade(0.01, null, 1000);
-            selectedAsset.entityOver.utils.zoom(2, null, 1000);
-        } else {
-            console.log("!- there's no entity on selected asset!!")
-        }
-
-
-        /* initialize Player */
-        Player.init(selectedAsset);
-
-=======
         console.log(asset)
 
         /* initialize Player */
         Player.init(asset);
->>>>>>> main
 
         /* fly there */
         Map.camera.flyToBoundingSphere(asset.boundingSphere, {

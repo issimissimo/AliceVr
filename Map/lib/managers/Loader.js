@@ -71,19 +71,10 @@ export default class Loader {
                     };
                 };
             })
-<<<<<<< HEAD
-
-
-        .catch(function(error) {
-            console.log(error);
-            alert(error);
-        });
-=======
             .catch(function(error) {
                 console.error("Loader is " + error);
                 alert("AliceVr Loader is " + error);
             });
->>>>>>> main
     };
 
 

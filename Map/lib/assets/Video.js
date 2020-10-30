@@ -88,27 +88,6 @@ export default class Video extends Asset {
 
         /* create billboard */
         const asset = { id: this.id };
-<<<<<<< HEAD
-        // if (!this.entity) {
-        //     this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
-        //     console.log("- new video billboard is added")
-        //     this.entity.asset = asset;
-        //     this.entity.utils = new entityUtils.Utils(this.entity);
-
-        // } else {
-        //     this.entity.position = this.boundingSphere.center;
-        // }
-
-        // /* set over placeholder */
-        // if (!this.entityOver) {
-        //     this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
-        //     this.entityOver.asset = asset;
-        //     this.entityOver.utils = new entityUtils.Utils(this.entityOver);
-
-        // } else {
-        //     this.entityOver.position = this.boundingSphere.center;
-        // }
-=======
         if (!this.entity) {
             this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
             this.entity.asset = asset;
@@ -192,6 +171,5 @@ export default class Video extends Asset {
         } else {
             this.entity.position = this.boundingSphere.center;
         }
->>>>>>> main
     };
 }

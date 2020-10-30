@@ -64,10 +64,6 @@ function hide() {
 
     /// send message that the preloading of the map is finished!
     window.dispatcher.sendMessage("mapPreloaderFinished");
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     console.log(`>> Time for loading (sec): = ${Math.floor((Date.now() - loadingStartTime) / 1000)}`);
 };
 

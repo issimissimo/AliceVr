@@ -5,47 +5,23 @@ var $;
 function init() {
     if (typeof window.frames.Map !== "undefined") {
         iframesCount++;
-<<<<<<< HEAD
-        $(function() {
-            let iframe = document.getElementsByName("Map")[0]
-            $(iframe).ready(function() {
-                checkForIframesLoaded();
-            });
-=======
         let iframe = document.getElementsByName("Map")[0]
         $(iframe).on('load', function() {
             checkForIframesLoaded();
->>>>>>> main
         });
     };
     if (typeof window.frames.Player !== "undefined") {
         iframesCount++;
-<<<<<<< HEAD
-        $(function() {
-            let iframe = document.getElementsByName("Player")[0]
-            $(iframe).ready(function() {
-                checkForIframesLoaded();
-            });
-=======
         let iframe = document.getElementsByName("Player")[0]
         $(iframe).on('load', function() {
             checkForIframesLoaded();
->>>>>>> main
         });
     };
     if (typeof window.frames.Journal !== "undefined") {
         iframesCount++;
-<<<<<<< HEAD
-        $(function() {
-            let iframe = document.getElementsByName("Journal")[0]
-            $(iframe).ready(function() {
-                checkForIframesLoaded();
-            });
-=======
         let iframe = document.getElementsByName("Journal")[0]
         $(iframe).on('load', function() {
             checkForIframesLoaded();
->>>>>>> main
         });
     };
 };
