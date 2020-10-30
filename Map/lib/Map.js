@@ -273,22 +273,30 @@ export default class Map {
                 document.body.style.cursor = "pointer";
 
                 if (Map.entity !== _entity) {
+
+
+                    if (Map.entity) {
+                        for (let i = 0; i < Map.onExitEntity.length; i++) {
+                            Map.onExitEntity[i](Map.entity);
+                        };
+                    }
+
                     Map.entity = _entity;
 
-                    // if (Map.entity) {
-                    //     for (let i = 0; i < Map.onExitEntity.length; i++) {
-                    //         Map.onExitEntity[i](Map.entity);
-                    //     };
-                    // }
 
-                    /* wait a little to avoid rapid movement */
-                    setTimeout(function() {
-                        if (Map.entity) {
-                            for (let i = 0; i < Map.onOverEntity.length; i++) {
-                                Map.onOverEntity[i](Map.entity);
-                            };
-                        }
-                    }, 200);
+
+                    for (let i = 0; i < Map.onOverEntity.length; i++) {
+                        Map.onOverEntity[i](_entity);
+                    };
+
+                    // /* wait a little to avoid rapid movement */
+                    // setTimeout(function() {
+                    //     if (Map.entity) {
+                    //         for (let i = 0; i < Map.onOverEntity.length; i++) {
+                    //             Map.onOverEntity[i](Map.entity);
+                    //         };
+                    //     }
+                    // }, 200);
 
                 }
             } else {

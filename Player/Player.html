@@ -224,13 +224,9 @@
         margin: 0.75em;
         opacity: 60%;
     }
-    /* #homeButton:hover {
-        opacity: 100%;
-    } */
-    
-    #splashScreen-div:hover {
+    /* #splashScreen-div:hover {
         background-color: rgb(20, 20, 20);
-    }
+    } */
 </style>
 
 
@@ -361,8 +357,8 @@
             <div id="titles" style="display: flex; flex-wrap: wrap; justify-content: space-evenly; padding-top: 1em;">
 
 
-                <!-- the div of the poster -->
-                <div id="splashScreen-div" class="splashScreen-div-container">
+                <!-- the div of the thumbnails -->
+                <div id="splashScreen-div" class="splashScreen-div-container" onmouseover="setDivOver(this)" onmouseleave="setDivOff(this)">
                     <div class="splashScreen-posterContainer">
                         <img class="splashScreen-poster" src="">
                         <div>
@@ -384,5 +380,14 @@
 
     <script>
         console.log(".........PLAYER LOADING: END")
+
+
+        function setDivOff(div) {
+            $(div).css("background-color", "rgba(0, 0, 0, 0)")
+        }
+
+        function setDivOver(div) {
+            $(div).css("background-color", "rgba(20, 20, 20, 1)")
+        }
     </script>
 </body>

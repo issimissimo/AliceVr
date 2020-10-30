@@ -2,6 +2,8 @@ import Asset from "./Asset.js";
 import Billboard from "../entities/Billboard.js";
 import * as jsUtils from "../../../lib/jsUtils.js";
 import * as entityUtils from "../utils/entity_utils.js";
+import AssetManager from "../managers/AssetManager.js";
+import Map from "../Map.js";
 
 
 export default class Video extends Asset {
@@ -82,25 +84,88 @@ export default class Video extends Asset {
     addBoundingSphere(bdReceived) {
         super.addBoundingSphere(bdReceived);
 
-        /* set default placeholder */
+        /* create billboard */
         const asset = { id: this.id };
         if (!this.entity) {
-            // this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
+            this.entity = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO");
             this.entity.asset = asset;
             this.entity.utils = new entityUtils.Utils(this.entity);
 
+            /// on over
+            Map.onOverEntity.push((entity) => {
+                if (entity.id.asset.id == this.id) {
+                    this.entity.billboard.image = "images/billboards/icon_placeholder-video_on.svg";
+
+                    /// send message for Player.html
+                    window.dispatcher.sendMessage("videoAssetOver", this.id);
+                }
+            });
+
+            /// on exit
+            Map.onExitEntity.push((entity) => {
+                if (entity.id.asset.id == this.id) {
+                    this.entity.billboard.image = "images/billboards/icon_placeholder-video_off.svg";
+
+                    /// send message for Player.html
+                    window.dispatcher.sendMessage("videoAssetExit");
+                }
+            });
+
+            /// on click
+            Map.onClickEntity.push((entity) => {
+                if (entity.id.asset.id == this.id) {
+                    AssetManager.OnClick_Video(this);
+                }
+            });
+
+            /// on change state
+            AssetManager.OnChangeStateHandlers.push(() => {
+
+                console.log("OnChangeStateHandlers")
+
+                if (AssetManager.state == AssetManager.states.ROOT_SELECTED) {
+                    console.log("----1")
+                    this.entity.billboard.image = "images/billboards/icon_placeholder-video_off.svg";
+                    this.entity.utils.fade(1);
+
+                } else if (AssetManager.state == AssetManager.states.VIDEO_SELECTED) {
+                    this.entity.utils.fade(0.01);
+                }
+            });
+
+            /// receive message from Player.html - on over
+            window.dispatcher.receiveMessage("splashScreenOver", (id) => {
+                if (id == this.id) {
+                    this.entity.billboard.image = "images/billboards/icon_placeholder-video_on.svg";
+                }
+            });
+
+            /// receive message from Player.html - on exit
+            window.dispatcher.receiveMessage("splashScreenExit", (id) => {
+                if (id == this.id) {
+                    this.entity.billboard.image = "images/billboards/icon_placeholder-video_off.svg";
+                }
+            });
+
+            /// receive message from Player.html - on clicked
+            window.dispatcher.receiveMessage("splashScreenClicked", (id) => {
+                if (id == this.id) {
+                    AssetManager.OnClick_Video(this);
+                }
+            });
+
+
+
+
+            /// check init
+            if (AssetManager.state != AssetManager.states.IDLE) {
+
+            }
+
+
+
         } else {
             this.entity.position = this.boundingSphere.center;
-        }
-
-        /* set over placeholder */
-        if (!this.entityOver) {
-            // this.entityOver = Billboard.draw(this.boundingSphere.center, "PLACEHOLDER-VIDEO-OVER");
-            this.entityOver.asset = asset;
-            this.entityOver.utils = new entityUtils.Utils(this.entityOver);
-
-        } else {
-            this.entityOver.position = this.boundingSphere.center;
         }
     };
 }
