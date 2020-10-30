@@ -5,7 +5,7 @@ import {
 
 
 
-export function remove(entity){
+export function remove(entity) {
     Map.viewer.entities.remove(entity);
 }
 
@@ -48,7 +48,7 @@ export function zoom(entity, to, callback = null, time = null) {
         clearInterval(lerp);
         lerp = null;
     }
-    lerp = setInterval(function () {
+    lerp = setInterval(function() {
         initTime += sampleInterval;
         if (initTime <= lerpTime) {
             let t = initTime / lerpTime;
@@ -74,7 +74,7 @@ function fadeFunc(entity, from, to, callback, time) {
         clearInterval(lerp);
         lerp = null;
     }
-    lerp = setInterval(function () {
+    lerp = setInterval(function() {
         initTime += sampleInterval;
         if (initTime <= lerpTime) {
             let t = initTime / lerpTime;
@@ -97,7 +97,7 @@ export class Utils {
         this.entity = entity;
         this.zoomLerp = null;
         this.fadeLerp = null;
-        this.lerpTime = 200;
+        this.lerpTime = 1000;
         this.sampleInterval = 50;
     };
 
@@ -155,6 +155,3 @@ export class Utils {
         this.entity.opacity = value;
     };
 }
-
-
-

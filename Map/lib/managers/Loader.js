@@ -21,6 +21,9 @@ export default class Loader {
         jsUtils.loadXml(this.url)
             .then((xml) => {
 
+
+                console.log(xml)
+
                 /* get type from xml */
                 let type = null;
                 if (xml.getElementsByTagName("type").length > 0) {
@@ -68,12 +71,19 @@ export default class Loader {
                     };
                 };
             })
+<<<<<<< HEAD
 
 
         .catch(function(error) {
             console.log(error);
             alert(error);
         });
+=======
+            .catch(function(error) {
+                console.error("Loader is " + error);
+                alert("AliceVr Loader is " + error);
+            });
+>>>>>>> main
     };
 
 

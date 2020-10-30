@@ -1,17 +1,17 @@
-let parentWindow = null;
+var parentWindow = null;
 let receivedMessageHandlers = [];
 let messagesQueue = [];
 let messagesInterval = null;
 
-
+console.log("INIZ IFRAME2DISPATCHER")
 
 /// register listener to receive message from parent window
 window.addEventListener("message", function(event) {
-
-    /// register parentWindow
+    console.log("RICEVUTO MESSAGGIO")
+        /// register parentWindow
     if (event.data === "hello") {
         parentWindow = event.source;
-        // console.log("parentWindow received!")
+        console.log("****** RICEVUTO HELLO ***")
     }
 
     /// dispatch message

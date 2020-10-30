@@ -5,40 +5,59 @@ var $;
 function init() {
     if (typeof window.frames.Map !== "undefined") {
         iframesCount++;
+<<<<<<< HEAD
         $(function() {
             let iframe = document.getElementsByName("Map")[0]
             $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
+=======
+        let iframe = document.getElementsByName("Map")[0]
+        $(iframe).on('load', function() {
+            checkForIframesLoaded();
+>>>>>>> main
         });
     };
     if (typeof window.frames.Player !== "undefined") {
         iframesCount++;
+<<<<<<< HEAD
         $(function() {
             let iframe = document.getElementsByName("Player")[0]
             $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
+=======
+        let iframe = document.getElementsByName("Player")[0]
+        $(iframe).on('load', function() {
+            checkForIframesLoaded();
+>>>>>>> main
         });
     };
     if (typeof window.frames.Journal !== "undefined") {
         iframesCount++;
+<<<<<<< HEAD
         $(function() {
             let iframe = document.getElementsByName("Journal")[0]
             $(iframe).ready(function() {
                 checkForIframesLoaded();
             });
+=======
+        let iframe = document.getElementsByName("Journal")[0]
+        $(iframe).on('load', function() {
+            checkForIframesLoaded();
+>>>>>>> main
         });
     };
 };
 
 function checkForIframesLoaded() {
     iframesLoaded++;
+    console.log("iframesCount:" + iframesCount + " -- iframesLoaded:" + iframesLoaded)
     if (iframesLoaded === iframesCount) {
 
         /// send message to all iframes
         /// to register to parentWindow
-        for (let i = 0; i < iframesCount; i++) {
+        for (let i = 0; i < window.frames.length; i++) {
             window.frames[i].postMessage("hello", "*");
         };
     };
@@ -53,7 +72,7 @@ function checkForIframesLoaded() {
 window.addEventListener("message", function(event) {
 
     ///send message to all iframes
-    for (let i = 0; i < iframesCount; i++) {
+    for (let i = 0; i < window.frames.length; i++) {
         window.frames[i].postMessage(event.data, "*");
     }
 

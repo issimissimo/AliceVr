@@ -111,24 +111,30 @@ SplashScreen.enabled = false;
 
 
 
-// /********************************************
-// Receive messages
-// ********************************************/
-// let selectedDiv = null;
-// window.dispatcher.receiveMessage("videoAssetOver", function(asset) {
-//     let index;
-//     for (let i = 0; i < rootAsset.length; i++) {
-//         if (asset.title === rootAsset[i].title) {
-//             index = i;
-//             break;
-//         }
-//     }
-//     selectedDiv = divs[index];
-//     selectedDiv.css('background-color', 'rgba(0,0,0,1');
-// });
+/********************************************
+Receive messages
+********************************************/
+let selectedDiv = null;
 
-// window.dispatcher.receiveMessage("videoAssetExit", function() {
-//     if (selectedDiv) {
-//         selectedDiv.css('background-color', 'rgba(0,0,0,0.4');
-//     }
-// });
+
+/// turn on tumbnail
+window.dispatcher.receiveMessage("videoAssetOver", (id) => {
+
+    let index;
+    for (let i = 0; i < rootAsset.length; i++) {
+        if (id == rootAsset[i].id) {
+            index = i;
+            break;
+        }
+    }
+    selectedDiv = divs[index];
+    window.setDivOver(selectedDiv);
+});
+
+
+/// turn off thumbnail
+window.dispatcher.receiveMessage("videoAssetExit", () => {
+    if (selectedDiv) {
+        window.setDivOff(selectedDiv);
+    }
+});
