@@ -53,12 +53,14 @@ function waitTimeout() {
 
 
 function hide() {
-    isLoading = false;
-    $(".preloader").fadeOut();
 
     if (!window.parentWindow) {
-        console.warn("PARENT WINDOW NOT YET DEFINED!")
+        console.error("PARENT WINDOW NOT DEFINED!");
+        alert("PARENT WINDOW NOT DEFINED!");
     }
+
+    isLoading = false;
+    $(".preloader").fadeOut();
 
     /// send message that the preloading of the map is finished!
     window.dispatcher.sendMessage("mapPreloaderFinished");

@@ -1,4 +1,4 @@
-let parentWindow = null;
+var parentWindow = null;
 let receivedMessageHandlers = [];
 let messagesQueue = [];
 let messagesInterval = null;
