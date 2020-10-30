@@ -57,7 +57,7 @@ function hide() {
     $(".preloader").fadeOut();
 
     if (!window.parentWindow) {
-        alert("PARENT WINDOW NOT YET DEFINED!")
+        console.warn("PARENT WINDOW NOT YET DEFINED!")
     }
 
     /// send message that the preloading of the map is finished!
