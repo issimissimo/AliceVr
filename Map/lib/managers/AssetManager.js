@@ -110,9 +110,7 @@ export default class AssetManager {
 
 let range = null;
 let selectedAsset = null;
-let hoverAsset = null;
 let navigatorButtonEnabled = true;
-let overlayLabelVisible = false;
 let rootForPlayer = [];
 let flyDuration = 8; //default
 

@@ -6,47 +6,18 @@
 
     <!-- logger -->
     <script src="../lib/logger.js"></script>
-
-    <script>
-        console.log(".........JOURNAL LOADING: 1")
-    </script>
-
     <!-- dispatcher -->
     <script type="text/javascript" src="/AliceVr/dist/iframe2dispatcher.js"></script>
-
-    <script>
-        console.log(".........JOURNAL LOADING: 2")
-    </script>
-
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        console.log(".........JOURNAL LOADING: 3")
-    </script>
-
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <script>
-        console.log(".........JOURNAL LOADING: 4")
-    </script>
-
     <!-- external stylesheets -->
     <link rel="stylesheet" type="text/css" href="../css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../css/preloader.css">
-
-    <script>
-        console.log(".........JOURNAL LOADING: 5")
-    </script>
-
     <!-- main app -->
     <script type="module" src="src/Journal.js"></script>
-
-    <script>
-        console.log(".........JOURNAL LOADING: 6")
-    </script>
 
     <style>
         html,
@@ -135,35 +106,7 @@
 
         <!-- html container -->
         <div id="journal" class="absolute background-color-1 padded-1" style="z-index: 2; overflow: auto;"></div>
-
-        <!-- <div class="absolute" id="warnMsg" style="z-index: 3;  display: none;">
-            <div class="absolute" style="display: flex;  align-items: center;
-            justify-content: center; background-color: white;">
-                <div style="display: flex; flex-direction: column;">
-                    <img src="images/warning.svg" width="70px" style="margin: auto;">
-                    <p>QUESTO VIDEO NON HA TRACCE REGISTRATE</p>
-                </div>
-            </div>
-        </div> -->
-
-
     </div>
-
-
-    <!-- <script>
-        const folder = "../data/html/";
-        const id = "#journal";
-
-        let htmlToLoad = "LineaCadorna.html";
-
-        /// load and append external html
-        $(id).append($('<div>').load(folder + htmlToLoad, function(responseTxt, statusTxt, xhr) {
-            if (statusTxt !== "success") {
-                console.error("Something was wrong loading html...")
-            }
-        }));
-    </script> -->
-
 
     <script>
         console.log(".........JOURNAL LOADING: END")
