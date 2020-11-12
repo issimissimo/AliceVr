@@ -27,19 +27,25 @@ function checkForAllIframesLoaded() {
 class iframeLoadingState {
   constructor(_iframe) {
     this.iframe = _iframe;
-    this.iframeDoc = _iframe.contentDocument || _iframe.contentWindow.document;
+    // this.iframeDoc = _iframe.contentDocument || _iframe.contentWindow.document;
     this.check();
   }
   check() {
     iframesCount++;
 
-    if (this.iframeDoc.readyState == "complete") {
+    console.log("CHECK....")
+
+    // if (this.iframeDoc.readyState == "complete") {
+    //   checkForAllIframesLoaded();
+    // } else {
+    //   $(this.iframe).on("load", function () {
+    //     checkForAllIframesLoaded();
+    //   });
+    // }
+
+    $(this.iframe).on("load", function () {
       checkForAllIframesLoaded();
-    } else {
-      $(this.iframe).on("load", function () {
-        checkForAllIframesLoaded();
-      });
-    }
+    });
   }
 }
 
