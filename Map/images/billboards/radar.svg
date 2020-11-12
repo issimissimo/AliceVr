@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 991.7 994" style="enable-background:new 0 0 991.7 994;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.3;fill:#557EBF;enable-background:new    ;}
-	.st1{fill:#010101;}
-	.st2{fill:#547DBF;stroke:#FFFFFF;stroke-width:12;stroke-miterlimit:10;}
-	.st3{fill:none;stroke:#FFFFFF;stroke-width:9;stroke-miterlimit:10;}
-	.st4{opacity:0.7;fill:#FFFFFF;enable-background:new    ;}
+	.st0{fill:#010101;}
+	.st1{fill:#42BFF4;stroke:#FFFFFF;stroke-width:16;stroke-miterlimit:10;}
+	.st2{opacity:0.7;fill:url(#SVGID_1_);enable-background:new    ;}
 </style>
-<circle class="st0" cx="495.7" cy="499.2" r="471.3"/>
 <title>billboard</title>
-<path class="st1" d="M930.6,697c-0.6,0.2-1.3,0.3-1.9,0.2c-0.2,0-0.2-0.4-0.4-0.6c0.6-0.2,1.3-0.3,1.9-0.2
+<path class="st0" d="M930.6,697c-0.6,0.2-1.3,0.3-1.9,0.2c-0.2,0-0.2-0.4-0.4-0.6c0.6-0.2,1.3-0.3,1.9-0.2
 	C930.3,696.7,930.4,696.9,930.6,697z"/>
 <title>billboard</title>
-<circle class="st2" cx="495.9" cy="497" r="78"/>
-<circle class="st3" cx="495.7" cy="499.2" r="471.3"/>
-<path class="st4" d="M495.7,364.6c37.4,0,71.3,15.2,95.8,39.7l188.8-188.8c-72.9-72.9-173.5-118-284.6-118S283.9,142.6,211,215.4
+<circle class="st1" cx="495.9" cy="497" r="59.1"/>
+<radialGradient id="SVGID_1_" cx="496.65" cy="488.9" r="397.6718" gradientUnits="userSpaceOnUse">
+	<stop  offset="0.3042" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.3532" style="stop-color:#E8F7FE;stop-opacity:0.9578"/>
+	<stop  offset="0.4714" style="stop-color:#B6E6FB;stop-opacity:0.8559"/>
+	<stop  offset="0.5882" style="stop-color:#8CD8F8;stop-opacity:0.7552"/>
+	<stop  offset="0.7013" style="stop-color:#6CCDF6;stop-opacity:0.6576"/>
+	<stop  offset="0.8098" style="stop-color:#55C5F5;stop-opacity:0.564"/>
+	<stop  offset="0.9116" style="stop-color:#47C1F4;stop-opacity:0.4762"/>
+	<stop  offset="1" style="stop-color:#42BFF4;stop-opacity:0.4"/>
+</radialGradient>
+<path class="st2" d="M495.7,364.6c37.4,0,71.3,15.2,95.8,39.7l188.8-188.8c-72.9-72.9-173.5-118-284.6-118S283.9,142.6,211,215.4
 	l188.8,188.8C424.4,379.7,458.2,364.6,495.7,364.6z"/>
 </svg>

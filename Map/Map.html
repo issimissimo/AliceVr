@@ -30,8 +30,6 @@
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    <!--  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="preload" as="style">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> -->
 
     <!-- wurfl -->
     <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
@@ -66,29 +64,9 @@
 
 
     <style>
-        /* @font-face {
-            font-family: Acumin-bold;
-            src: url("fonts/Acumin-BdPro.otf") format("opentype");
-        } */
-        /* @font-face {
-            font-family: roboto-medium;
-            src: url("fonts/roboto-medium.ttf") format("truetype");
-        } */
-        /* @font-face {
-            font-family: roboto-bold;
-            src: url("fonts/roboto-bold.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: roboto-regular;
-            src: url("fonts/roboto-regular.ttf") format("truetype");
-        } */
-        
         @media (max-width: 414.1px) {
             body {
                 padding: 0 !important;
-            }
-            #logo {
-                display: none;
             }
         }
     </style>
@@ -101,8 +79,8 @@
     <!-- preloader -->
     <div class="preloader">
         <div style="text-align: center;">
-            <img src="images/mapLoadingSpinner.gif" alt="">
-            <div style="width: 100px; height: 1px; position: relative;">
+            <img src="images/mapLoadingSpinner.gif" alt="" style="filter: invert(1); mix-blend-mode: lighten">
+            <div style="width: 50px; height: 3px; position: relative;">
                 <div id="progressBar" style="position: absolute; left: 0; top:0; bottom: 0;  background-color: rgb(131, 131, 131);">
                 </div>
             </div>
@@ -114,49 +92,20 @@
     <div id="cesiumContainer" style="position: relative;">
 
         <div id="credits" style="display: flex; align-items: flex-end; opacity: 75%;">
-            <!-- <img id="logo" src="../images/logo.svg" height="20px"> -->
             <span id="credits-text"></span>
         </div>
 
-        <div id="overlayLabel">
-            <p class="overlayLabel-bold"></p>
-            <p class="overlayLabel-regular"></p>
-            <p class="overlayLabel-light"></p>
+        
+        <div id="navigation" class="absolute" style="right:1em; bottom: 1em; display: flex; flex-direction: column;">
+
+            <button>ZOOM IN</button>
+            <button>ZOOM OUT</button>
+
+
         </div>
-
-
-        <!-- <div id="UI"> -->
-
-        <!-- <img id="logo" src="../images/logo.svg"> -->
-
-        <!-- <div id="toolbar">
-                <img id="cameraLinkButton" src="images/icon_linked.svg" width="35rem">
-                <img id="mapLayersToggle" src="images/icon_layers_on.svg" width="35rem">
-                <div id="navigation">
-                    <img id="zoomIn" src="images/plus.svg">
-                    <img id="zoomOut" src="images/minus.svg">
-                    <img id="turnLeft" src="images/rotate.svg">
-                    <img id="turnRight" src="images/rotate.svg" style="transform: rotate(180deg);">
-                    <img id="turnUp" src="images/rotate.svg" style="transform: rotate(90deg);">
-                    <img id="turnDown" src="images/rotate.svg" style="transform: rotate(-90deg);">
-                </div>
-            </div> -->
-
-        <!-- <img id="homeButton" src="images/icon_home_off.svg" height="35rem" width="35rem" style="position: absolute; pointer-events: auto;
-                cursor: pointer; display: none;"> -->
-        <!-- </div> -->
-
-
-        <!-- <div id="topBar" style="position: absolute; left: 0; right: 0; top:0; height: 10%; background-color: rgba(0, 0, 0, 0.767);
-            z-index: 999; padding: 1.5vmax; display: flex; align-items: center">
-            <img src="../images/logo.svg" style="height: 70%;">
-            <img id="homeButton" src="images/icon_home_off.svg" style="height: 80%; margin-left: auto; pointer-events: auto;
-                cursor: pointer; display: none;">
-        </div> -->
 
     </div>
 
 </body>
-
 
 </html>

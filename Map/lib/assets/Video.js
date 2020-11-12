@@ -74,7 +74,9 @@ export default class Video extends Asset {
                         let positions = Cesium.Cartesian3.fromDegreesArray(coordForBoundigSphere);
                         let boundingSphere = new Cesium.BoundingSphere.fromPoints(positions);
                         Asset.boundingSphereLoading--;
+
                         this.addBoundingSphere(boundingSphere);
+
                     } else Asset.boundingSphereLoading--;
                 });
         };

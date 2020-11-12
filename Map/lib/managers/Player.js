@@ -13,6 +13,8 @@ export default class Player {
 
     static init(video) {
 
+        console.log("=> Player init")
+
         /* create markers */
         markers = jsUtils.arrayOfObjectsCloneAndIncrease(video.markers);
         markers[markers.length - 1].timecode += 1000; /// add 100 sec to last marker

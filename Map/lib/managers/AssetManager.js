@@ -5,7 +5,10 @@ import Player from "./Player.js"
 
 export default class AssetManager {
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> working
     /////////////////////////////////////
     /// INIT
     /////////////////////////////////////
@@ -31,7 +34,7 @@ export default class AssetManager {
         /* if there's only one video asset
         click it */
         if (Loader.root.asset.constructor.name == "Video") {
-            console.log("ONLY 1 video")
+            console.log("- single video in root")
             navigatorButtonEnabled = false;
 
             selectedAsset = Loader.root.asset;
@@ -67,7 +70,7 @@ export default class AssetManager {
         Map.camera.flyToBoundingSphere(asset.boundingSphere, {
             offset: new Cesium.HeadingPitchRange(0, -0.5, asset.boundingSphere.radius * 2.5),
             complete: function() {
-                console.log("FLYING COMPLETE");
+                console.log("- flying complete");
 
                 Player.showStartPoints();
 
@@ -94,6 +97,15 @@ export default class AssetManager {
     };
 };
 
+AssetManager.states = {
+    IDLE: "idle",
+    ROOT_SELECTED: 'root',
+    VIDEO_SELECTED: 'videoSelected',
+    VIDEO_PLAY: "videoPlay"
+}
+AssetManager.state = AssetManager.states.IDLE;
+AssetManager.OnChangeStateHandlers = [];
+
 
 AssetManager.states = {
     IDLE: "idle",
@@ -107,9 +119,7 @@ AssetManager.OnChangeStateHandlers = [];
 
 let range = null;
 let selectedAsset = null;
-let hoverAsset = null;
 let navigatorButtonEnabled = true;
-let overlayLabelVisible = false;
 let rootForPlayer = [];
 let flyDuration = 8; //default
 

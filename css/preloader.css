@@ -7,12 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(43, 43, 43);
     z-index: 9999;
 }
 
 .preloader img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     mix-blend-mode: darken;
 }

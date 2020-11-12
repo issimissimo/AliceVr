@@ -125,6 +125,11 @@ export class Utils {
 
     fade(to, callback = null, time = null) {
         // console.log("FADE: " + this.entity.category + " - to:" + to)
+        
+        if (to < 0.1) this.entity.selectable = false;
+        else this.entity.selectable = true;
+
+
         let lerpTime = time ? time : this.lerpTime;
         let initTime = 0;
         let from = this.entity.opacity;

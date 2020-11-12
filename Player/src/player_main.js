@@ -83,7 +83,7 @@ window.dispatcher.receiveMessage("rootAssetClicked", function(asset) {
 });
 
 window.dispatcher.receiveMessage("videoAssetClicked", function(asset) {
-    // console.log("VIDEO ASSET CLICKED")
+    console.log("Player - received message videoAssetClicked")
     overlay.load(player, asset);
     subtitles.load(asset);
     player.load(asset, () => {

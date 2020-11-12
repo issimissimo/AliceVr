@@ -11,7 +11,7 @@ let checkForTimeout = null;
 
 /// set this variable to hide the preloader
 /// when a minimum is reached
-const minimumTileQueuSum = 40;
+const minimumTileQueuSum = window.isMobile? 60 : 50;
 
 
 
@@ -43,7 +43,7 @@ function waitTimeout() {
     checkForTimeout = setTimeout(() => {
         if (isLoading) {
             if (tileQueueSum < minimumTileQueuSum) {
-                console.log("TIMEOUT")
+                console.log("hide preloader for Timeout")
                 hide();
             } else waitTimeout();
         }
