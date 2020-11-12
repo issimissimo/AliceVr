@@ -11,7 +11,7 @@ let checkForTimeout = null;
 
 /// set this variable to hide the preloader
 /// when a minimum is reached
-const minimumTileQueuSum = 40;
+const minimumTileQueuSum = window.isMobile? 60 : 50;
 
 
 

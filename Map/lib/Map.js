@@ -11,12 +11,12 @@ const styles = [{
     {
         /// 1 - Bingmaps
         useMapbox: false,
-        screenspaceError: 1,
+        screenspaceError: 2,
     },
     {
         /// 2 - Mapbox
         useMapbox: true,
-        screenspaceError: 1,
+        screenspaceError: 2,
     },
 
 ]
@@ -237,7 +237,7 @@ export default class Map {
         // let screenspaceError;
         // if (useMapbox) screenspaceError = 4;
         // else screenspaceError = window.isMobile ? 2 : 1;
-        Map.viewer.scene.globe.maximumScreenSpaceError = style.screenspaceError;
+        Map.viewer.scene.globe.maximumScreenSpaceError = window.isMobile ? 4 : style.screenspaceError;
 
         Map.viewer.scene.skyAtmosphere.brightnessShift = style.useMapbox ? 0.3 : -0.1;
         Map.viewer.scene.skyAtmosphere.hueShift = style.useMapbox ? 0.04 : 0;
