@@ -5,20 +5,6 @@ import Player from "./Player.js"
 
 export default class AssetManager {
 
-    static states = {
-        IDLE: "idle",
-        ROOT_SELECTED: 'root',
-        VIDEO_SELECTED: 'videoSelected',
-        VIDEO_PLAY: "videoPlay"
-    }
-    static state = states.IDLE;
-    static OnChangeStateHandlers = [];
-
-
-
-
-
-
     /////////////////////////////////////
     /// INIT
     /////////////////////////////////////
@@ -106,6 +92,15 @@ export default class AssetManager {
         window.dispatcher.sendMessage("videoAssetClicked", assetForPlayer);
     };
 };
+
+AssetManager.states = {
+    IDLE: "idle",
+    ROOT_SELECTED: 'root',
+    VIDEO_SELECTED: 'videoSelected',
+    VIDEO_PLAY: "videoPlay"
+}
+AssetManager.state = AssetManager.states.IDLE;
+AssetManager.OnChangeStateHandlers = [];
 
 
 let range = null;
