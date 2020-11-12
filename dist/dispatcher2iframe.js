@@ -33,8 +33,6 @@ class iframeLoadingState {
   check() {
     iframesCount++;
 
-    console.log("CHECK....")
-
     // if (this.iframeDoc.readyState == "complete") {
     //   checkForAllIframesLoaded();
     // } else {
