@@ -231,7 +231,7 @@ export default class Map {
 
         /* parameters */
         Map.viewer.scene.globe.depthTestAgainstTerrain = false;
-        Map.viewer.scene.postProcessStages.fxaa.enabled = true;
+        Map.viewer.scene.postProcessStages.fxaa.enabled = false;
         Map.viewer.scene.highDynamicRange = true;
 
         // let screenspaceError;
