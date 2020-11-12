@@ -5,10 +5,6 @@ import Player from "./Player.js"
 
 export default class AssetManager {
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> working
     /////////////////////////////////////
     /// INIT
     /////////////////////////////////////
