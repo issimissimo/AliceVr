@@ -204,7 +204,8 @@ export default class Map {
         const imageryProvider = style.useMapbox ?
             new Cesium.MapboxImageryProvider({
                 mapId: 'mapbox.satellite',
-                accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw'
+                // accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw',
+                accessToken: ''
             }) :
             null;
 
