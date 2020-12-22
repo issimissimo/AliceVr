@@ -199,14 +199,18 @@ export default class Map {
         const style = styles[parseInt(nStyle)];
 
         /* main */
-        // Cesium.Ion.defaultAccessToken = token;
-        Cesium.Ion.defaultAccessToken = "";
+        Cesium.Ion.defaultAccessToken = token;
+
+        /// DISABLE TOKEN
+        // Cesium.Ion.defaultAccessToken = "";
 
         const imageryProvider = style.useMapbox ?
             new Cesium.MapboxImageryProvider({
                 mapId: 'mapbox.satellite',
-                // accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw',
-                accessToken: ''
+                accessToken: 'pk.eyJ1IjoiZGFuaWVsZXN1cHBvIiwiYSI6ImNqb2owbHp2YjAwODYzcW8xaWdhcGp1ancifQ.JvNWYw_cL6rV7ymuEbeTCw',
+
+                /// DISABLE TOKEN
+                // accessToken: ''
             }) :
             null;
 
